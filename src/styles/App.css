@@ -1,0 +1,39 @@
+@import-normalize;
+@import 'tailwindcss';
+@import './variables.css';
+
+body {
+  background: var(--main-color);
+  color: white;
+  font-family: sans-serif;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+/* Buttons */
+
+button {
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+button.primary {
+  background: #d1e3f2;
+  color: var(--main-color);
+}
+
+button.secondary {
+  background: #3b4d5e;
+}
