@@ -17,12 +17,16 @@ function App() {
       setMoney(money + 1);
     }
   }
-
+  console.log('websites:', websites, 'isDisabled:', websites < 1);
   return (
     <div className="wrapper">
       <section className="sidebar">
         <Stats money={money} websites={websites} />
-        <Actions sellWebsite={sellWebsite} createWebsite={createWebsite} />
+        <Actions
+          sellWebsite={sellWebsite}
+          createWebsite={createWebsite}
+          isDisabled={websites < 1}
+        />
       </section>
       <section className="main">Main section</section>
     </div>

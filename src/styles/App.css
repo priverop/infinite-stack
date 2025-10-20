@@ -37,3 +37,8 @@ button.primary {
 button.secondary {
   background: #3b4d5e;
 }
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
