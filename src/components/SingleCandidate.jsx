@@ -1,6 +1,8 @@
-export default function SingleCandidate({ candidate }) {
+export default function SingleCandidate({ candidate, onClick }) {
   return (
-    <div className="p-3 flex items-center justify-between hover:cursor-pointer hover:bg-indigo-700 rounded-xl">
+    <div
+      className="p-3 flex items-center justify-between hover:cursor-pointer hover:bg-indigo-700 rounded-xl"
+      onClick={() => onClick(candidate.cost, candidate.increment)}>
       <div className="flex items-center gap-4">
         <img src={candidate.image} className="h-16 w-16" />
         <div className="flex flex-col">

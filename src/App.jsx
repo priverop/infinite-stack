@@ -7,6 +7,8 @@ import './styles/App.css';
 function App() {
   const [money, setMoney] = useState(0);
   const [websites, setWebsites] = useState(0);
+  const [websitesPerSecond, setWebsitesPerSecond] = useState(0);
+  const [moneyPerSecond, setMoneyPerSecond] = useState(0);
 
   function createWebsite() {
     setWebsites(websites + 1);
@@ -18,11 +20,30 @@ function App() {
       setMoney(money + 1);
     }
   }
-  console.log('websites:', websites, 'isDisabled:', websites < 1);
+
+  function hireDev(cost, increment) {
+    if (money > cost) {
+      setMoney(money - cost);
+      setWebsitesPerSecond(websitesPerSecond + increment);
+    }
+  }
+
+  function hireSeller(cost, increment) {
+    if (money > cost) {
+      setMoney(money - cost);
+      setMoneyPerSecond(moneyPerSecond + increment);
+    }
+  }
+
   return (
     <div className="wrapper">
       <section className="sidebar">
-        <Stats money={money} websites={websites} />
+        <Stats
+          money={money}
+          websites={websites}
+          websitesPerSecond={websitesPerSecond}
+          moneyPerSecond={moneyPerSecond}
+        />
         <Actions
           sellWebsite={sellWebsite}
           createWebsite={createWebsite}
@@ -30,7 +51,7 @@ function App() {
         />
       </section>
       <section className="main">
-        <Panel />
+        <Panel money={money} hireDev={hireDev} hireSeller={hireSeller} />
       </section>
     </div>
   );
