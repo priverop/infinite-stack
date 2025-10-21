@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Actions from './components/Actions';
 import Stats from './components/Stats';
+import Panel from './components/Panel';
 import './styles/App.css';
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
           isDisabled={websites < 1}
         />
       </section>
-      <section className="main">Main section</section>
+      <section className="main">
+        <Panel />
+      </section>
     </div>
   );
 }

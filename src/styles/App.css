@@ -42,3 +42,11 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* Tabs */
+
+.react-tabs__tab--selected {
+  color: #d1e3f2;
+  border-bottom: 1px solid #d1e3f2;
+  background: none;
+}
