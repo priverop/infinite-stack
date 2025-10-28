@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Actions from './components/Actions';
 import Stats from './components/Stats';
 import Panel from './components/Panel';
+import type { HireFunction } from './types';
 import './styles/App.css';
 
 function App() {
@@ -10,30 +11,30 @@ function App() {
   const [websitesPerSecond, setWebsitesPerSecond] = useState(0);
   const [moneyPerSecond, setMoneyPerSecond] = useState(0);
 
-  function createWebsite() {
+  function createWebsite(): void {
     setWebsites(websites + 1);
   }
 
-  function sellWebsite() {
+  function sellWebsite(): void {
     if (websites > 0) {
       setWebsites(websites - 1);
       setMoney(money + 1);
     }
   }
 
-  function hireDev(cost, increment) {
+  const hireDev: HireFunction = (cost, increment) => {
     if (money > cost) {
       setMoney(money - cost);
       setWebsitesPerSecond(websitesPerSecond + increment);
     }
-  }
+  };
 
-  function hireSeller(cost, increment) {
+  const hireSeller: HireFunction = (cost, increment) => {
     if (money > cost) {
       setMoney(money - cost);
       setMoneyPerSecond(moneyPerSecond + increment);
     }
-  }
+  };
 
   return (
     <div className="wrapper">

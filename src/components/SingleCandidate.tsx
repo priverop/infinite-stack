@@ -1,4 +1,11 @@
-export default function SingleCandidate({ candidate, onClick }) {
+import type { Candidate, HireFunction } from '../types';
+
+interface SingleCandidateProps {
+  candidate: Candidate;
+  onClick: HireFunction;
+}
+
+export default function SingleCandidate({ candidate, onClick }: SingleCandidateProps) {
   return (
     <div
       className="p-3 flex items-center justify-between hover:cursor-pointer hover:bg-indigo-700 rounded-xl"

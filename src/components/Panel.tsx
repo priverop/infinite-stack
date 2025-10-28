@@ -3,8 +3,14 @@ import 'react-tabs/style/react-tabs.css';
 import BuyPanel from './BuyPanel';
 import AchievementsPanel from './AchievementsPanel';
 import HirePanel from './HirePanel';
+import type { GameStats, HireFunction } from '../types';
 
-export default function Panel({ money, hireSeller, hireDev }) {
+interface PanelProps extends Pick<GameStats, 'money'> {
+  hireDev: HireFunction;
+  hireSeller: HireFunction;
+}
+
+export default function Panel({ money, hireSeller, hireDev }: PanelProps) {
   return (
     <Tabs>
       <TabList className="flex flex-wrap text-gray-500 dark:text-gray-400">

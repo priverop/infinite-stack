@@ -1,25 +1,26 @@
 import SingleCandidate from './SingleCandidate';
+import type { GameStats, HireFunction } from '../types';
 
 const devs = [
   {
     title: 'Junior Developer',
     image: 'preview.jpg',
     description: 'Increases website production by 1/sec.',
-    cost: '1000',
+    cost: 1000,
     increment: 1
   },
   {
     title: 'Mid Developer',
     image: 'preview.jpg',
     description: 'Increases website production by 2/sec.',
-    cost: '2000',
+    cost: 2000,
     increment: 2
   },
   {
     title: 'Senior Developer',
     image: 'preview.jpg',
     description: 'Increases website production by 3/sec.',
-    cost: '3000',
+    cost: 3000,
     increment: 3
   }
 ];
@@ -29,26 +30,30 @@ const sales = [
     title: 'Trainee Salesperson',
     image: 'preview.jpg',
     description: 'Increases website selling by 1/sec.',
-    cost: '1000',
+    cost: 1000,
     increment: 1
   },
   {
     title: 'Senior Salesperson',
     image: 'preview.jpg',
     description: 'Increases website selling by 5/sec.',
-    cost: '4500',
+    cost: 4500,
     increment: 5
   },
   {
     title: 'B2B specialist Salesperson',
     image: 'preview.jpg',
     description: 'Increases website selling by 10/sec.',
-    cost: '8000',
+    cost: 8000,
     increment: 10
   }
 ];
 
-export default function HirePanel({ money, hireDev, hireSeller }) {
+interface HireProps extends Pick<GameStats, 'money'> {
+  hireDev: HireFunction;
+  hireSeller: HireFunction;
+}
+export default function HirePanel({ hireDev, hireSeller }: HireProps) {
   const listDevs = devs.map((dev, index) => (
     <SingleCandidate key={index} onClick={hireDev} candidate={dev} />
   ));

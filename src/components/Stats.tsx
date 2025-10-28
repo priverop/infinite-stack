@@ -1,7 +1,8 @@
 import '../styles/Stats.css';
 import SingleStat from './SingleStat';
+import type { GameStats } from '../types';
 
-export default function Stats({ money, websites, moneyPerSecond, websitesPerSecond }) {
+export default function Stats({ money, websites, moneyPerSecond, websitesPerSecond }: GameStats) {
   return (
     <div className="wrapper">
       <SingleStat number={websites} text="Websites created" />

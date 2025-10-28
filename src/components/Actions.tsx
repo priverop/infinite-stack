@@ -1,4 +1,10 @@
-export default function Actions({ sellWebsite, createWebsite, isDisabled }) {
+interface ActionsProps {
+  sellWebsite: () => void;
+  createWebsite: () => void;
+  isDisabled: boolean;
+}
+
+export default function Actions({ sellWebsite, createWebsite, isDisabled }: ActionsProps) {
   return (
     <div>
       <button className="primary" onClick={createWebsite}>
