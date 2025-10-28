@@ -4,21 +4,21 @@ import type { GameStats, HireFunction } from '../types';
 const devs = [
   {
     title: 'Junior Developer',
-    image: 'preview.jpg',
+    image: 'https://picsum.photos/id/1/100',
     description: 'Increases website production by 1/sec.',
     cost: 1000,
     increment: 1
   },
   {
     title: 'Mid Developer',
-    image: 'preview.jpg',
+    image: 'https://picsum.photos/id/180/100',
     description: 'Increases website production by 2/sec.',
     cost: 2000,
     increment: 2
   },
   {
     title: 'Senior Developer',
-    image: 'preview.jpg',
+    image: 'https://picsum.photos/id/60/100',
     description: 'Increases website production by 3/sec.',
     cost: 3000,
     increment: 3
@@ -28,21 +28,21 @@ const devs = [
 const sales = [
   {
     title: 'Trainee Salesperson',
-    image: 'preview.jpg',
+    image: 'https://picsum.photos/id/48/100',
     description: 'Increases website selling by 1/sec.',
     cost: 1000,
     increment: 1
   },
   {
     title: 'Senior Salesperson',
-    image: 'preview.jpg',
+    image: 'https://picsum.photos/id/20/100',
     description: 'Increases website selling by 5/sec.',
     cost: 4500,
     increment: 5
   },
   {
     title: 'B2B specialist Salesperson',
-    image: 'preview.jpg',
+    image: 'https://picsum.photos/id/378/100',
     description: 'Increases website selling by 10/sec.',
     cost: 8000,
     increment: 10
