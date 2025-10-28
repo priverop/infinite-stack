@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Actions from './components/Actions';
 import Stats from './components/Stats';
 import Panel from './components/Panel';
+import People from './components/People';
 import type { HireFunction } from './types';
 import './styles/App.css';
 
@@ -10,6 +11,8 @@ function App() {
   const [websites, setWebsites] = useState(0);
   const [websitesPerSecond, setWebsitesPerSecond] = useState(0);
   const [moneyPerSecond, setMoneyPerSecond] = useState(0);
+  const [people, setPeople] = useState(0);
+  const [maxPeople, setMaxPeople] = useState(10);
 
   useEffect(() => {
     const intervalo = setInterval(() => {
@@ -42,16 +45,25 @@ function App() {
   }
 
   const hireDev: HireFunction = (cost, increment) => {
-    if (money >= cost) {
+    if (money >= cost && people < maxPeople) {
       setMoney(money - cost);
       setWebsitesPerSecond(websitesPerSecond + increment);
+      setPeople(people + 1);
     }
   };
 
   const hireSeller: HireFunction = (cost, increment) => {
-    if (money >= cost) {
+    if (money >= cost && people < maxPeople) {
       setMoney(money - cost);
       setMoneyPerSecond(moneyPerSecond + increment);
+      setPeople(people + 1);
+    }
+  };
+
+  const buyBuilding: HireFunction = (cost, increment) => {
+    if (money >= cost) {
+      setMoney(money - cost);
+      setMaxPeople(maxPeople + increment);
     }
   };
 
@@ -69,9 +81,10 @@ function App() {
           createWebsite={createWebsite}
           isDisabled={websites < 1}
         />
+        <People people={people} maxPeople={maxPeople} />
       </section>
       <section className="main">
-        <Panel money={money} hireDev={hireDev} hireSeller={hireSeller} />
+        <Panel hireDev={hireDev} hireSeller={hireSeller} buyBuilding={buyBuilding} />
       </section>
     </div>
   );

@@ -1,5 +1,5 @@
 import SingleCandidate from './SingleCandidate';
-import type { GameStats, HireFunction } from '../types';
+import type { HireFunction } from '../types';
 
 const devs = [
   {
@@ -49,10 +49,11 @@ const sales = [
   }
 ];
 
-interface HireProps extends Pick<GameStats, 'money'> {
+interface HireProps {
   hireDev: HireFunction;
   hireSeller: HireFunction;
 }
+
 export default function HirePanel({ hireDev, hireSeller }: HireProps) {
   const listDevs = devs.map((dev, index) => (
     <SingleCandidate key={index} onClick={hireDev} candidate={dev} />
