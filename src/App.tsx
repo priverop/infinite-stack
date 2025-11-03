@@ -4,6 +4,7 @@ import Stats from './components/Stats';
 import Panel from './components/Panel';
 import People from './components/People';
 import type { HireFunction } from './types';
+import useGameStorage from './hooks/gameStorage';
 import './styles/App.css';
 
 function App() {
@@ -14,6 +15,29 @@ function App() {
   const [people, setPeople] = useState(0);
   const [maxPeople, setMaxPeople] = useState(10);
 
+  const gameState = {
+    websites,
+    money,
+    websitesPerSecond,
+    moneyPerSecond,
+    people,
+    maxPeople
+  };
+
+  const { load } = useGameStorage(gameState);
+
+  useEffect(() => {
+    const init = async () => {
+      const savedData = await load();
+      if (savedData) {
+        setWebsites(savedData.websites);
+        setMoney(savedData.money);
+      }
+    };
+    init();
+  }, []);
+
+  // ToDo: Alert if moneyPerSecond is not viable
   useEffect(() => {
     const intervalo = setInterval(() => {
       setWebsites((prevWebsites) => {
@@ -32,6 +56,8 @@ function App() {
 
     return () => clearInterval(intervalo);
   }, [websitesPerSecond, moneyPerSecond]);
+
+  // TODO: Move these functions away
 
   function createWebsite(): void {
     setWebsites(websites + 1);

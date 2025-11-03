@@ -4,6 +4,8 @@ export interface GameStats {
   websites: number;
   websitesPerSecond: number;
   moneyPerSecond: number;
+  people: number;
+  maxPeople: number;
 }
 
 // Candidate for hiring (devs and salespeople)
