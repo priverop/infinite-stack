@@ -32,6 +32,10 @@ function App() {
       if (savedData) {
         setWebsites(savedData.websites);
         setMoney(savedData.money);
+        setMoneyPerSecond(savedData.moneyPerSecond);
+        setWebsitesPerSecond(savedData.websitesPerSecond);
+        setPeople(savedData.people);
+        setMaxPeople(savedData.maxPeople);
       }
     };
     init();
