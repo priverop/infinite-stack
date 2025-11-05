@@ -15,9 +15,14 @@ body {
   text-align: center;
 }
 
-.wrapper {
+/* Layout */
+.layout {
   display: grid;
   grid-template-columns: 1fr 3fr;
+}
+
+footer {
+  grid-area: 2 / 1 / 2 / 3;
 }
 
 /* Buttons */
