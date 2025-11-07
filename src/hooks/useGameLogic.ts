@@ -1,7 +1,8 @@
 // src/hooks/useGameLogic.ts
 import { useState, useEffect } from 'react';
-import type { HireFunction } from '../types';
+import type { HireFunction, GameStats } from '../types';
 import useGameStorage from './useGameStorage';
+import { useAchievements } from './useAchievements';
 
 export function useGameLogic() {
   const [websites, setWebsites] = useState(0);
@@ -11,14 +12,41 @@ export function useGameLogic() {
   const [people, setPeople] = useState(0);
   const [maxPeople, setMaxPeople] = useState(10);
 
+  // Achievements
+  const [totalClicks, setTotalClicks] = useState(0);
+  const [websitesCreated, setWebsitesCreated] = useState(0);
+  const [websitesSold, setWebsitesSold] = useState(0);
+
+  const achievementGameState: GameStats = {
+    money,
+    websites,
+    websitesPerSecond,
+    moneyPerSecond,
+    people,
+    maxPeople,
+    totalClicks,
+    websitesCreated,
+    websitesSold
+  };
+
+  const achievements = useAchievements(achievementGameState); // Object with unlocked and recent
+
+  // Core functions
+
   function createWebsite(): void {
     setWebsites(websites + 1);
+    // Achivements
+    setTotalClicks(totalClicks + 1);
+    setWebsitesCreated(websitesCreated + 1);
   }
 
   function sellWebsite(): void {
     if (websites > 0) {
       setWebsites(websites - 1);
       setMoney(money + 1);
+      // Achivements
+      setTotalClicks(totalClicks + 1);
+      setWebsitesSold(websitesSold + 1);
     }
   }
 
@@ -51,7 +79,10 @@ export function useGameLogic() {
     websitesPerSecond,
     moneyPerSecond,
     people,
-    maxPeople
+    maxPeople,
+    totalClicks,
+    websitesCreated,
+    websitesSold
   };
 
   const { load } = useGameStorage(gameState);
@@ -66,6 +97,9 @@ export function useGameLogic() {
         setWebsitesPerSecond(savedData.websitesPerSecond);
         setPeople(savedData.people);
         setMaxPeople(savedData.maxPeople);
+        setTotalClicks(savedData.totalClicks);
+        setWebsitesCreated(savedData.websitesCreated);
+        setWebsitesSold(savedData.websitesSold);
       }
     };
     init();
@@ -103,6 +137,8 @@ export function useGameLogic() {
     sellWebsite,
     hireDev,
     hireSeller,
-    buyBuilding
+    buyBuilding,
+
+    achievements // {unlocked, recent}
   };
 }

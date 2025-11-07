@@ -6,6 +6,25 @@ export interface GameStats {
   moneyPerSecond: number;
   people: number;
   maxPeople: number;
+  // Achievements: these are hidden for the user
+  totalClicks: number;
+  websitesCreated: number;
+  websitesSold: number;
+}
+
+export interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  type: 'threshold' | 'firstPurchase' | 'collection';
+  // For threshold achievements
+  stat?: keyof GameStats;
+  target?: number;
+  // For first purchase achievements
+  purchaseType?: 'dev' | 'seller' | 'building';
+  // For collection achievements
+  collectionType?: 'buildings' | 'devs' | 'sellers';
 }
 
 // Candidate for hiring (devs and salespeople)

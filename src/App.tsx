@@ -18,7 +18,8 @@ function App() {
     sellWebsite,
     hireDev,
     hireSeller,
-    buyBuilding
+    buyBuilding,
+    achievements
   } = useGameLogic();
 
   return (
@@ -39,7 +40,12 @@ function App() {
         <p className="italic mt-5">The game is auto saved after each 10 seconds.</p>
       </section>
       <section className="main">
-        <Panel hireDev={hireDev} hireSeller={hireSeller} buyBuilding={buyBuilding} />
+        <Panel
+          hireDev={hireDev}
+          hireSeller={hireSeller}
+          buyBuilding={buyBuilding}
+          achievements={achievements}
+        />
       </section>
       <Footer />
     </div>

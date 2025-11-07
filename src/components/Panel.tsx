@@ -3,15 +3,19 @@ import 'react-tabs/style/react-tabs.css';
 import BuyPanel from './BuyPanel';
 import AchievementsPanel from './AchievementsPanel';
 import HirePanel from './HirePanel';
-import type { HireFunction } from '../types';
+import type { Achievement, HireFunction } from '../types';
 
 interface PanelProps {
   hireDev: HireFunction;
   hireSeller: HireFunction;
   buyBuilding: HireFunction;
+  achievements: {
+    unlockedAchievements: Set<string>;
+    recentUnlocks: Achievement[];
+  };
 }
 
-export default function Panel({ hireSeller, hireDev, buyBuilding }: PanelProps) {
+export default function Panel({ hireSeller, hireDev, buyBuilding, achievements }: PanelProps) {
   return (
     <Tabs>
       <TabList className="flex flex-wrap text-gray-500 dark:text-gray-400">
@@ -66,7 +70,7 @@ export default function Panel({ hireSeller, hireDev, buyBuilding }: PanelProps) 
         <BuyPanel buyBuilding={buyBuilding} />
       </TabPanel>
       <TabPanel>
-        <AchievementsPanel />
+        <AchievementsPanel unlockedAchievements={achievements.unlockedAchievements} />
       </TabPanel>
     </Tabs>
   );

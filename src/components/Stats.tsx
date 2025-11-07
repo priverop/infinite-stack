@@ -2,7 +2,10 @@ import '../styles/Stats.css';
 import SingleStat from './SingleStat';
 import type { GameStats } from '../types';
 
-type StatsProps = Omit<GameStats, 'people' | 'maxPeople'>;
+type StatsProps = Omit<
+  GameStats,
+  'people' | 'maxPeople' | 'totalClicks' | 'websitesCreated' | 'websitesSold'
+>;
 
 export default function Stats({ money, websites, moneyPerSecond, websitesPerSecond }: StatsProps) {
   return (

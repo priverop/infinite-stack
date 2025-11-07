@@ -1,25 +1,31 @@
+import { achievements } from '../data/achievements';
+import type { Achievement } from '../types';
+
+interface AchievementsPanelProps {
+  unlockedAchievements: Set<string>;
+}
+
 /*
-  Achievements Ideas:
-  - 1000 clicks
-  - 10000 clicks
-  - 100000 clicks
-  - 1000 $
-  - 100.000 $
-  - 1.000.000 $
-  - First building
-  - First dev
-  - First seller
-  - Team to 100
-  - Team to 1k
-  - Make your first website
-  - Sell your first website
-  - Make 1k websites
-  - Make 1.000.000 websites
-  - Own every location
-  - Own every type of staff
-  - Get 100 trainees
+  ToDo: Add visible / hidden achievements -> guide / challenges
 */
 
-export default function AchievementsPanel() {
-  return <h2>Coming Soon</h2>;
+export default function AchievementsPanel({ unlockedAchievements }: AchievementsPanelProps) {
+  const progress = Math.round((unlockedAchievements.size / achievements.length) * 100);
+  const achievementsList = achievements
+    .filter((achievement) => unlockedAchievements.has(achievement.id))
+    .map((achievement: Achievement) => {
+      return (
+        <li>
+          {achievement.icon} {achievement.title}: {achievement.description}{' '}
+          {<span className="text-green-400 text-sm">✓ Unlocked</span>}
+        </li>
+      );
+    });
+
+  return (
+    <div className="text-left p-4">
+      <ul>{achievementsList}</ul>
+      <p className="italic mt-3">{progress}% Unlocked</p>
+    </div>
+  );
 }
