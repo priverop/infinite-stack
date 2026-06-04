@@ -19,6 +19,8 @@ function App() {
     hireDev,
     hireSeller,
     buyBuilding,
+    removeState,
+    removeStorage,
     achievements
   } = useGameLogic();
 
@@ -38,6 +40,14 @@ function App() {
         />
         <People people={people} maxPeople={maxPeople} />
         <p className="italic mt-5">The game is auto saved after each 10 seconds.</p>
+        <button
+          onClick={() => {
+            removeState();
+            removeStorage();
+          }}
+          className="primary">
+          Clean State
+        </button>
       </section>
       <section className="main">
         <Panel

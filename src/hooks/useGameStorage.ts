@@ -9,6 +9,11 @@ export default function useGameStorage(gameState: GameStats) {
     gameStateRef.current = gameState;
   }, [gameState]);
 
+  function removeStorage(): void {
+    localStorage.removeItem(storageKey);
+    localStorage.removeItem('unlocked-achievements');
+  }
+
   const load = useCallback(async () => {
     try {
       const result = localStorage.getItem(storageKey);
@@ -37,5 +42,5 @@ export default function useGameStorage(gameState: GameStats) {
     return () => clearInterval(interval);
   }, []);
 
-  return { load };
+  return { removeStorage, load };
 }

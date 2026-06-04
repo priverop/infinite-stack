@@ -73,7 +73,19 @@ export function useGameLogic() {
     }
   };
 
-  const { load } = useGameStorage(gameState);
+  function removeState(): void {
+    setWebsites(0);
+    setMoney(0);
+    setMoneyPerSecond(0);
+    setWebsitesPerSecond(0);
+    setPeople(0);
+    setMaxPeople(10);
+    setTotalClicks(0);
+    setWebsitesCreated(0);
+    setWebsitesSold(0);
+  }
+
+  const { load, removeStorage } = useGameStorage(gameState);
 
   useEffect(() => {
     const init = async () => {
@@ -126,6 +138,8 @@ export function useGameLogic() {
     hireDev,
     hireSeller,
     buyBuilding,
+    removeState,
+    removeStorage,
 
     achievements // {unlocked, recent}
   };

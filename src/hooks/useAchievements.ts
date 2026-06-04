@@ -7,7 +7,7 @@ export function useAchievements(gameState: GameStats) {
   const [unlockedAchievements, setUnlockedAchievements] = useState<Set<string>>(new Set());
   const [recentUnlocks, setRecentUnlocks] = useState<Achievement[]>([]);
 
-  // ToDo: No deberíamos meter esto en el LoadGame normal?
+  // Dev Note: This could be in useGameStorage - but I'd rather have all the achievement logic here
   // Load unlocked achievements from localStorage
   useEffect(() => {
     const savedAchievements = localStorage.getItem('unlocked-achievements');
@@ -89,7 +89,6 @@ export function useAchievements(gameState: GameStats) {
       }
     });
 
-    // ToDo: meterlo en el if de arriba y nos quitamos ese array?
     if (newUnlocks.length > 0) {
       setRecentUnlocks(newUnlocks);
 
@@ -98,8 +97,6 @@ export function useAchievements(gameState: GameStats) {
         setRecentUnlocks([]);
       }, 5000);
     }
-
-    // ToDo: Por qué se meten aquí estas funciones?
   }, [gameState, unlockedAchievements, checkThreshold]); // , checkFirstPurchase, checkCollection
 
   // Check achievements whenever game state changes
