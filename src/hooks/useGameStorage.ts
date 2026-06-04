@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import type { GameStats } from '../types';
 
 export default function useGameStorage(gameState: GameStats) {
@@ -9,7 +9,7 @@ export default function useGameStorage(gameState: GameStats) {
     gameStateRef.current = gameState;
   }, [gameState]);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     try {
       const result = localStorage.getItem(storageKey);
       if (result) {
@@ -21,7 +21,7 @@ export default function useGameStorage(gameState: GameStats) {
       console.log('Error loading your progress:', error);
       return null;
     }
-  };
+  }, []);
 
   useEffect(() => {
     const save = async () => {

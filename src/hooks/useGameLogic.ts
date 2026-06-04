@@ -91,7 +91,7 @@ export function useGameLogic() {
       }
     };
     init();
-  }, []);
+  }, [load]);
 
   // ToDo: Alert if moneyPerSecond is not viable
   useEffect(() => {
