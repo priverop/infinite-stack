@@ -104,7 +104,13 @@ export function useAchievements(gameState: GameStats) {
     checkAchievements();
   }, [checkAchievements]);
 
+  function removeAchievements(): void {
+    setUnlockedAchievements(new Set());
+    setRecentUnlocks([]);
+  }
+
   return {
+    removeAchievements,
     unlockedAchievements,
     recentUnlocks // for notifications
   };

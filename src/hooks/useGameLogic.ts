@@ -83,6 +83,7 @@ export function useGameLogic() {
     setTotalClicks(0);
     setWebsitesCreated(0);
     setWebsitesSold(0);
+    achievements.removeAchievements();
   }
 
   const { load, removeStorage } = useGameStorage(gameState);
