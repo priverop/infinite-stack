@@ -28,20 +28,20 @@ export function useAchievements(gameState: GameStats) {
     return currentValue >= achievement.target;
   }, []);
 
-  // const checkFirstPurchase = useCallback((achievement: Achievement, state: GameStats): boolean => {
-  //   if (!achievement.purchaseType) return false;
+  const checkFirstPurchase = useCallback((achievement: Achievement, state: GameStats): boolean => {
+    if (!achievement.purchaseType) return false;
 
-  //   switch (achievement.purchaseType) {
-  //     case 'dev':
-  //       return state.juniorDevs > 0 || state.midDevs > 0 || state.seniorDevs > 0;
-  //     case 'seller':
-  //       return state.traineeSales > 0 || state.seniorSales > 0 || state.b2bSales > 0;
-  //     case 'building':
-  //       return state.coworkingSingle > 0 || state.coworkingPrivate > 0 || state.smallOffice > 0;
-  //     default:
-  //       return false;
-  //   }
-  // }, []);
+    switch (achievement.purchaseType) {
+      case 'dev':
+        return state.devs > 0;
+      case 'seller':
+        return state.sellers > 0;
+      case 'building':
+        return state.buildings > 0;
+      default:
+        return false;
+    }
+  }, []);
 
   // const checkCollection = useCallback((achievement: Achievement, state: GameStats): boolean => {
   //   if (!achievement.collectionType) return false;
@@ -75,9 +75,9 @@ export function useAchievements(gameState: GameStats) {
         case 'threshold':
           isUnlocked = checkThreshold(achievement, gameState);
           break;
-        // case 'firstPurchase':
-        //   isUnlocked = checkFirstPurchase(achievement, gameState);
-        //   break;
+        case 'firstPurchase':
+          isUnlocked = checkFirstPurchase(achievement, gameState);
+          break;
         // case 'collection':
         //   isUnlocked = checkCollection(achievement, gameState);
         //   break;

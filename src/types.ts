@@ -10,6 +10,9 @@ export interface GameStats {
   totalClicks: number;
   websitesCreated: number;
   websitesSold: number;
+  devs: number;
+  sellers: number;
+  buildings: number;
 }
 
 export interface Achievement {

@@ -16,6 +16,9 @@ export function useGameLogic() {
   const [totalClicks, setTotalClicks] = useState(0);
   const [websitesCreated, setWebsitesCreated] = useState(0);
   const [websitesSold, setWebsitesSold] = useState(0);
+  const [devs, setDevs] = useState(0);
+  const [sellers, setSellers] = useState(0);
+  const [buildings, setBuildings] = useState(0);
 
   const gameState: GameStats = {
     money,
@@ -26,7 +29,10 @@ export function useGameLogic() {
     maxPeople,
     totalClicks,
     websitesCreated,
-    websitesSold
+    websitesSold,
+    devs,
+    sellers,
+    buildings
   };
 
   const achievements = useAchievements(gameState); // Object with unlocked and recent
@@ -55,6 +61,7 @@ export function useGameLogic() {
       setMoney(money - cost);
       setWebsitesPerSecond(websitesPerSecond + increment);
       setPeople(people + 1);
+      setDevs(devs + 1);
     }
   };
 
@@ -63,6 +70,7 @@ export function useGameLogic() {
       setMoney(money - cost);
       setMoneyPerSecond(moneyPerSecond + increment);
       setPeople(people + 1);
+      setSellers(sellers + 1);
     }
   };
 
@@ -70,6 +78,7 @@ export function useGameLogic() {
     if (money >= cost) {
       setMoney(money - cost);
       setMaxPeople(maxPeople + increment);
+      setBuildings(buildings + 1);
     }
   };
 
