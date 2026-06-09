@@ -46,6 +46,15 @@ export function useAchievements(gameState: GameStats) {
     );
   }, []);
 
+  const checkStaffCount = useCallback((achievement: Achievement, state: GameStats): boolean => {
+    if (!achievement.staffIds || !achievement.target) return false;
+
+    return (
+      achievement.staffIds.reduce((accum, current) => accum + (state.staff[current] ?? 0), 0) >=
+      achievement.target
+    );
+  }, []);
+
   const checkAchievements = useCallback(() => {
     const newUnlocks: Achievement[] = [];
 
@@ -63,6 +72,9 @@ export function useAchievements(gameState: GameStats) {
           break;
         case 'collection':
           isUnlocked = checkCollection(achievement, gameState);
+          break;
+        case 'staffCount':
+          isUnlocked = checkStaffCount(achievement, gameState);
           break;
       }
 

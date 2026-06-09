@@ -86,6 +86,17 @@ export const achievements: Achievement[] = [
     target: 1000000
   },
 
+  // Staff count
+  {
+    id: 'trainees_100',
+    title: 'Training Academy',
+    description: 'Have 100 trainee',
+    icon: '🎓',
+    type: 'staffCount',
+    staffIds: ['junior-dev', 'trainee-sales'],
+    target: 100
+  },
+
   // First purchase
   {
     id: 'first_dev',
@@ -111,17 +122,6 @@ export const achievements: Achievement[] = [
     type: 'firstPurchase',
     purchaseType: 'building'
   },
-
-  // Staff count
-  // {
-  //   id: 'trainees_100',
-  //   title: 'Training Academy',
-  //   description: 'Have 100 trainee salespeople',
-  //   icon: '🎓',
-  //   type: 'threshold',
-  //   stat: 'traineeSales',
-  //   target: 100
-  // },
 
   // Collection
   {

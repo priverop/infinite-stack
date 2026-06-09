@@ -18,9 +18,10 @@ export interface Achievement {
   title: string;
   description: string;
   icon: string;
-  type: 'threshold' | 'firstPurchase' | 'collection';
+  type: 'threshold' | 'firstPurchase' | 'collection' | 'staffCount';
   // For threshold achievements
   stat?: keyof GameStats;
+  staffIds?: string[];
   target?: number;
   // For first purchase achievements
   purchaseType?: CandidateCategory;
