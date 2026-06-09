@@ -3,6 +3,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { achievements } from '../data/achievements';
 import type { GameStats, Achievement, CandidateCategory } from '../types';
 import { byCategory, sumCategory } from '../data/catalog';
+import { createElement } from 'react';
+import toast from 'react-hot-toast';
+import { AchievementToast } from '../components/AchievementToast';
 
 export function useAchievements(gameState: GameStats) {
   const [unlockedAchievements, setUnlockedAchievements] = useState<Set<string>>(new Set());
@@ -80,6 +83,10 @@ export function useAchievements(gameState: GameStats) {
 
       if (isUnlocked) {
         newUnlocks.push(achievement);
+        toast(createElement(AchievementToast, { achievement }), {
+          id: achievement.id, // avoid duplicates
+          duration: 4000
+        });
         setUnlockedAchievements((prev) => new Set(prev).add(achievement.id));
       }
     });

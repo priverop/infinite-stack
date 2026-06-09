@@ -5,6 +5,7 @@ import People from './components/People';
 import Footer from './components/Footer';
 import { useGameLogic } from './hooks/useGameLogic';
 import './styles/App.css';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const {
@@ -58,6 +59,9 @@ function App() {
         />
       </section>
       <Footer />
+      <div>
+        <Toaster position="bottom-right" />
+      </div>
     </div>
   );
 }
