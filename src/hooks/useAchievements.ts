@@ -1,8 +1,8 @@
 // src/hooks/useAchievements.ts
 import { useState, useEffect, useCallback } from 'react';
 import { achievements } from '../data/achievements';
-import type { GameStats, Achievement } from '../types';
-import { sumCategory } from '../data/catalog';
+import type { GameStats, Achievement, CandidateCategory } from '../types';
+import { byCategory, sumCategory } from '../data/catalog';
 
 export function useAchievements(gameState: GameStats) {
   const [unlockedAchievements, setUnlockedAchievements] = useState<Set<string>>(new Set());
@@ -32,29 +32,19 @@ export function useAchievements(gameState: GameStats) {
 
   const checkFirstPurchase = useCallback((achievement: Achievement, state: GameStats): boolean => {
     if (!achievement.purchaseType) return false;
-
     return sumCategory(state.staff, achievement.purchaseType) > 0;
   }, []);
 
-  // const checkCollection = useCallback((achievement: Achievement, state: GameStats): boolean => {
-  //   if (!achievement.collectionType) return false;
+  const checkCollection = useCallback((achievement: Achievement, state: GameStats): boolean => {
+    if (!achievement.collectionType) return false;
 
-  //   switch (achievement.collectionType) {
-  //     case 'building':
-  //       return state.coworkingSingle > 0 && state.coworkingPrivate > 0 && state.smallOffice > 0;
-  //     case 'dev':
-  //       return (
-  //         state.juniorDevs > 0 &&
-  //         state.midDevs > 0 &&
-  //         state.seniorDevs > 0 &&
-  //         state.traineeSales > 0 &&
-  //         state.seniorSales > 0 &&
-  //         state.b2bSales > 0
-  //       );
-  //     default:
-  //       return false;
-  //   }
-  // }, []);
+    const categories: CandidateCategory[] =
+      achievement.collectionType === 'staff' ? ['dev', 'seller'] : [achievement.collectionType];
+
+    return categories.every((category) =>
+      byCategory(category).every((candidate) => (state.staff[candidate.id] ?? 0) > 0)
+    );
+  }, []);
 
   const checkAchievements = useCallback(() => {
     const newUnlocks: Achievement[] = [];
@@ -71,9 +61,9 @@ export function useAchievements(gameState: GameStats) {
         case 'firstPurchase':
           isUnlocked = checkFirstPurchase(achievement, gameState);
           break;
-        // case 'collection':
-        //   isUnlocked = checkCollection(achievement, gameState);
-        //   break;
+        case 'collection':
+          isUnlocked = checkCollection(achievement, gameState);
+          break;
       }
 
       if (isUnlocked) {

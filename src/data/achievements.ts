@@ -138,6 +138,6 @@ export const achievements: Achievement[] = [
     description: 'Hire every type of staff',
     icon: '👥',
     type: 'collection',
-    collectionType: 'dev'
+    collectionType: 'staff'
   }
 ];

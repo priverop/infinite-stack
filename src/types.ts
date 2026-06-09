@@ -28,7 +28,7 @@ export interface Achievement {
   collectionType?: CandidateCategory;
 }
 
-export type CandidateCategory = 'dev' | 'seller' | 'building';
+export type CandidateCategory = 'dev' | 'seller' | 'building' | 'staff';
 
 // Candidate for hiring (devs and salespeople)
 export interface Candidate {
