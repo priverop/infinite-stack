@@ -62,10 +62,14 @@
 - Users can hire salespeople to sell websites per second. ✓
 - Users can buy buildings to have more space for devs. ✓
 - Progress is auto saved each 10 seconds. ✓
-- Add achievements as goals.
+- Add achievements. ✓
 
 ### Ideas
 
 - Headhunters.
 - Marketing agency.
 - Staff animations.
+
+### Refactors / Improvements
+
+- Global state.
