@@ -35,25 +35,27 @@ export function useAchievements(gameState: GameStats) {
 
   const checkFirstPurchase = useCallback((achievement: Achievement, state: GameStats): boolean => {
     if (!achievement.purchaseType) return false;
-    return sumCategory(state.staff, achievement.purchaseType) > 0;
+    return sumCategory(state.staff ?? {}, achievement.purchaseType) > 0;
   }, []);
 
   const checkCollection = useCallback((achievement: Achievement, state: GameStats): boolean => {
     if (!achievement.collectionType) return false;
 
+    const staff = state.staff ?? {};
     const categories: CandidateCategory[] =
       achievement.collectionType === 'staff' ? ['dev', 'seller'] : [achievement.collectionType];
 
     return categories.every((category) =>
-      byCategory(category).every((candidate) => (state.staff[candidate.id] ?? 0) > 0)
+      byCategory(category).every((candidate) => (staff[candidate.id] ?? 0) > 0)
     );
   }, []);
 
   const checkStaffCount = useCallback((achievement: Achievement, state: GameStats): boolean => {
     if (!achievement.staffIds || !achievement.target) return false;
 
+    const staff = state.staff ?? {};
     return (
-      achievement.staffIds.reduce((accum, current) => accum + (state.staff[current] ?? 0), 0) >=
+      achievement.staffIds.reduce((accum, current) => accum + (staff[current] ?? 0), 0) >=
       achievement.target
     );
   }, []);
@@ -83,7 +85,7 @@ export function useAchievements(gameState: GameStats) {
 
       if (isUnlocked) {
         newUnlocks.push(achievement);
-        toast(createElement(AchievementToast, { achievement }), {
+        toast.custom(createElement(AchievementToast, { achievement }), {
           id: achievement.id, // avoid duplicates
           duration: 4000
         });

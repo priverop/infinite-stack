@@ -39,18 +39,18 @@ function App() {
           createWebsite={createWebsite}
           isDisabled={websites < 1}
         />
-        <People people={people} maxPeople={maxPeople} />
-        <p className="italic mt-5">The game is auto saved after each 10 seconds.</p>
+        <p className="text-xs text-ink-faint mt-4">Auto-saves every 10 seconds.</p>
         <button
           onClick={() => {
             removeState();
             removeStorage();
           }}
-          className="primary">
+          className="ghost mt-4">
           Clean State
         </button>
       </section>
-      <section className="main">
+      <section className="main flex flex-col gap-5">
+        <People people={people} maxPeople={maxPeople} />
         <Panel
           hireDev={hireDev}
           hireSeller={hireSeller}

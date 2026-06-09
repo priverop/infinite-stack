@@ -116,7 +116,7 @@ export function useGameLogic() {
         setTotalClicks(savedData.totalClicks);
         setWebsitesCreated(savedData.websitesCreated);
         setWebsitesSold(savedData.websitesSold);
-        setStaff(savedData.staff);
+        setStaff(savedData.staff ?? {});
       }
     };
     init();

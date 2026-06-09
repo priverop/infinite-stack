@@ -13,7 +13,8 @@ export default function BuyPanel({ buyBuilding }: BuyProps) {
     <SingleCandidate key={index} onClick={buyBuilding} candidate={building} />
   ));
   return (
-    <div className="text-left p-4">
+    <div>
+      <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-3">Space</h4>
       <ul>{listBuildings}</ul>
     </div>
   );

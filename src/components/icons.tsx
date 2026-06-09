@@ -1,5 +1,4 @@
-const iconClass =
-  'w-4 h-4 me-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300';
+const iconClass = 'w-4 h-4';
 
 export function HireIcon() {
   return (

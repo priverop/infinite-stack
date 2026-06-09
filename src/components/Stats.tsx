@@ -1,5 +1,6 @@
 import '../styles/Stats.css';
 import SingleStat from './SingleStat';
+import { formatNumber, formatMoney } from '../utils/format';
 import type { GameStats } from '../types';
 
 // TODO: hacerlo al revés. En vez de Omit, Include o algo asi
@@ -11,10 +12,10 @@ type StatsProps = Omit<
 export default function Stats({ money, websites, moneyPerSecond, websitesPerSecond }: StatsProps) {
   return (
     <div className="wrapper">
-      <SingleStat number={websites} text="Websites created" />
-      <SingleStat number={`$${money}`} text="Money earned" />
-      <SingleStat number={websitesPerSecond} text="Websites/sec" />
-      <SingleStat number={`$${moneyPerSecond}`} text="Money/sec" />
+      <SingleStat number={formatNumber(websites)} text="Websites" />
+      <SingleStat number={formatMoney(money)} text="Money" />
+      <SingleStat number={formatNumber(websitesPerSecond)} text="Sites/sec" />
+      <SingleStat number={formatMoney(moneyPerSecond)} text="$/sec" />
     </div>
   );
 }

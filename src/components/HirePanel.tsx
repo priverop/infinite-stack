@@ -18,14 +18,12 @@ export default function HirePanel({ hireDev, hireSeller }: HireProps) {
     <SingleCandidate key={index} onClick={hireSeller} candidate={salesperson} />
   ));
   return (
-    <div className="text-left p-4">
-      <h4 className="text-gray-400 text-sm font-semibold uppercase tracking-wider mt-4 mb-4">
+    <div>
+      <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-3">
         Development
       </h4>
-      <ul>{listDevs}</ul>
-      <h4 className="text-gray-400 text-sm font-semibold uppercase tracking-wider mt-8 mb-4">
-        Sales
-      </h4>
+      <ul className="mb-6">{listDevs}</ul>
+      <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-3">Sales</h4>
       <ul>{listSales}</ul>
     </div>
   );

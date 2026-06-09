@@ -116,7 +116,7 @@ export const achievements: Achievement[] = [
   },
   {
     id: 'first_building',
-    title: 'Enterpreneur',
+    title: 'Entrepreneur',
     description: 'Buy your first building',
     icon: '🏢',
     type: 'firstPurchase',
