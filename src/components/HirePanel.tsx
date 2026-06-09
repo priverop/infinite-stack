@@ -1,53 +1,9 @@
 import SingleCandidate from './SingleCandidate';
 import type { HireFunction } from '../types';
+import { byCategory } from '../data/catalog';
 
-const devs = [
-  {
-    title: 'Junior Developer',
-    image: 'https://picsum.photos/id/1/100',
-    description: 'Increases website production by 1/sec.',
-    cost: 1000,
-    increment: 1
-  },
-  {
-    title: 'Mid Developer',
-    image: 'https://picsum.photos/id/180/100',
-    description: 'Increases website production by 2/sec.',
-    cost: 2000,
-    increment: 2
-  },
-  {
-    title: 'Senior Developer',
-    image: 'https://picsum.photos/id/60/100',
-    description: 'Increases website production by 3/sec.',
-    cost: 3000,
-    increment: 3
-  }
-];
-
-const sales = [
-  {
-    title: 'Trainee Salesperson',
-    image: 'https://picsum.photos/id/48/100',
-    description: 'Increases website selling by 1/sec.',
-    cost: 1000,
-    increment: 1
-  },
-  {
-    title: 'Senior Salesperson',
-    image: 'https://picsum.photos/id/20/100',
-    description: 'Increases website selling by 5/sec.',
-    cost: 4500,
-    increment: 5
-  },
-  {
-    title: 'B2B specialist Salesperson',
-    image: 'https://picsum.photos/id/378/100',
-    description: 'Increases website selling by 10/sec.',
-    cost: 8000,
-    increment: 10
-  }
-];
+const devs = byCategory('dev');
+const sales = byCategory('seller');
 
 interface HireProps {
   hireDev: HireFunction;

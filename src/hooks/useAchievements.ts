@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { achievements } from '../data/achievements';
 import type { GameStats, Achievement } from '../types';
+import { sumCategory } from '../data/catalog';
 
 export function useAchievements(gameState: GameStats) {
   const [unlockedAchievements, setUnlockedAchievements] = useState<Set<string>>(new Set());
@@ -25,31 +26,23 @@ export function useAchievements(gameState: GameStats) {
   const checkThreshold = useCallback((achievement: Achievement, state: GameStats): boolean => {
     if (!achievement.stat || !achievement.target) return false; // nullable values
     const currentValue = state[achievement.stat];
+    if (typeof currentValue !== 'number') return false; // staff is a Record, not a threshold stat
     return currentValue >= achievement.target;
   }, []);
 
   const checkFirstPurchase = useCallback((achievement: Achievement, state: GameStats): boolean => {
     if (!achievement.purchaseType) return false;
 
-    switch (achievement.purchaseType) {
-      case 'dev':
-        return state.devs > 0;
-      case 'seller':
-        return state.sellers > 0;
-      case 'building':
-        return state.buildings > 0;
-      default:
-        return false;
-    }
+    return sumCategory(state.staff, achievement.purchaseType) > 0;
   }, []);
 
   // const checkCollection = useCallback((achievement: Achievement, state: GameStats): boolean => {
   //   if (!achievement.collectionType) return false;
 
   //   switch (achievement.collectionType) {
-  //     case 'buildings':
+  //     case 'building':
   //       return state.coworkingSingle > 0 && state.coworkingPrivate > 0 && state.smallOffice > 0;
-  //     case 'devs':
+  //     case 'dev':
   //       return (
   //         state.juniorDevs > 0 &&
   //         state.midDevs > 0 &&

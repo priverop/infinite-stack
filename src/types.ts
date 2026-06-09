@@ -10,9 +10,7 @@ export interface GameStats {
   totalClicks: number;
   websitesCreated: number;
   websitesSold: number;
-  devs: number;
-  sellers: number;
-  buildings: number;
+  staff: Record<string, number>;
 }
 
 export interface Achievement {
@@ -25,13 +23,17 @@ export interface Achievement {
   stat?: keyof GameStats;
   target?: number;
   // For first purchase achievements
-  purchaseType?: 'dev' | 'seller' | 'building';
+  purchaseType?: CandidateCategory;
   // For collection achievements
-  collectionType?: 'buildings' | 'devs' | 'sellers';
+  collectionType?: CandidateCategory;
 }
+
+export type CandidateCategory = 'dev' | 'seller' | 'building';
 
 // Candidate for hiring (devs and salespeople)
 export interface Candidate {
+  id: string;
+  category: CandidateCategory;
   title: string;
   image: string;
   description: string;
@@ -40,4 +42,4 @@ export interface Candidate {
 }
 
 // Functions to hire candidates (devs or sellers)
-export type HireFunction = (cost: number, increment: number) => void;
+export type HireFunction = (id: string, cost: number, increment: number) => void;

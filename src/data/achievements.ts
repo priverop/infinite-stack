@@ -130,7 +130,7 @@ export const achievements: Achievement[] = [
     description: 'Own every type of building',
     icon: '🏰',
     type: 'collection',
-    collectionType: 'buildings'
+    collectionType: 'building'
   },
   {
     id: 'all_staff',
@@ -138,6 +138,6 @@ export const achievements: Achievement[] = [
     description: 'Hire every type of staff',
     icon: '👥',
     type: 'collection',
-    collectionType: 'devs'
+    collectionType: 'dev'
   }
 ];

@@ -2,9 +2,10 @@ import '../styles/Stats.css';
 import SingleStat from './SingleStat';
 import type { GameStats } from '../types';
 
+// TODO: hacerlo al revés. En vez de Omit, Include o algo asi
 type StatsProps = Omit<
   GameStats,
-  'people' | 'maxPeople' | 'totalClicks' | 'websitesCreated' | 'websitesSold'
+  'people' | 'maxPeople' | 'totalClicks' | 'websitesCreated' | 'websitesSold' | 'staff'
 >;
 
 export default function Stats({ money, websites, moneyPerSecond, websitesPerSecond }: StatsProps) {

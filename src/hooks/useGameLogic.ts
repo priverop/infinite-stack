@@ -16,9 +16,7 @@ export function useGameLogic() {
   const [totalClicks, setTotalClicks] = useState(0);
   const [websitesCreated, setWebsitesCreated] = useState(0);
   const [websitesSold, setWebsitesSold] = useState(0);
-  const [devs, setDevs] = useState(0);
-  const [sellers, setSellers] = useState(0);
-  const [buildings, setBuildings] = useState(0);
+  const [staff, setStaff] = useState<Record<string, number>>({});
 
   const gameState: GameStats = {
     money,
@@ -30,9 +28,7 @@ export function useGameLogic() {
     totalClicks,
     websitesCreated,
     websitesSold,
-    devs,
-    sellers,
-    buildings
+    staff
   };
 
   const achievements = useAchievements(gameState); // Object with unlocked and recent
@@ -56,29 +52,38 @@ export function useGameLogic() {
     }
   }
 
-  const hireDev: HireFunction = (cost, increment) => {
+  const hireDev: HireFunction = (id, cost, increment) => {
     if (money >= cost && people < maxPeople) {
       setMoney(money - cost);
       setWebsitesPerSecond(websitesPerSecond + increment);
       setPeople(people + 1);
-      setDevs(devs + 1);
+      setStaff((prev) => ({
+        ...prev,
+        [id]: (prev[id] ?? 0) + 1
+      }));
     }
   };
 
-  const hireSeller: HireFunction = (cost, increment) => {
+  const hireSeller: HireFunction = (id, cost, increment) => {
     if (money >= cost && people < maxPeople) {
       setMoney(money - cost);
       setMoneyPerSecond(moneyPerSecond + increment);
       setPeople(people + 1);
-      setSellers(sellers + 1);
+      setStaff((prev) => ({
+        ...prev,
+        [id]: (prev[id] ?? 0) + 1
+      }));
     }
   };
 
-  const buyBuilding: HireFunction = (cost, increment) => {
+  const buyBuilding: HireFunction = (id, cost, increment) => {
     if (money >= cost) {
       setMoney(money - cost);
       setMaxPeople(maxPeople + increment);
-      setBuildings(buildings + 1);
+      setStaff((prev) => ({
+        ...prev,
+        [id]: (prev[id] ?? 0) + 1
+      }));
     }
   };
 
@@ -92,6 +97,7 @@ export function useGameLogic() {
     setTotalClicks(0);
     setWebsitesCreated(0);
     setWebsitesSold(0);
+    setStaff({});
     achievements.removeAchievements();
   }
 

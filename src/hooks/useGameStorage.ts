@@ -14,6 +14,7 @@ export default function useGameStorage(gameState: GameStats) {
     localStorage.removeItem('unlocked-achievements');
   }
 
+  // TODO: Add Staff??
   const load = useCallback(async () => {
     try {
       const result = localStorage.getItem(storageKey);
