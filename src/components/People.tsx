@@ -1,5 +1,5 @@
 const PORTRAIT_IDS = [1, 64, 91, 177, 180, 338, 433, 48, 20, 378];
-const MAX_VISIBLE_SLOTS = 15;
+const MAX_VISIBLE_SLOTS = 12;
 
 interface PeopleProps {
   people: number;
