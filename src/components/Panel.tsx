@@ -7,6 +7,7 @@ import { HireIcon, BuyIcon, AchievementsIcon } from './icons';
 import type { Achievement, HireFunction } from '../types';
 
 interface PanelProps {
+  money: number;
   hireDev: HireFunction;
   hireSeller: HireFunction;
   buyBuilding: HireFunction;
@@ -16,7 +17,13 @@ interface PanelProps {
   };
 }
 
-export default function Panel({ hireSeller, hireDev, buyBuilding, achievements }: PanelProps) {
+export default function Panel({
+  money,
+  hireSeller,
+  hireDev,
+  buyBuilding,
+  achievements
+}: PanelProps) {
   return (
     <Tabs>
       <TabList className="flex flex-wrap text-gray-500 dark:text-gray-400">
@@ -35,10 +42,10 @@ export default function Panel({ hireSeller, hireDev, buyBuilding, achievements }
       </TabList>
 
       <TabPanel>
-        <HirePanel hireDev={hireDev} hireSeller={hireSeller} />
+        <HirePanel money={money} hireDev={hireDev} hireSeller={hireSeller} />
       </TabPanel>
       <TabPanel>
-        <BuyPanel buyBuilding={buyBuilding} />
+        <BuyPanel money={money} buyBuilding={buyBuilding} />
       </TabPanel>
       <TabPanel>
         <AchievementsPanel unlockedAchievements={achievements.unlockedAchievements} />

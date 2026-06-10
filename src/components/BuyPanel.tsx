@@ -5,13 +5,18 @@ import SingleCandidate from './SingleCandidate';
 const buildings = byCategory('building');
 
 interface BuyProps {
+  money: number;
   buyBuilding: HireFunction;
 }
 
-export default function BuyPanel({ buyBuilding }: BuyProps) {
-  const listBuildings = buildings.map((building, index) => (
-    <SingleCandidate key={index} onClick={buyBuilding} candidate={building} />
-  ));
+const DISPLAY_COST_DIFFERENCE = 500;
+
+export default function BuyPanel({ money, buyBuilding }: BuyProps) {
+  const listBuildings = buildings
+    .filter((building) => building.cost - DISPLAY_COST_DIFFERENCE <= money)
+    .map((building, index) => (
+      <SingleCandidate key={index} onClick={buyBuilding} candidate={building} />
+    ));
   return (
     <div>
       <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-3">Space</h4>

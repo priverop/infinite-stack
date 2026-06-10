@@ -52,6 +52,7 @@ function App() {
       <section className="main flex flex-col gap-5">
         <People people={people} maxPeople={maxPeople} />
         <Panel
+          money={money}
           hireDev={hireDev}
           hireSeller={hireSeller}
           buyBuilding={buyBuilding}
