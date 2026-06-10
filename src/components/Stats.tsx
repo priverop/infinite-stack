@@ -9,13 +9,19 @@ type StatsProps = Omit<
   'people' | 'maxPeople' | 'totalClicks' | 'websitesCreated' | 'websitesSold' | 'staff'
 >;
 
-export default function Stats({ money, websites, moneyPerSecond, websitesPerSecond }: StatsProps) {
+export default function Stats({
+  money,
+  websites,
+  sellsPerSecond,
+  quality,
+  websitesPerSecond
+}: StatsProps) {
   return (
     <div className="wrapper">
       <SingleStat number={formatNumber(websites)} text="Websites" />
       <SingleStat number={formatMoney(money)} text="Money" />
       <SingleStat number={formatNumber(websitesPerSecond)} text="Sites/sec" />
-      <SingleStat number={formatMoney(moneyPerSecond)} text="$/sec" />
+      <SingleStat number={formatMoney(sellsPerSecond * quality)} text="$/sec" />
     </div>
   );
 }

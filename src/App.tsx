@@ -12,7 +12,8 @@ function App() {
     websites,
     money,
     websitesPerSecond,
-    moneyPerSecond,
+    sellsPerSecond,
+    quality,
     people,
     maxPeople,
     createWebsite,
@@ -32,7 +33,8 @@ function App() {
           money={money}
           websites={websites}
           websitesPerSecond={websitesPerSecond}
-          moneyPerSecond={moneyPerSecond}
+          sellsPerSecond={sellsPerSecond}
+          quality={quality}
         />
         <Actions
           sellWebsite={sellWebsite}

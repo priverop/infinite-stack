@@ -3,7 +3,8 @@ export interface GameStats {
   money: number;
   websites: number;
   websitesPerSecond: number;
-  moneyPerSecond: number;
+  sellsPerSecond: number;
+  quality: number;
   people: number;
   maxPeople: number;
   // Achievements: these are hidden for the user

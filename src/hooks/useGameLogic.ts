@@ -6,11 +6,12 @@ import { useAchievements } from './useAchievements';
 
 export function useGameLogic() {
   const [websites, setWebsites] = useState(0);
-  const [money, setMoney] = useState(100000000);
+  const [money, setMoney] = useState(0);
   const [websitesPerSecond, setWebsitesPerSecond] = useState(0);
-  const [moneyPerSecond, setMoneyPerSecond] = useState(0);
+  const [sellsPerSecond, setSellsPerSecond] = useState(0);
   const [people, setPeople] = useState(0);
   const [maxPeople, setMaxPeople] = useState(10);
+  const [quality, setQuality] = useState(20);
 
   // Achievements
   const [totalClicks, setTotalClicks] = useState(0);
@@ -22,7 +23,8 @@ export function useGameLogic() {
     money,
     websites,
     websitesPerSecond,
-    moneyPerSecond,
+    sellsPerSecond,
+    quality,
     people,
     maxPeople,
     totalClicks,
@@ -45,7 +47,7 @@ export function useGameLogic() {
   function sellWebsite(): void {
     if (websites > 0) {
       setWebsites(websites - 1);
-      setMoney(money + 1);
+      setMoney(money + quality);
       // Achivements
       setTotalClicks(totalClicks + 1);
       setWebsitesSold(websitesSold + 1);
@@ -67,7 +69,7 @@ export function useGameLogic() {
   const hireSeller: HireFunction = (id, cost, increment) => {
     if (money >= cost && people < maxPeople) {
       setMoney(money - cost);
-      setMoneyPerSecond(moneyPerSecond + increment);
+      setSellsPerSecond(sellsPerSecond + increment);
       setPeople(people + 1);
       setStaff((prev) => ({
         ...prev,
@@ -90,8 +92,9 @@ export function useGameLogic() {
   function removeState(): void {
     setWebsites(0);
     setMoney(0);
-    setMoneyPerSecond(0);
+    setSellsPerSecond(0);
     setWebsitesPerSecond(0);
+    setQuality(20);
     setPeople(0);
     setMaxPeople(10);
     setTotalClicks(0);
@@ -109,7 +112,8 @@ export function useGameLogic() {
       if (savedData) {
         setWebsites(savedData.websites);
         setMoney(savedData.money);
-        setMoneyPerSecond(savedData.moneyPerSecond);
+        setSellsPerSecond(savedData.sellsPerSecond ?? 0);
+        setQuality(savedData.quality ?? 20);
         setWebsitesPerSecond(savedData.websitesPerSecond);
         setPeople(savedData.people);
         setMaxPeople(savedData.maxPeople);
@@ -122,7 +126,7 @@ export function useGameLogic() {
     init();
   }, [load]);
 
-  // ToDo: Alert if moneyPerSecond is not viable
+  // ToDo: Alert if sellsPerSecond is not viable
   useEffect(() => {
     const intervalo = setInterval(() => {
       setWebsites((prevWebsites) => {
@@ -130,9 +134,9 @@ export function useGameLogic() {
 
         // We need to update the money here to get the actual updated newWebsites value
         // This happens because in the same second we need to update two values
-        if (moneyPerSecond > 0 && moneyPerSecond <= newWebsites) {
-          setMoney((prevMoney) => prevMoney + moneyPerSecond);
-          return newWebsites - moneyPerSecond;
+        if (sellsPerSecond > 0 && sellsPerSecond <= newWebsites) {
+          setMoney((prevMoney) => prevMoney + sellsPerSecond * quality);
+          return newWebsites - sellsPerSecond;
         }
 
         return newWebsites;
@@ -140,13 +144,14 @@ export function useGameLogic() {
     }, 1000);
 
     return () => clearInterval(intervalo);
-  }, [websitesPerSecond, moneyPerSecond]);
+  }, [websitesPerSecond, sellsPerSecond, quality]);
 
   return {
     websites,
     money,
     websitesPerSecond,
-    moneyPerSecond,
+    sellsPerSecond,
+    quality,
     people,
     maxPeople,
 
