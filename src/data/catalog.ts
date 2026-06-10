@@ -8,8 +8,8 @@ export const catalog: Candidate[] = [
     title: 'Junior Developer',
     image: 'https://picsum.photos/id/1/100?grayscale',
     description: 'Increases website production by 1/sec.',
-    cost: 100,
-    increment: 1
+    cost: 500,
+    increment: 2
   },
   {
     id: 'mid-dev',
@@ -17,8 +17,8 @@ export const catalog: Candidate[] = [
     title: 'Mid Developer',
     image: 'https://picsum.photos/id/180/100?grayscale',
     description: 'Increases website production by 2/sec.',
-    cost: 2000,
-    increment: 2
+    cost: 5000,
+    increment: 44
   },
   {
     id: 'senior-dev',
@@ -26,8 +26,89 @@ export const catalog: Candidate[] = [
     title: 'Senior Developer',
     image: 'https://picsum.photos/id/60/100?grayscale',
     description: 'Increases website production by 3/sec.',
-    cost: 3000,
-    increment: 3
+    cost: 50000,
+    increment: 414
+  },
+  {
+    id: 'tech-lead',
+    category: 'dev',
+    title: 'Tech Lead',
+    image: 'https://picsum.photos/id/91/100?grayscale',
+    description: 'Increases website production by 3,328/sec.',
+    cost: 500000,
+    increment: 3328
+  },
+  {
+    id: 'solutions-architect',
+    category: 'dev',
+    title: 'Solutions Architect',
+    image: 'https://picsum.photos/id/110/100?grayscale',
+    description: 'Increases website production by 6,840/sec.',
+    cost: 5000000,
+    increment: 6840
+  },
+  {
+    id: 'ten-x-engineer',
+    category: 'dev',
+    title: '10x Engineer',
+    image: 'https://picsum.photos/id/177/100?grayscale',
+    description: 'Increases website production by 78,200/sec.',
+    cost: 50000000,
+    increment: 78200
+  },
+  {
+    id: 'jedi-coder',
+    category: 'dev',
+    title: 'Jedi Coder',
+    image: 'https://picsum.photos/id/201/100?grayscale',
+    description: 'Increases website production by 1,228,000/sec.',
+    cost: 500000000,
+    increment: 1228000
+  },
+  {
+    id: 'gandalf-the-white',
+    category: 'dev',
+    title: 'Gandalf The White',
+    image: 'https://picsum.photos/id/219/100?grayscale',
+    description: 'Increases website production by 183,000,000/sec.',
+    cost: 5000000000,
+    increment: 183000000
+  },
+  {
+    id: 'neo',
+    category: 'dev',
+    title: 'Neo',
+    image: 'https://picsum.photos/id/237/100?grayscale',
+    description: 'Increases website production by 520,000,000/sec.',
+    cost: 50000000000,
+    increment: 520000000
+  },
+  {
+    id: 'skynet-core',
+    category: 'dev',
+    title: 'Skynet Core',
+    image: 'https://picsum.photos/id/250/100?grayscale',
+    description: 'Increases website production by 1,000,000,000/sec.',
+    cost: 500000000000,
+    increment: 1000000000
+  },
+  {
+    id: 'terminator-t1000',
+    category: 'dev',
+    title: 'Terminator T-1000',
+    image: 'https://picsum.photos/id/268/100?grayscale',
+    description: 'Increases website production by 20,000,000,000/sec.',
+    cost: 5000000000000,
+    increment: 20000000000
+  },
+  {
+    id: 'agi',
+    category: 'dev',
+    title: 'AGI achieved',
+    image: 'https://picsum.photos/id/284/100?grayscale',
+    description: 'Increases website production by 200,000,000,000/sec.',
+    cost: 50000000000000,
+    increment: 200000000000
   },
 
   // Sellers
@@ -86,6 +167,87 @@ export const catalog: Candidate[] = [
     description: 'Increases max team size by 3.',
     cost: 10000,
     increment: 3
+  },
+  {
+    id: 'open-plan-office',
+    category: 'building',
+    title: 'Open-plan Office',
+    image: 'https://picsum.photos/id/119/100?grayscale',
+    description: 'Increases max team size by 8.',
+    cost: 50000,
+    increment: 8
+  },
+  {
+    id: 'tech-campus',
+    category: 'building',
+    title: 'Tech Campus',
+    image: 'https://picsum.photos/id/127/100?grayscale',
+    description: 'Increases max team size by 15.',
+    cost: 200000,
+    increment: 15
+  },
+  {
+    id: 'corporate-tower',
+    category: 'building',
+    title: 'Corporate Tower',
+    image: 'https://picsum.photos/id/146/100?grayscale',
+    description: 'Increases max team size by 25.',
+    cost: 1000000,
+    increment: 25
+  },
+  {
+    id: 'innovation-hub',
+    category: 'building',
+    title: 'Innovation Hub',
+    image: 'https://picsum.photos/id/160/100?grayscale',
+    description: 'Increases max team size by 50.',
+    cost: 5000000,
+    increment: 50
+  },
+  {
+    id: 'remote-first-org',
+    category: 'building',
+    title: 'Remote-First Org',
+    image: 'https://picsum.photos/id/169/100?grayscale',
+    description: 'Increases max team size by 100.',
+    cost: 25000000,
+    increment: 100
+  },
+  {
+    id: 'tech-unicorn-hq',
+    category: 'building',
+    title: 'Tech Unicorn HQ',
+    image: 'https://picsum.photos/id/188/100?grayscale',
+    description: 'Increases max team size by 250.',
+    cost: 100000000,
+    increment: 250
+  },
+  {
+    id: 'orbital-data-center',
+    category: 'building',
+    title: 'Orbital Data Center',
+    image: 'https://picsum.photos/id/203/100?grayscale',
+    description: 'Increases max team size by 500.',
+    cost: 500000000,
+    increment: 500
+  },
+  {
+    id: 'moon-base',
+    category: 'building',
+    title: 'Moon Base',
+    image: 'https://picsum.photos/id/222/100?grayscale',
+    description: 'Increases max team size by 1,000.',
+    cost: 2500000000,
+    increment: 1000
+  },
+  {
+    id: 'dyson-sphere',
+    category: 'building',
+    title: 'Dyson Sphere',
+    image: 'https://picsum.photos/id/241/100?grayscale',
+    description: 'Increases max team size by 2,500.',
+    cost: 10000000000,
+    increment: 2500
   }
 ];
 
