@@ -12,7 +12,7 @@ export const achievements: Achievement[] = [
   {
     id: 'clicks_1k',
     title: 'Click Rookie',
-    description: 'Click 1,000 times',
+    description: 'Click 1,000 times.',
     icon: '👆',
     type: 'threshold',
     stat: 'totalClicks',
@@ -21,7 +21,7 @@ export const achievements: Achievement[] = [
   {
     id: 'clicks_10k',
     title: 'Click Master',
-    description: 'Click 10,000 times',
+    description: 'Click 10,000 times.',
     icon: '💪',
     type: 'threshold',
     stat: 'totalClicks',
@@ -32,7 +32,7 @@ export const achievements: Achievement[] = [
   {
     id: 'first_thousand',
     title: 'Thousandaire',
-    description: 'Earn your first thousand dollars',
+    description: 'Earn your first thousand dollars.',
     icon: '💲',
     type: 'threshold',
     stat: 'money',
@@ -41,7 +41,7 @@ export const achievements: Achievement[] = [
   {
     id: 'first_million',
     title: 'Millionaire',
-    description: 'Earn your first million dollars',
+    description: 'Earn your first million dollars.',
     icon: '💰',
     type: 'threshold',
     stat: 'money',
@@ -52,7 +52,7 @@ export const achievements: Achievement[] = [
   {
     id: 'first_website',
     title: 'Hello World',
-    description: 'Create your first website',
+    description: 'Create your first website.',
     icon: '🌐',
     type: 'threshold',
     stat: 'websitesCreated',
@@ -61,7 +61,7 @@ export const achievements: Achievement[] = [
   {
     id: 'first_sale',
     title: 'First Sale',
-    description: 'Sell your first website',
+    description: 'Sell your first website.',
     icon: '💵',
     type: 'threshold',
     stat: 'websitesSold',
@@ -70,7 +70,7 @@ export const achievements: Achievement[] = [
   {
     id: 'thousand_websites',
     title: 'Website Expert',
-    description: 'Create 1,000 websites',
+    description: 'Create 1,000 websites.',
     icon: '🚧',
     type: 'threshold',
     stat: 'websitesCreated',
@@ -79,7 +79,7 @@ export const achievements: Achievement[] = [
   {
     id: 'million_websites',
     title: 'Website Empire',
-    description: 'Create 1,000,000 websites',
+    description: 'Create 1,000,000 websites.',
     icon: '🏭',
     type: 'threshold',
     stat: 'websitesCreated',
@@ -90,7 +90,7 @@ export const achievements: Achievement[] = [
   {
     id: 'trainees_100',
     title: 'Training Academy',
-    description: 'Have 100 trainee',
+    description: 'Have 100 trainee.',
     icon: '🎓',
     type: 'staffCount',
     staffIds: ['junior-dev', 'trainee-sales'],
@@ -101,7 +101,7 @@ export const achievements: Achievement[] = [
   {
     id: 'first_dev',
     title: 'First Developer',
-    description: 'Hire your first developer',
+    description: 'Hire your first developer.',
     icon: '👨‍💻',
     type: 'firstPurchase',
     purchaseType: 'dev'
@@ -109,7 +109,7 @@ export const achievements: Achievement[] = [
   {
     id: 'first_seller',
     title: 'Sales Team',
-    description: 'Hire your first salesperson',
+    description: 'Hire your first salesperson.',
     icon: '👔',
     type: 'firstPurchase',
     purchaseType: 'seller'
@@ -117,7 +117,7 @@ export const achievements: Achievement[] = [
   {
     id: 'first_building',
     title: 'Entrepreneur',
-    description: 'Buy your first building',
+    description: 'Buy your first building.',
     icon: '🏢',
     type: 'firstPurchase',
     purchaseType: 'building'
@@ -127,7 +127,7 @@ export const achievements: Achievement[] = [
   {
     id: 'all_buildings',
     title: 'Real Estate',
-    description: 'Own every type of building',
+    description: 'Own every type of building.',
     icon: '🏰',
     type: 'collection',
     collectionType: 'building'
@@ -135,7 +135,7 @@ export const achievements: Achievement[] = [
   {
     id: 'all_staff',
     title: 'Full Roster',
-    description: 'Hire every type of staff',
+    description: 'Hire every type of staff.',
     icon: '👥',
     type: 'collection',
     collectionType: 'staff'
