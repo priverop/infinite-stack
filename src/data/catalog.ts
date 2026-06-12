@@ -16,7 +16,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Mid Developer',
     image: 'https://picsum.photos/id/180/100?grayscale',
-    description: 'Increases website production by 2/sec.',
+    description: 'Increases website production by 44/sec.',
     cost: 5000,
     increment: 44
   },
@@ -25,7 +25,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Senior Developer',
     image: 'https://picsum.photos/id/60/100?grayscale',
-    description: 'Increases website production by 3/sec.',
+    description: 'Increases website production by 414/sec.',
     cost: 50000,
     increment: 414
   },
