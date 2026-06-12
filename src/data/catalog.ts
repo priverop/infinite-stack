@@ -9,7 +9,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/1/100?grayscale',
     description: 'Increases website production by 2/sec.',
     cost: 500,
-    increment: 2
+    increment: 2,
+    quality: 20
   },
   {
     id: 'mid-dev',
@@ -18,7 +19,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/180/100?grayscale',
     description: 'Increases website production by 24/sec.',
     cost: 5000,
-    increment: 24
+    increment: 24,
+    quality: 23
   },
   {
     id: 'senior-dev',
@@ -27,7 +29,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/60/100?grayscale',
     description: 'Increases website production by 290/sec.',
     cost: 50000,
-    increment: 290
+    increment: 290,
+    quality: 26
   },
   {
     id: 'tech-lead',
@@ -36,7 +39,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/91/100?grayscale',
     description: 'Increases website production by 3,500/sec.',
     cost: 500000,
-    increment: 3500
+    increment: 3500,
+    quality: 30
   },
   {
     id: 'solutions-architect',
@@ -45,7 +49,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/110/100?grayscale',
     description: 'Increases website production by 42,000/sec.',
     cost: 5000000,
-    increment: 42000
+    increment: 42000,
+    quality: 34
   },
   {
     id: 'ten-x-engineer',
@@ -54,7 +59,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/177/100?grayscale',
     description: 'Increases website production by 500,000/sec.',
     cost: 50000000,
-    increment: 500000
+    increment: 500000,
+    quality: 38
   },
   {
     id: 'jedi-coder',
@@ -63,7 +69,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/201/100?grayscale',
     description: 'Increases website production by 6,000,000/sec.',
     cost: 500000000,
-    increment: 6000000
+    increment: 6000000,
+    quality: 44
   },
   {
     id: 'gandalf-the-white',
@@ -72,7 +79,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/219/100?grayscale',
     description: 'Increases website production by 72,000,000/sec.',
     cost: 5000000000,
-    increment: 72000000
+    increment: 72000000,
+    quality: 50
   },
   {
     id: 'neo',
@@ -81,7 +89,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/237/100?grayscale',
     description: 'Increases website production by 860,000,000/sec.',
     cost: 50000000000,
-    increment: 860000000
+    increment: 860000000,
+    quality: 58
   },
   {
     id: 'skynet-core',
@@ -90,7 +99,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/250/100?grayscale',
     description: 'Increases website production by 10,400,000,000/sec.',
     cost: 500000000000,
-    increment: 10400000000
+    increment: 10400000000,
+    quality: 68
   },
   {
     id: 'terminator-t1000',
@@ -99,7 +109,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/268/100?grayscale',
     description: 'Increases website production by 125,000,000,000/sec.',
     cost: 5000000000000,
-    increment: 125000000000
+    increment: 125000000000,
+    quality: 80
   },
   {
     id: 'agi',
@@ -108,7 +119,8 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/284/100?grayscale',
     description: 'Increases website production by 1,500,000,000,000/sec.',
     cost: 50000000000000,
-    increment: 1500000000000
+    increment: 1500000000000,
+    quality: 100
   },
 
   // Sellers

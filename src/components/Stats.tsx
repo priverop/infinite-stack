@@ -22,6 +22,7 @@ export default function Stats({
       <SingleStat number={formatMoney(money)} text="Money" />
       <SingleStat number={formatNumber(websitesPerSecond)} text="Sites/sec" />
       <SingleStat number={formatMoney(sellsPerSecond * quality)} text="$/sec" />
+      <SingleStat number={`${quality}%`} text="Quality" />
     </div>
   );
 }

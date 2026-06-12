@@ -1,6 +1,7 @@
 // src/hooks/useGameLogic.ts
 import { useState, useEffect } from 'react';
 import type { HireFunction, GameStats } from '../types';
+import { catalog } from '../data/catalog';
 import useGameStorage from './useGameStorage';
 import { useAchievements } from './useAchievements';
 
@@ -63,6 +64,11 @@ export function useGameLogic() {
         ...prev,
         [id]: (prev[id] ?? 0) + 1
       }));
+      // Quality is set by the best dev tier ever hired; it never goes down
+      const tierQuality = catalog.find((c) => c.id === id)?.quality;
+      if (tierQuality !== undefined && tierQuality > quality) {
+        setQuality(tierQuality);
+      }
     }
   };
 

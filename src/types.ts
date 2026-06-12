@@ -41,6 +41,7 @@ export interface Candidate {
   description: string;
   cost: number;
   increment: number;
+  quality?: number;
 }
 
 // Functions to hire candidates (devs or sellers)
