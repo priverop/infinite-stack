@@ -7,7 +7,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Junior Developer',
     image: 'https://picsum.photos/id/1/100?grayscale',
-    description: 'Increases website production by 1/sec.',
+    description: 'Increases website production by 2/sec.',
     cost: 500,
     increment: 2
   },
@@ -16,99 +16,99 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Mid Developer',
     image: 'https://picsum.photos/id/180/100?grayscale',
-    description: 'Increases website production by 44/sec.',
+    description: 'Increases website production by 24/sec.',
     cost: 5000,
-    increment: 44
+    increment: 24
   },
   {
     id: 'senior-dev',
     category: 'dev',
     title: 'Senior Developer',
     image: 'https://picsum.photos/id/60/100?grayscale',
-    description: 'Increases website production by 414/sec.',
+    description: 'Increases website production by 290/sec.',
     cost: 50000,
-    increment: 414
+    increment: 290
   },
   {
     id: 'tech-lead',
     category: 'dev',
     title: 'Tech Lead',
     image: 'https://picsum.photos/id/91/100?grayscale',
-    description: 'Increases website production by 3,328/sec.',
+    description: 'Increases website production by 3,500/sec.',
     cost: 500000,
-    increment: 3328
+    increment: 3500
   },
   {
     id: 'solutions-architect',
     category: 'dev',
     title: 'Solutions Architect',
     image: 'https://picsum.photos/id/110/100?grayscale',
-    description: 'Increases website production by 6,840/sec.',
+    description: 'Increases website production by 42,000/sec.',
     cost: 5000000,
-    increment: 6840
+    increment: 42000
   },
   {
     id: 'ten-x-engineer',
     category: 'dev',
     title: '10x Engineer',
     image: 'https://picsum.photos/id/177/100?grayscale',
-    description: 'Increases website production by 78,200/sec.',
+    description: 'Increases website production by 500,000/sec.',
     cost: 50000000,
-    increment: 78200
+    increment: 500000
   },
   {
     id: 'jedi-coder',
     category: 'dev',
     title: 'Jedi Coder',
     image: 'https://picsum.photos/id/201/100?grayscale',
-    description: 'Increases website production by 1,228,000/sec.',
+    description: 'Increases website production by 6,000,000/sec.',
     cost: 500000000,
-    increment: 1228000
+    increment: 6000000
   },
   {
     id: 'gandalf-the-white',
     category: 'dev',
     title: 'Gandalf The White',
     image: 'https://picsum.photos/id/219/100?grayscale',
-    description: 'Increases website production by 183,000,000/sec.',
+    description: 'Increases website production by 72,000,000/sec.',
     cost: 5000000000,
-    increment: 183000000
+    increment: 72000000
   },
   {
     id: 'neo',
     category: 'dev',
     title: 'Neo',
     image: 'https://picsum.photos/id/237/100?grayscale',
-    description: 'Increases website production by 520,000,000/sec.',
+    description: 'Increases website production by 860,000,000/sec.',
     cost: 50000000000,
-    increment: 520000000
+    increment: 860000000
   },
   {
     id: 'skynet-core',
     category: 'dev',
     title: 'Skynet Core',
     image: 'https://picsum.photos/id/250/100?grayscale',
-    description: 'Increases website production by 1,000,000,000/sec.',
+    description: 'Increases website production by 10,400,000,000/sec.',
     cost: 500000000000,
-    increment: 1000000000
+    increment: 10400000000
   },
   {
     id: 'terminator-t1000',
     category: 'dev',
     title: 'Terminator T-1000',
     image: 'https://picsum.photos/id/268/100?grayscale',
-    description: 'Increases website production by 20,000,000,000/sec.',
+    description: 'Increases website production by 125,000,000,000/sec.',
     cost: 5000000000000,
-    increment: 20000000000
+    increment: 125000000000
   },
   {
     id: 'agi',
     category: 'dev',
     title: 'AGI achieved',
     image: 'https://picsum.photos/id/284/100?grayscale',
-    description: 'Increases website production by 200,000,000,000/sec.',
+    description: 'Increases website production by 1,500,000,000,000/sec.',
     cost: 50000000000000,
-    increment: 200000000000
+    increment: 1500000000000
   },
 
   // Sellers
