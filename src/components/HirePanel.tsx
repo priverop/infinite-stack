@@ -42,7 +42,11 @@ export default function HirePanel({
         Development
       </h4>
       <ul className="mb-6">{listDevs}</ul>
-      <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-3">Sales</h4>
+      {listSales.length > 0 && (
+        <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-3">
+          Sales
+        </h4>
+      )}
       <ul>{listSales}</ul>
       {agencyUnlocked && (
         <div className="mt-4 rounded border border-ink-faint/30 p-3">
