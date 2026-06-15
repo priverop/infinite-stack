@@ -3,17 +3,9 @@ import SingleStat from './SingleStat';
 import { formatNumber, formatMoney } from '../utils/format';
 import type { GameStats } from '../types';
 
-// TODO: hacerlo al revés. En vez de Omit, Include o algo asi
-type StatsProps = Omit<
+type StatsProps = Pick<
   GameStats,
-  | 'maxMoney'
-  | 'people'
-  | 'maxPeople'
-  | 'totalClicks'
-  | 'websitesCreated'
-  | 'websitesSold'
-  | 'staff'
-  | 'agencyPurchased'
+  'money' | 'websites' | 'sellsPerSecond' | 'quality' | 'websitesPerSecond'
 >;
 
 export default function Stats({
