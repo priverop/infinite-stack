@@ -65,12 +65,6 @@
 - Progress is auto saved each 10 seconds. ✓
 - Add achievements. ✓
 
-### Ideas
-
-- Staff animations. ✓ (pixel-art GIF in Team panel — asset from [Pixabay](https://pixabay.com/), free Content License)
-- Click animations.
-- Change favicon.
-
 ### Refactors / Improvements
 
 - Global state.
