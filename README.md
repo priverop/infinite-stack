@@ -1,4 +1,5 @@
 <div align="center">
+   <img width="150px" src="./public/logo.png" />
   <h1 align="center" style="color: #615fff; font-size: 3em; letter-spacing: 0.15em;">🌐 INFINITE STACK</h1>
 </div>
 
