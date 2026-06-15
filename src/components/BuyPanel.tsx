@@ -13,7 +13,7 @@ const DISPLAY_COST_DIFFERENCE = 5000;
 
 export default function BuyPanel({ money, buyBuilding }: BuyProps) {
   const listBuildings = buildings
-    .filter((building) => building.cost - DISPLAY_COST_DIFFERENCE <= money)
+    .filter((building, index) => index === 0 || building.cost - DISPLAY_COST_DIFFERENCE <= money)
     .map((building, index) => (
       <SingleCandidate key={index} onClick={buyBuilding} candidate={building} />
     ));
