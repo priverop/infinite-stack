@@ -7,31 +7,32 @@ interface ActionsProps {
 }
 
 export default function Actions({ sellWebsite, createWebsite, isDisabled }: ActionsProps) {
-  const [animation, setAnimation] = useState(false);
+  const [animationBuy, setAnimationBuy] = useState(false);
+  const [animationSell, setAnimationSell] = useState(false);
 
   const handleCreate = () => {
-    setAnimation(true);
+    setAnimationBuy(true);
     createWebsite();
   };
 
   const handleSell = () => {
-    setAnimation(true);
+    setAnimationSell(true);
     sellWebsite();
   };
 
   return (
     <div className="flex flex-col gap-2 mt-4">
       <button
-        className={`primary ${animation ? 'animate-heartbeat animate-duration-[50ms]' : ''}`}
+        className={`primary ${animationBuy ? 'animate-heartbeat animate-duration-[50ms]' : ''}`}
         onClick={handleCreate}
-        onAnimationEnd={() => setAnimation(false)}>
+        onAnimationEnd={() => setAnimationBuy(false)}>
         Create Website
       </button>
       <button
-        className={`secondary ${animation ? 'animate-jiggle animate-duration-[50ms]' : ''}`}
+        className={`secondary ${animationSell ? 'animate-jiggle animate-duration-[50ms]' : ''}`}
         onClick={handleSell}
         disabled={isDisabled}
-        onAnimationEnd={() => setAnimation(false)}>
+        onAnimationEnd={() => setAnimationSell(false)}>
         Sell Website
       </button>
     </div>
