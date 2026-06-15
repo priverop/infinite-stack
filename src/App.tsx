@@ -45,15 +45,6 @@ function App() {
           createWebsite={createWebsite}
           isDisabled={websites < 1}
         />
-        <p className="text-xs text-ink-faint mt-4">Auto-saves every 10 seconds.</p>
-        <button
-          onClick={() => {
-            removeState();
-            removeStorage();
-          }}
-          className="ghost mt-4">
-          Clean State
-        </button>
       </section>
       <section className="main flex flex-col gap-5">
         <People people={people} maxPeople={maxPeople} quality={quality} />
@@ -69,7 +60,7 @@ function App() {
           buyAgency={buyAgency}
         />
       </section>
-      <Footer />
+      <Footer removeState={removeState} removeStorage={removeStorage} />
       <div>
         <Toaster position="bottom-right" />
       </div>
