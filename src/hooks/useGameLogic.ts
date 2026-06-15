@@ -15,7 +15,7 @@ const linkedInBro = catalog.find((c) => c.id === 'linkedin-bro')!;
 
 export function useGameLogic() {
   const [websites, setWebsites] = useState(0);
-  const [money, setMoney] = useState(100000000);
+  const [money, setMoney] = useState(0);
   const [websitesPerSecond, setWebsitesPerSecond] = useState(0);
   const [sellsPerSecond, setSellsPerSecond] = useState(0);
   const [people, setPeople] = useState(0);
@@ -114,7 +114,7 @@ export function useGameLogic() {
 
   function removeState(): void {
     setWebsites(0);
-    setMoney(1000000000);
+    setMoney(0);
     setSellsPerSecond(0);
     setWebsitesPerSecond(0);
     setQuality(20);
