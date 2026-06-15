@@ -9,6 +9,7 @@ const sales = byCategory('seller').filter((seller) => !seller.hidden);
 
 interface HireProps {
   money: number;
+  maxMoney: number;
   people: number;
   maxPeople: number;
   hireDev: HireFunction;
@@ -23,6 +24,7 @@ const DISPLAY_COST_DIFFERENCE = 500;
 
 export default function HirePanel({
   money,
+  maxMoney,
   people,
   maxPeople,
   hireDev,
@@ -34,7 +36,7 @@ export default function HirePanel({
 }: HireProps) {
   const teamFull = people >= maxPeople;
   const listDevs = devs
-    .filter((dev) => dev.cost - DISPLAY_COST_DIFFERENCE <= money)
+    .filter((dev) => dev.cost - DISPLAY_COST_DIFFERENCE <= maxMoney)
     .map((dev, index) => (
       <SingleCandidate
         key={index}
@@ -44,7 +46,7 @@ export default function HirePanel({
       />
     ));
   const listSales = sales
-    .filter((seller) => seller.cost - DISPLAY_COST_DIFFERENCE <= money)
+    .filter((seller) => seller.cost - DISPLAY_COST_DIFFERENCE <= maxMoney)
     .map((salesperson, index) => (
       <SingleCandidate
         key={index}

@@ -11,6 +11,7 @@ function App() {
   const {
     websites,
     money,
+    maxMoney,
     websitesPerSecond,
     sellsPerSecond,
     quality,
@@ -50,6 +51,7 @@ function App() {
         <People people={people} maxPeople={maxPeople} quality={quality} />
         <Panel
           money={money}
+          maxMoney={maxMoney}
           people={people}
           maxPeople={maxPeople}
           hireDev={hireDev}

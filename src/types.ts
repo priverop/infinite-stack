@@ -1,6 +1,7 @@
 // Core game state
 export interface GameStats {
   money: number;
+  maxMoney: number;
   websites: number;
   websitesPerSecond: number;
   sellsPerSecond: number;

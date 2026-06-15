@@ -6,6 +6,7 @@ import type { GameStats } from '../types';
 // TODO: hacerlo al revés. En vez de Omit, Include o algo asi
 type StatsProps = Omit<
   GameStats,
+  | 'maxMoney'
   | 'people'
   | 'maxPeople'
   | 'totalClicks'

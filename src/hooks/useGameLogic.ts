@@ -16,6 +16,7 @@ const linkedInBro = catalog.find((c) => c.id === 'linkedin-bro')!;
 export function useGameLogic() {
   const [websites, setWebsites] = useState(0);
   const [money, setMoney] = useState(0);
+  const [maxMoney, setMaxMoney] = useState(0);
   const [websitesPerSecond, setWebsitesPerSecond] = useState(0);
   const [sellsPerSecond, setSellsPerSecond] = useState(0);
   const [people, setPeople] = useState(0);
@@ -31,6 +32,7 @@ export function useGameLogic() {
 
   const gameState: GameStats = {
     money,
+    maxMoney,
     websites,
     websitesPerSecond,
     sellsPerSecond,
@@ -45,6 +47,10 @@ export function useGameLogic() {
   };
 
   const achievements = useAchievements(gameState); // Object with unlocked and recent
+
+  // High-water-mark: candidate unlocks gate on peak money, so a row never disappears
+  // after the player spends down (costs are monotonic per list).
+  useEffect(() => setMaxMoney((m) => Math.max(m, money)), [money]);
 
   // Core functions
 
@@ -115,6 +121,7 @@ export function useGameLogic() {
   function removeState(): void {
     setWebsites(0);
     setMoney(0);
+    setMaxMoney(0);
     setSellsPerSecond(0);
     setWebsitesPerSecond(0);
     setQuality(20);
@@ -136,6 +143,7 @@ export function useGameLogic() {
       if (savedData) {
         setWebsites(savedData.websites);
         setMoney(savedData.money);
+        setMaxMoney(savedData.maxMoney ?? savedData.money ?? 0);
         setSellsPerSecond(savedData.sellsPerSecond ?? 0);
         setQuality(savedData.quality ?? 20);
         setWebsitesPerSecond(savedData.websitesPerSecond);
@@ -206,6 +214,7 @@ export function useGameLogic() {
   return {
     websites,
     money,
+    maxMoney,
     websitesPerSecond,
     sellsPerSecond,
     quality,

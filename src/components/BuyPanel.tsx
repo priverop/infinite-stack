@@ -6,14 +6,15 @@ const buildings = byCategory('building');
 
 interface BuyProps {
   money: number;
+  maxMoney: number;
   buyBuilding: HireFunction;
 }
 
 const DISPLAY_COST_DIFFERENCE = 5000;
 
-export default function BuyPanel({ money, buyBuilding }: BuyProps) {
+export default function BuyPanel({ money, maxMoney, buyBuilding }: BuyProps) {
   const listBuildings = buildings
-    .filter((building, index) => index === 0 || building.cost - DISPLAY_COST_DIFFERENCE <= money)
+    .filter((building, index) => index === 0 || building.cost - DISPLAY_COST_DIFFERENCE <= maxMoney)
     .map((building, index) => (
       <SingleCandidate
         key={index}
