@@ -12,6 +12,8 @@ export interface GameStats {
   websitesCreated: number;
   websitesSold: number;
   staff: Record<string, number>;
+  // Whether the Marketing Agency has been purchased
+  agencyPurchased: boolean;
 }
 
 export interface Achievement {
@@ -42,6 +44,8 @@ export interface Candidate {
   cost: number;
   increment: number;
   quality?: number;
+  // Hidden from the manual hire list (e.g. agency-only sellers like the LinkedIn Bro)
+  hidden?: boolean;
 }
 
 // Functions to hire candidates (devs or sellers)

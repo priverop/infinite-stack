@@ -1,19 +1,33 @@
 import SingleCandidate from './SingleCandidate';
 import type { HireFunction } from '../types';
 import { byCategory } from '../data/catalog';
+import { AGENCY_COST } from '../hooks/useGameLogic';
 
 const devs = byCategory('dev');
-const sales = byCategory('seller');
+// Hidden sellers (e.g. the agency-only LinkedIn Bro) never get a manual hire button
+const sales = byCategory('seller').filter((seller) => !seller.hidden);
 
 interface HireProps {
   money: number;
   hireDev: HireFunction;
   hireSeller: HireFunction;
+  agencyUnlocked: boolean;
+  agencyPurchased: boolean;
+  linkedInBros: number;
+  buyAgency: () => void;
 }
 
 const DISPLAY_COST_DIFFERENCE = 500;
 
-export default function HirePanel({ money, hireDev, hireSeller }: HireProps) {
+export default function HirePanel({
+  money,
+  hireDev,
+  hireSeller,
+  agencyUnlocked,
+  agencyPurchased,
+  linkedInBros,
+  buyAgency
+}: HireProps) {
   const listDevs = devs
     .filter((dev) => dev.cost - DISPLAY_COST_DIFFERENCE <= money)
     .map((dev, index) => <SingleCandidate key={index} onClick={hireDev} candidate={dev} />);
@@ -30,6 +44,33 @@ export default function HirePanel({ money, hireDev, hireSeller }: HireProps) {
       <ul className="mb-6">{listDevs}</ul>
       <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-3">Sales</h4>
       <ul>{listSales}</ul>
+      {agencyUnlocked && (
+        <div className="mt-4 rounded border border-ink-faint/30 p-3">
+          <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-1">
+            Marketing Agency
+          </h4>
+          {agencyPurchased ? (
+            <>
+              <p className="text-xs text-ink-muted">
+                Active — auto-hiring LinkedIn Bros (+250/sec each, 1 every 3s).
+              </p>
+              <p className="text-xs text-ink-faint mt-1">LinkedIn Bros: {linkedInBros}</p>
+            </>
+          ) : (
+            <>
+              <p className="text-xs text-ink-muted mb-2">
+                Buy once to auto-hire LinkedIn Bros (+250/sec each, 1 every 3s).
+              </p>
+              <button
+                onClick={buyAgency}
+                disabled={money < AGENCY_COST}
+                className="ghost disabled:opacity-40 disabled:cursor-not-allowed">
+                Buy Agency — ${AGENCY_COST.toLocaleString()}
+              </button>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }

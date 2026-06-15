@@ -16,6 +16,10 @@ function App() {
     quality,
     people,
     maxPeople,
+    agencyUnlocked,
+    agencyPurchased,
+    linkedInBros,
+    buyAgency,
     createWebsite,
     sellWebsite,
     hireDev,
@@ -59,6 +63,10 @@ function App() {
           hireSeller={hireSeller}
           buyBuilding={buyBuilding}
           achievements={achievements}
+          agencyUnlocked={agencyUnlocked}
+          agencyPurchased={agencyPurchased}
+          linkedInBros={linkedInBros}
+          buyAgency={buyAgency}
         />
       </section>
       <Footer />

@@ -129,27 +129,37 @@ export const catalog: Candidate[] = [
     category: 'seller',
     title: 'Trainee Salesperson',
     image: 'https://picsum.photos/id/48/100?grayscale',
-    description: 'Increases website selling by 1/sec.',
+    description: 'Increases website selling by 2/sec.',
     cost: 1000,
-    increment: 1
+    increment: 2
   },
   {
     id: 'senior-sales',
     category: 'seller',
     title: 'Senior Salesperson',
     image: 'https://picsum.photos/id/20/100?grayscale',
-    description: 'Increases website selling by 5/sec.',
-    cost: 4500,
-    increment: 5
+    description: 'Increases website selling by 30/sec.',
+    cost: 6000,
+    increment: 30
   },
   {
     id: 'b2b-sales',
     category: 'seller',
     title: 'B2B specialist Salesperson',
     image: 'https://picsum.photos/id/378/100?grayscale',
-    description: 'Increases website selling by 10/sec.',
-    cost: 8000,
-    increment: 10
+    description: 'Increases website selling by 200/sec.',
+    cost: 40000,
+    increment: 200
+  },
+  {
+    id: 'linkedin-bro',
+    category: 'seller',
+    title: 'LinkedIn Bro',
+    image: 'https://picsum.photos/id/64/100?grayscale',
+    description: 'Auto-hired by the Marketing Agency. Sells 250/sec.',
+    cost: 50000,
+    increment: 250,
+    hidden: true
   },
 
   // Buildings

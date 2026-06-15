@@ -15,6 +15,10 @@ interface PanelProps {
     unlockedAchievements: Set<string>;
     recentUnlocks: Achievement[];
   };
+  agencyUnlocked: boolean;
+  agencyPurchased: boolean;
+  linkedInBros: number;
+  buyAgency: () => void;
 }
 
 export default function Panel({
@@ -22,7 +26,11 @@ export default function Panel({
   hireSeller,
   hireDev,
   buyBuilding,
-  achievements
+  achievements,
+  agencyUnlocked,
+  agencyPurchased,
+  linkedInBros,
+  buyAgency
 }: PanelProps) {
   return (
     <Tabs>
@@ -42,7 +50,15 @@ export default function Panel({
       </TabList>
 
       <TabPanel>
-        <HirePanel money={money} hireDev={hireDev} hireSeller={hireSeller} />
+        <HirePanel
+          money={money}
+          hireDev={hireDev}
+          hireSeller={hireSeller}
+          agencyUnlocked={agencyUnlocked}
+          agencyPurchased={agencyPurchased}
+          linkedInBros={linkedInBros}
+          buyAgency={buyAgency}
+        />
       </TabPanel>
       <TabPanel>
         <BuyPanel money={money} buyBuilding={buyBuilding} />
