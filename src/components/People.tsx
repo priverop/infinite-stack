@@ -9,13 +9,17 @@ interface PeopleProps {
 export default function People({ people, maxPeople, quality }: PeopleProps) {
   const visibleCount = Math.min(maxPeople, MAX_VISIBLE_SLOTS);
   const overflow = people > MAX_VISIBLE_SLOTS ? people - MAX_VISIBLE_SLOTS : 0;
+  const full = people >= maxPeople;
 
   return (
     <div className="bg-card border border-line rounded-xl p-5">
       <div className="flex items-center justify-between mb-4">
         <span className="text-sm font-semibold uppercase tracking-widest text-ink-muted">Team</span>
-        <span className="font-mono text-sm text-ink-muted">
-          <span className="text-ink font-semibold">{people}</span> / {maxPeople}
+        <span
+          className={`font-mono text-sm ${
+            full ? 'text-red-500 font-semibold animate-pulse animate-pulsing' : 'text-ink-muted'
+          }`}>
+          <span className={full ? '' : 'text-ink font-semibold'}>{people}</span> / {maxPeople}
         </span>
       </div>
       <div className="flex flex-wrap gap-2">
