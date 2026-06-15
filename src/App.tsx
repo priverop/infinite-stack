@@ -50,6 +50,8 @@ function App() {
         <People people={people} maxPeople={maxPeople} quality={quality} />
         <Panel
           money={money}
+          people={people}
+          maxPeople={maxPeople}
           hireDev={hireDev}
           hireSeller={hireSeller}
           buyBuilding={buyBuilding}

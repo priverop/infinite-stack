@@ -15,7 +15,12 @@ export default function BuyPanel({ money, buyBuilding }: BuyProps) {
   const listBuildings = buildings
     .filter((building, index) => index === 0 || building.cost - DISPLAY_COST_DIFFERENCE <= money)
     .map((building, index) => (
-      <SingleCandidate key={index} onClick={buyBuilding} candidate={building} />
+      <SingleCandidate
+        key={index}
+        onClick={buyBuilding}
+        candidate={building}
+        disabled={building.cost > money}
+      />
     ));
   return (
     <div>

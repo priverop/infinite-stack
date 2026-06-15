@@ -5,21 +5,23 @@ import type { Candidate, HireFunction } from '../types';
 interface SingleCandidateProps {
   candidate: Candidate;
   onClick: HireFunction;
+  disabled?: boolean;
 }
 
-export default function SingleCandidate({ candidate, onClick }: SingleCandidateProps) {
+export default function SingleCandidate({ candidate, onClick, disabled }: SingleCandidateProps) {
   const [animation, setAnimation] = useState(false);
 
   const handleClick = () => {
+    if (disabled) return;
     setAnimation(true);
     onClick(candidate.id, candidate.cost, candidate.increment);
   };
 
   return (
     <div
-      className={`flex items-center justify-between py-3 px-3 rounded-xl hover:bg-card-raised cursor-pointer transition-colors duration-150 ${
-        animation ? 'animate-squeeze animate-duration-[200ms]' : ''
-      }`}
+      className={`flex items-center justify-between py-3 px-3 rounded-xl transition-colors duration-150 ${
+        disabled ? 'opacity-40 cursor-not-allowed' : 'hover:bg-card-raised cursor-pointer'
+      } ${animation ? 'animate-squeeze animate-duration-[200ms]' : ''}`}
       onClick={handleClick}
       onAnimationEnd={() => setAnimation(false)}>
       <div className="flex items-center gap-4">

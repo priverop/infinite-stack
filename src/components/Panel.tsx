@@ -8,6 +8,8 @@ import type { Achievement, HireFunction } from '../types';
 
 interface PanelProps {
   money: number;
+  people: number;
+  maxPeople: number;
   hireDev: HireFunction;
   hireSeller: HireFunction;
   buyBuilding: HireFunction;
@@ -23,6 +25,8 @@ interface PanelProps {
 
 export default function Panel({
   money,
+  people,
+  maxPeople,
   hireSeller,
   hireDev,
   buyBuilding,
@@ -52,6 +56,8 @@ export default function Panel({
       <TabPanel>
         <HirePanel
           money={money}
+          people={people}
+          maxPeople={maxPeople}
           hireDev={hireDev}
           hireSeller={hireSeller}
           agencyUnlocked={agencyUnlocked}

@@ -9,6 +9,8 @@ const sales = byCategory('seller').filter((seller) => !seller.hidden);
 
 interface HireProps {
   money: number;
+  people: number;
+  maxPeople: number;
   hireDev: HireFunction;
   hireSeller: HireFunction;
   agencyUnlocked: boolean;
@@ -21,6 +23,8 @@ const DISPLAY_COST_DIFFERENCE = 500;
 
 export default function HirePanel({
   money,
+  people,
+  maxPeople,
   hireDev,
   hireSeller,
   agencyUnlocked,
@@ -28,13 +32,26 @@ export default function HirePanel({
   linkedInBros,
   buyAgency
 }: HireProps) {
+  const teamFull = people >= maxPeople;
   const listDevs = devs
     .filter((dev) => dev.cost - DISPLAY_COST_DIFFERENCE <= money)
-    .map((dev, index) => <SingleCandidate key={index} onClick={hireDev} candidate={dev} />);
+    .map((dev, index) => (
+      <SingleCandidate
+        key={index}
+        onClick={hireDev}
+        candidate={dev}
+        disabled={teamFull || dev.cost > money}
+      />
+    ));
   const listSales = sales
     .filter((seller) => seller.cost - DISPLAY_COST_DIFFERENCE <= money)
     .map((salesperson, index) => (
-      <SingleCandidate key={index} onClick={hireSeller} candidate={salesperson} />
+      <SingleCandidate
+        key={index}
+        onClick={hireSeller}
+        candidate={salesperson}
+        disabled={teamFull || salesperson.cost > money}
+      />
     ));
   return (
     <div>
