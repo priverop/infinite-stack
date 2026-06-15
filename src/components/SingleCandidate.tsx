@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { formatMoney } from '../utils/format';
 import type { Candidate, HireFunction } from '../types';
 
@@ -7,10 +8,20 @@ interface SingleCandidateProps {
 }
 
 export default function SingleCandidate({ candidate, onClick }: SingleCandidateProps) {
+  const [animation, setAnimation] = useState(false);
+
+  const handleClick = () => {
+    setAnimation(true);
+    onClick(candidate.id, candidate.cost, candidate.increment);
+  };
+
   return (
     <div
-      className="flex items-center justify-between py-3 px-3 rounded-xl hover:bg-card-raised cursor-pointer transition-colors duration-150"
-      onClick={() => onClick(candidate.id, candidate.cost, candidate.increment)}>
+      className={`flex items-center justify-between py-3 px-3 rounded-xl hover:bg-card-raised cursor-pointer transition-colors duration-150 ${
+        animation ? 'animate-squeeze animate-duration-[200ms]' : ''
+      }`}
+      onClick={handleClick}
+      onAnimationEnd={() => setAnimation(false)}>
       <div className="flex items-center gap-4">
         <img src={candidate.image} className="h-12 w-12 rounded-[10px] object-cover" alt="" />
         <div className="flex flex-col">

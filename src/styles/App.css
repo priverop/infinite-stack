@@ -1,5 +1,6 @@
 @import-normalize;
 @import 'tailwindcss';
+@import 'tailwind-animations';
 
 @theme {
   --color-canvas: #0c1118;
@@ -58,7 +59,11 @@ button {
   border-radius: 999px;
   width: 100%;
   cursor: pointer;
-  transition: opacity 100ms ease, transform 100ms ease, border-color 100ms ease, color 100ms ease;
+  transition:
+    opacity 100ms ease,
+    transform 100ms ease,
+    border-color 100ms ease,
+    color 100ms ease;
 }
 
 button.primary {
