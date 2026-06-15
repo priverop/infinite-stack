@@ -9,7 +9,7 @@ interface BuyProps {
   buyBuilding: HireFunction;
 }
 
-const DISPLAY_COST_DIFFERENCE = 500;
+const DISPLAY_COST_DIFFERENCE = 5000;
 
 export default function BuyPanel({ money, buyBuilding }: BuyProps) {
   const listBuildings = buildings

@@ -169,7 +169,7 @@ export const catalog: Candidate[] = [
     title: 'Co-working single subscription',
     image: 'https://picsum.photos/id/42/100?grayscale',
     description: 'Increases max team size by 1.',
-    cost: 500,
+    cost: 50000,
     increment: 1
   },
   {
@@ -178,7 +178,7 @@ export const catalog: Candidate[] = [
     title: 'Co-working private space',
     image: 'https://picsum.photos/id/163/100?grayscale',
     description: 'Increases max team size by 3.',
-    cost: 1250,
+    cost: 125000,
     increment: 3
   },
   {
@@ -187,7 +187,7 @@ export const catalog: Candidate[] = [
     title: 'Small Office',
     image: 'https://picsum.photos/id/192/100?grayscale',
     description: 'Increases max team size by 6.',
-    cost: 2000,
+    cost: 200000,
     increment: 6
   },
   {
@@ -196,7 +196,7 @@ export const catalog: Candidate[] = [
     title: 'Open-plan Office',
     image: 'https://picsum.photos/id/119/100?grayscale',
     description: 'Increases max team size by 15.',
-    cost: 4500,
+    cost: 450000,
     increment: 15
   },
   {
@@ -205,7 +205,7 @@ export const catalog: Candidate[] = [
     title: 'Tech Campus',
     image: 'https://picsum.photos/id/127/100?grayscale',
     description: 'Increases max team size by 40.',
-    cost: 10000,
+    cost: 1000000,
     increment: 40
   },
   {
@@ -214,7 +214,7 @@ export const catalog: Candidate[] = [
     title: 'Corporate Tower',
     image: 'https://picsum.photos/id/146/100?grayscale',
     description: 'Increases max team size by 100.',
-    cost: 22000,
+    cost: 2200000,
     increment: 100
   },
   {
@@ -223,7 +223,7 @@ export const catalog: Candidate[] = [
     title: 'Innovation Hub',
     image: 'https://picsum.photos/id/160/100?grayscale',
     description: 'Increases max team size by 250.',
-    cost: 45000,
+    cost: 4500000,
     increment: 250
   },
   {
@@ -232,7 +232,7 @@ export const catalog: Candidate[] = [
     title: 'Remote-First Org',
     image: 'https://picsum.photos/id/169/100?grayscale',
     description: 'Increases max team size by 600.',
-    cost: 100000,
+    cost: 10000000,
     increment: 600
   },
   {
@@ -241,7 +241,7 @@ export const catalog: Candidate[] = [
     title: 'Tech Unicorn HQ',
     image: 'https://picsum.photos/id/188/100?grayscale',
     description: 'Increases max team size by 1,500.',
-    cost: 200000,
+    cost: 20000000,
     increment: 1500
   },
   {
@@ -250,7 +250,7 @@ export const catalog: Candidate[] = [
     title: 'Orbital Data Center',
     image: 'https://picsum.photos/id/203/100?grayscale',
     description: 'Increases max team size by 4,000.',
-    cost: 450000,
+    cost: 45000000,
     increment: 4000
   },
   {
@@ -259,7 +259,7 @@ export const catalog: Candidate[] = [
     title: 'Moon Base',
     image: 'https://picsum.photos/id/222/100?grayscale',
     description: 'Increases max team size by 10,000.',
-    cost: 900000,
+    cost: 90000000,
     increment: 10000
   },
   {
@@ -268,7 +268,7 @@ export const catalog: Candidate[] = [
     title: 'Dyson Sphere',
     image: 'https://picsum.photos/id/241/100?grayscale',
     description: 'Increases max team size by 25,000.',
-    cost: 1750000,
+    cost: 175000000,
     increment: 25000
   }
 ];
