@@ -56,7 +56,7 @@ function App() {
         </button>
       </section>
       <section className="main flex flex-col gap-5">
-        <People people={people} maxPeople={maxPeople} />
+        <People people={people} maxPeople={maxPeople} quality={quality} />
         <Panel
           money={money}
           hireDev={hireDev}

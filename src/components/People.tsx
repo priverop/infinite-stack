@@ -4,9 +4,10 @@ const MAX_VISIBLE_SLOTS = 12;
 interface PeopleProps {
   people: number;
   maxPeople: number;
+  quality: number;
 }
 
-export default function People({ people, maxPeople }: PeopleProps) {
+export default function People({ people, maxPeople, quality }: PeopleProps) {
   const visibleCount = Math.min(maxPeople, MAX_VISIBLE_SLOTS);
   const overflow = maxPeople > MAX_VISIBLE_SLOTS ? maxPeople - MAX_VISIBLE_SLOTS : 0;
 
@@ -36,6 +37,10 @@ export default function People({ people, maxPeople }: PeopleProps) {
             <span className="text-xs text-ink-faint font-mono">+{overflow}</span>
           </div>
         )}
+      </div>
+      <div className="flex items-center justify-between mt-4 pt-4 border-t border-line">
+        <span className="text-sm font-semibold uppercase tracking-widest text-ink-muted">Quality</span>
+        <span className="font-mono text-sm text-ink font-semibold">{quality}%</span>
       </div>
     </div>
   );
