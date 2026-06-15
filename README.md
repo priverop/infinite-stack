@@ -66,10 +66,21 @@
 
 ### Ideas
 
-- Headhunters.
-- Marketing agency.
-- Staff animations.
+- Staff animations. ✓ (pixel-art GIF in Team panel — asset from [Pixabay](https://pixabay.com/), free Content License)
+- Click animations.
+- Change favicon.
 
 ### Refactors / Improvements
 
 - Global state.
+- Progressions.
+
+## Credits
+
+Gif image by [Avedeto](https://pixabay.com/es/users/avedeto-12355281/):
+```
+Pixel artist.
+Instagram: @avedeto_93 (https://www.instagram.com/avedeto_93/)
+Ko-fi: https://ko-fi.com/avedeto
+YouTube: Avedeto (https://www.youtube.com/@avedeto_93)
+```
