@@ -74,15 +74,13 @@ export default function HirePanel({
           </h4>
           {agencyPurchased ? (
             <>
-              <p className="text-xs text-ink-muted">
-                Active — auto-hiring LinkedIn Bros (+250/sec each, 1 every 3s).
-              </p>
+              <p className="text-xs text-ink-muted">Active — auto-hires LinkedIn Bros (+50M/s).</p>
               <p className="text-xs text-ink-faint mt-1">LinkedIn Bros: {linkedInBros}</p>
             </>
           ) : (
             <>
               <p className="text-xs text-ink-muted mb-2">
-                Buy once to auto-hire LinkedIn Bros (+250/sec each, 1 every 3s).
+                Buy once to auto-hire LinkedIn Bros (+50M/s).
               </p>
               <button
                 onClick={buyAgency}

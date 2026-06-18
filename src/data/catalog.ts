@@ -7,7 +7,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Junior Developer',
     image: 'https://picsum.photos/id/1/100?grayscale',
-    description: 'Increases website production by 2/sec.',
+    description: 'Increases website production by 2/s.',
     cost: 500,
     increment: 2,
     quality: 20
@@ -17,7 +17,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Mid Developer',
     image: 'https://picsum.photos/id/180/100?grayscale',
-    description: 'Increases website production by 24/sec.',
+    description: 'Increases website production by 24/s.',
     cost: 5000,
     increment: 24,
     quality: 23
@@ -27,7 +27,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Senior Developer',
     image: 'https://picsum.photos/id/60/100?grayscale',
-    description: 'Increases website production by 290/sec.',
+    description: 'Increases website production by 290/s.',
     cost: 50000,
     increment: 290,
     quality: 26
@@ -37,7 +37,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Tech Lead',
     image: 'https://picsum.photos/id/91/100?grayscale',
-    description: 'Increases website production by 3,500/sec.',
+    description: 'Increases website production by 3,500/s.',
     cost: 500000,
     increment: 3500,
     quality: 30
@@ -47,7 +47,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Solutions Architect',
     image: 'https://picsum.photos/id/110/100?grayscale',
-    description: 'Increases website production by 42,000/sec.',
+    description: 'Increases website production by 42,000/s.',
     cost: 5000000,
     increment: 42000,
     quality: 34
@@ -57,7 +57,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: '10x Engineer',
     image: 'https://picsum.photos/id/177/100?grayscale',
-    description: 'Increases website production by 500,000/sec.',
+    description: 'Increases website production by 500,000/s.',
     cost: 50000000,
     increment: 500000,
     quality: 38
@@ -67,7 +67,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Jedi Coder',
     image: 'https://picsum.photos/id/201/100?grayscale',
-    description: 'Increases website production by 6,000,000/sec.',
+    description: 'Increases website production by 6,000,000/s.',
     cost: 500000000,
     increment: 6000000,
     quality: 44
@@ -77,7 +77,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Gandalf The White',
     image: 'https://picsum.photos/id/219/100?grayscale',
-    description: 'Increases website production by 72,000,000/sec.',
+    description: 'Increases website production by 72,000,000/s.',
     cost: 5000000000,
     increment: 72000000,
     quality: 50
@@ -87,7 +87,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Neo',
     image: 'https://picsum.photos/id/237/100?grayscale',
-    description: 'Increases website production by 860,000,000/sec.',
+    description: 'Increases website production by 860,000,000/s.',
     cost: 50000000000,
     increment: 860000000,
     quality: 58
@@ -97,7 +97,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Skynet Core',
     image: 'https://picsum.photos/id/250/100?grayscale',
-    description: 'Increases website production by 10,400,000,000/sec.',
+    description: 'Increases website production by 10,400,000,000/s.',
     cost: 500000000000,
     increment: 10400000000,
     quality: 68
@@ -107,7 +107,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Terminator T-1000',
     image: 'https://picsum.photos/id/268/100?grayscale',
-    description: 'Increases website production by 125,000,000,000/sec.',
+    description: 'Increases website production by 125,000,000,000/s.',
     cost: 5000000000000,
     increment: 125000000000,
     quality: 80
@@ -117,7 +117,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'AGI achieved',
     image: 'https://picsum.photos/id/284/100?grayscale',
-    description: 'Increases website production by 1,500,000,000,000/sec.',
+    description: 'Increases website production by 1,500,000,000,000/s.',
     cost: 50000000000000,
     increment: 1500000000000,
     quality: 100
@@ -129,7 +129,7 @@ export const catalog: Candidate[] = [
     category: 'seller',
     title: 'Trainee Salesperson',
     image: 'https://picsum.photos/id/48/100?grayscale',
-    description: 'Increases website selling by 2/sec.',
+    description: 'Increases website selling by 2/s.',
     cost: 1000,
     increment: 2
   },
@@ -138,7 +138,7 @@ export const catalog: Candidate[] = [
     category: 'seller',
     title: 'Senior Salesperson',
     image: 'https://picsum.photos/id/20/100?grayscale',
-    description: 'Increases website selling by 30/sec.',
+    description: 'Increases website selling by 30/s.',
     cost: 6000,
     increment: 30
   },
@@ -147,7 +147,7 @@ export const catalog: Candidate[] = [
     category: 'seller',
     title: 'B2B specialist Salesperson',
     image: 'https://picsum.photos/id/378/100?grayscale',
-    description: 'Increases website selling by 200/sec.',
+    description: 'Increases website selling by 200/s.',
     cost: 40000,
     increment: 200
   },
