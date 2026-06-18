@@ -59,27 +59,27 @@ export function useGameLogic() {
   // Core functions
 
   function createWebsite(): void {
-    setWebsites(websites + 1);
+    setWebsites((prev) => prev + 1);
     // Achivements
-    setTotalClicks(totalClicks + 1);
-    setWebsitesCreated(websitesCreated + 1);
+    setTotalClicks((prev) => prev + 1);
+    setWebsitesCreated((prev) => prev + 1);
   }
 
   function sellWebsite(): void {
     if (websites > 0) {
-      setWebsites(websites - 1);
-      setMoney(money + quality);
+      setWebsites((prev) => prev - 1);
+      setMoney((prev) => prev + quality);
       // Achivements
-      setTotalClicks(totalClicks + 1);
-      setWebsitesSold(websitesSold + 1);
+      setTotalClicks((prev) => prev + 1);
+      setWebsitesSold((prev) => prev + 1);
     }
   }
 
   const hireDev: HireFunction = (id, cost, increment) => {
     if (money >= cost && people < maxPeople) {
-      setMoney(money - cost);
-      setWebsitesPerSecond(websitesPerSecond + increment);
-      setPeople(people + 1);
+      setMoney((prev) => prev - cost);
+      setWebsitesPerSecond((prev) => prev + increment);
+      setPeople((prev) => prev + 1);
       setStaff((prev) => ({
         ...prev,
         [id]: (prev[id] ?? 0) + 1
@@ -94,9 +94,9 @@ export function useGameLogic() {
 
   const hireSeller: HireFunction = (id, cost, increment) => {
     if (money >= cost && people < maxPeople) {
-      setMoney(money - cost);
-      setSellsPerSecond(sellsPerSecond + increment);
-      setPeople(people + 1);
+      setMoney((prev) => prev - cost);
+      setSellsPerSecond((prev) => prev + increment);
+      setPeople((prev) => prev + 1);
       setStaff((prev) => ({
         ...prev,
         [id]: (prev[id] ?? 0) + 1
@@ -106,22 +106,22 @@ export function useGameLogic() {
 
   function buyAgency(): void {
     if (money >= AGENCY_COST && !agencyPurchased && websitesSold >= AGENCY_UNLOCK_SOLD) {
-      setMoney(money - AGENCY_COST);
+      setMoney((prev) => prev - AGENCY_COST);
       setAgencyPurchased(true);
     }
   }
 
   function buyAgencyUpgrade(): void {
     if (money >= AGENCY_UPGRADE_COST && agencyPurchased && !agencyUpgraded) {
-      setMoney(money - AGENCY_UPGRADE_COST);
+      setMoney((prev) => prev - AGENCY_UPGRADE_COST);
       setAgencyUpgraded(true);
     }
   }
 
   const buyBuilding: HireFunction = (id, cost, increment) => {
     if (money >= cost) {
-      setMoney(money - cost);
-      setMaxPeople(maxPeople + increment);
+      setMoney((prev) => prev - cost);
+      setMaxPeople((prev) => prev + increment);
       setStaff((prev) => ({
         ...prev,
         [id]: (prev[id] ?? 0) + 1
