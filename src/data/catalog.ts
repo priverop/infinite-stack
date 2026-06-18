@@ -47,9 +47,9 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Solutions Architect',
     image: 'https://picsum.photos/id/110/100?grayscale',
-    description: 'Increases website production by 42,000/s.',
+    description: 'Increases website production by 30,000/s.',
     cost: 5000000,
-    increment: 42000,
+    increment: 30000,
     quality: 34
   },
   {
@@ -57,9 +57,9 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: '10x Engineer',
     image: 'https://picsum.photos/id/177/100?grayscale',
-    description: 'Increases website production by 500,000/s.',
+    description: 'Increases website production by 250,000/s.',
     cost: 50000000,
-    increment: 500000,
+    increment: 250000,
     quality: 38
   },
   {
@@ -67,9 +67,9 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Jedi Coder',
     image: 'https://picsum.photos/id/201/100?grayscale',
-    description: 'Increases website production by 6,000,000/s.',
+    description: 'Increases website production by 2,000,000/s.',
     cost: 500000000,
-    increment: 6000000,
+    increment: 2000000,
     quality: 44
   },
   {
@@ -77,9 +77,9 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Gandalf The White',
     image: 'https://picsum.photos/id/219/100?grayscale',
-    description: 'Increases website production by 72,000,000/s.',
+    description: 'Increases website production by 17,000,000/s.',
     cost: 5000000000,
-    increment: 72000000,
+    increment: 17000000,
     quality: 50
   },
   {
@@ -87,9 +87,9 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Neo',
     image: 'https://picsum.photos/id/237/100?grayscale',
-    description: 'Increases website production by 860,000,000/s.',
+    description: 'Increases website production by 145,000,000/s.',
     cost: 50000000000,
-    increment: 860000000,
+    increment: 145000000,
     quality: 58
   },
   {
@@ -97,9 +97,9 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Skynet Core',
     image: 'https://picsum.photos/id/250/100?grayscale',
-    description: 'Increases website production by 10,400,000,000/s.',
+    description: 'Increases website production by 1,200,000,000/s.',
     cost: 500000000000,
-    increment: 10400000000,
+    increment: 1200000000,
     quality: 68
   },
   {
@@ -107,9 +107,9 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Terminator T-1000',
     image: 'https://picsum.photos/id/268/100?grayscale',
-    description: 'Increases website production by 125,000,000,000/s.',
+    description: 'Increases website production by 10,000,000,000/s.',
     cost: 5000000000000,
-    increment: 125000000000,
+    increment: 10000000000,
     quality: 80
   },
   {
@@ -117,9 +117,9 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'AGI achieved',
     image: 'https://picsum.photos/id/284/100?grayscale',
-    description: 'Increases website production by 1,500,000,000,000/s.',
+    description: 'Increases website production by 85,000,000,000/s.',
     cost: 50000000000000,
-    increment: 1500000000000,
+    increment: 85000000000,
     quality: 100
   },
 
@@ -156,9 +156,9 @@ export const catalog: Candidate[] = [
     category: 'seller',
     title: 'LinkedIn Bro',
     image: 'https://picsum.photos/id/64/100?grayscale',
-    description: 'Auto-hired by the Marketing Agency. Sells 50M/s.',
-    cost: 5000000,
-    increment: 50000000,
+    description: 'Auto-hired by the Marketing Agency. Sells 20M/s.',
+    cost: 10000000,
+    increment: 20000000,
     hidden: true
   },
 
@@ -205,7 +205,7 @@ export const catalog: Candidate[] = [
     title: 'Tech Campus',
     image: 'https://picsum.photos/id/127/100?grayscale',
     description: 'Increases max team size by 40.',
-    cost: 1000000,
+    cost: 1200000,
     increment: 40
   },
   {
@@ -214,7 +214,7 @@ export const catalog: Candidate[] = [
     title: 'Corporate Tower',
     image: 'https://picsum.photos/id/146/100?grayscale',
     description: 'Increases max team size by 100.',
-    cost: 2200000,
+    cost: 3000000,
     increment: 100
   },
   {
@@ -223,7 +223,7 @@ export const catalog: Candidate[] = [
     title: 'Innovation Hub',
     image: 'https://picsum.photos/id/160/100?grayscale',
     description: 'Increases max team size by 250.',
-    cost: 4500000,
+    cost: 7500000,
     increment: 250
   },
   {
@@ -232,7 +232,7 @@ export const catalog: Candidate[] = [
     title: 'Remote-First Org',
     image: 'https://picsum.photos/id/169/100?grayscale',
     description: 'Increases max team size by 600.',
-    cost: 10000000,
+    cost: 18000000,
     increment: 600
   },
   {
@@ -241,7 +241,7 @@ export const catalog: Candidate[] = [
     title: 'Tech Unicorn HQ',
     image: 'https://picsum.photos/id/188/100?grayscale',
     description: 'Increases max team size by 1,500.',
-    cost: 20000000,
+    cost: 45000000,
     increment: 1500
   },
   {
@@ -250,7 +250,7 @@ export const catalog: Candidate[] = [
     title: 'Orbital Data Center',
     image: 'https://picsum.photos/id/203/100?grayscale',
     description: 'Increases max team size by 4,000.',
-    cost: 45000000,
+    cost: 120000000,
     increment: 4000
   },
   {
@@ -259,7 +259,7 @@ export const catalog: Candidate[] = [
     title: 'Moon Base',
     image: 'https://picsum.photos/id/222/100?grayscale',
     description: 'Increases max team size by 10,000.',
-    cost: 90000000,
+    cost: 300000000,
     increment: 10000
   },
   {
@@ -268,7 +268,7 @@ export const catalog: Candidate[] = [
     title: 'Dyson Sphere',
     image: 'https://picsum.photos/id/241/100?grayscale',
     description: 'Increases max team size by 25,000.',
-    cost: 175000000,
+    cost: 750000000,
     increment: 25000
   }
 ];

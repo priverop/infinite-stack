@@ -9,8 +9,8 @@ import { useAchievements } from './useAchievements';
 // then costs AGENCY_COST to buy. Once bought it auto-hires one LinkedIn Bro every
 // AGENCY_INTERVAL_MS (each consuming a people slot).
 export const AGENCY_UNLOCK_SOLD = 1_000_000;
-export const AGENCY_COST = 1_000_000;
-const AGENCY_INTERVAL_MS = 3000;
+export const AGENCY_COST = 5_000_000;
+const AGENCY_INTERVAL_MS = 8000;
 const linkedInBro = catalog.find((c) => c.id === 'linkedin-bro')!;
 
 export function useGameLogic() {
