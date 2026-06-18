@@ -43,7 +43,9 @@ export default function People({ people, maxPeople, quality }: PeopleProps) {
         )}
       </div>
       <div className="flex items-center justify-between mt-4 pt-4 border-t border-line">
-        <span className="text-sm font-semibold uppercase tracking-widest text-ink-muted">
+        <span
+          className="text-sm font-semibold uppercase tracking-widest text-ink-muted cursor-help underline decoration-dotted decoration-ink-faint underline-offset-4"
+          title="Selling price of your websites.">
           Quality
         </span>
         <span className="font-mono text-sm text-ink font-semibold">{quality}%</span>
