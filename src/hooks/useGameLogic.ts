@@ -177,6 +177,9 @@ export function useGameLogic() {
     const intervalo = setInterval(() => {
       setWebsites((prevWebsites) => {
         const newWebsites = prevWebsites + websitesPerSecond;
+        if (websitesPerSecond > 0) {
+          setWebsitesCreated((prev) => prev + websitesPerSecond);
+        }
 
         // We need to update the money here to get the actual updated newWebsites value
         // This happens because in the same second we need to update two values.
@@ -205,18 +208,21 @@ export function useGameLogic() {
   agencyRef.current = { money, people, maxPeople, agencyPurchased };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const { money: m, people: p, maxPeople: mp, agencyPurchased: bought } = agencyRef.current;
-      if (!bought) return;
-      if (m < linkedInBro.cost || p >= mp) return;
-      setMoney((prev) => prev - linkedInBro.cost);
-      setSellsPerSecond((prev) => prev + linkedInBro.increment);
-      setPeople((prev) => prev + 1);
-      setStaff((prev) => ({
-        ...prev,
-        [linkedInBro.id]: (prev[linkedInBro.id] ?? 0) + 1
-      }));
-    }, agencyUpgraded ? AGENCY_UPGRADED_INTERVAL_MS : AGENCY_INTERVAL_MS);
+    const interval = setInterval(
+      () => {
+        const { money: m, people: p, maxPeople: mp, agencyPurchased: bought } = agencyRef.current;
+        if (!bought) return;
+        if (m < linkedInBro.cost || p >= mp) return;
+        setMoney((prev) => prev - linkedInBro.cost);
+        setSellsPerSecond((prev) => prev + linkedInBro.increment);
+        setPeople((prev) => prev + 1);
+        setStaff((prev) => ({
+          ...prev,
+          [linkedInBro.id]: (prev[linkedInBro.id] ?? 0) + 1
+        }));
+      },
+      agencyUpgraded ? AGENCY_UPGRADED_INTERVAL_MS : AGENCY_INTERVAL_MS
+    );
 
     return () => clearInterval(interval);
   }, [agencyUpgraded]);
