@@ -98,7 +98,7 @@ export const catalog: Candidate[] = [
     title: 'Skynet Core',
     image: 'https://picsum.photos/id/250/100?grayscale',
     description: 'Increases website production by 1,200,000,000/s.',
-    cost: 500000000000,
+    cost: 5000000000000,
     increment: 1200000000,
     quality: 68
   },
@@ -108,7 +108,7 @@ export const catalog: Candidate[] = [
     title: 'Terminator T-1000',
     image: 'https://picsum.photos/id/268/100?grayscale',
     description: 'Increases website production by 10,000,000,000/s.',
-    cost: 5000000000000,
+    cost: 500000000000000,
     increment: 10000000000,
     quality: 80
   },
@@ -118,7 +118,7 @@ export const catalog: Candidate[] = [
     title: 'AGI achieved',
     image: 'https://picsum.photos/id/284/100?grayscale',
     description: 'Increases website production by 85,000,000,000/s.',
-    cost: 50000000000000,
+    cost: 500000000000000000,
     increment: 85000000000,
     quality: 100
   },
@@ -152,13 +152,22 @@ export const catalog: Candidate[] = [
     increment: 200
   },
   {
+    id: 'elon-musk',
+    category: 'seller',
+    title: 'Elon Musk',
+    image: 'https://picsum.photos/id/379/100?grayscale',
+    description: 'Increases website selling by 1B/s.',
+    cost: 10000000000000,
+    increment: 1000000000
+  },
+  {
     id: 'linkedin-bro',
     category: 'seller',
     title: 'LinkedIn Bro',
     image: 'https://picsum.photos/id/64/100?grayscale',
-    description: 'Auto-hired by the Marketing Agency. Sells 20M/s.',
+    description: 'Auto-hired by the Marketing Agency. Sells 50M/s.',
     cost: 10000000,
-    increment: 20000000,
+    increment: 50000000,
     hidden: true
   },
 
@@ -196,35 +205,8 @@ export const catalog: Candidate[] = [
     title: 'Open-plan Office',
     image: 'https://picsum.photos/id/119/100?grayscale',
     description: 'Increases max team size by 15.',
-    cost: 450000,
+    cost: 1500000,
     increment: 15
-  },
-  {
-    id: 'tech-campus',
-    category: 'building',
-    title: 'Tech Campus',
-    image: 'https://picsum.photos/id/127/100?grayscale',
-    description: 'Increases max team size by 40.',
-    cost: 1200000,
-    increment: 40
-  },
-  {
-    id: 'corporate-tower',
-    category: 'building',
-    title: 'Corporate Tower',
-    image: 'https://picsum.photos/id/146/100?grayscale',
-    description: 'Increases max team size by 100.',
-    cost: 3000000,
-    increment: 100
-  },
-  {
-    id: 'innovation-hub',
-    category: 'building',
-    title: 'Innovation Hub',
-    image: 'https://picsum.photos/id/160/100?grayscale',
-    description: 'Increases max team size by 250.',
-    cost: 7500000,
-    increment: 250
   },
   {
     id: 'remote-first-org',
@@ -232,7 +214,7 @@ export const catalog: Candidate[] = [
     title: 'Remote-First Org',
     image: 'https://picsum.photos/id/169/100?grayscale',
     description: 'Increases max team size by 600.',
-    cost: 18000000,
+    cost: 50000000,
     increment: 600
   },
   {
@@ -241,7 +223,7 @@ export const catalog: Candidate[] = [
     title: 'Tech Unicorn HQ',
     image: 'https://picsum.photos/id/188/100?grayscale',
     description: 'Increases max team size by 1,500.',
-    cost: 45000000,
+    cost: 2000000000,
     increment: 1500
   },
   {
@@ -250,7 +232,7 @@ export const catalog: Candidate[] = [
     title: 'Orbital Data Center',
     image: 'https://picsum.photos/id/203/100?grayscale',
     description: 'Increases max team size by 4,000.',
-    cost: 120000000,
+    cost: 100000000000,
     increment: 4000
   },
   {
@@ -259,7 +241,7 @@ export const catalog: Candidate[] = [
     title: 'Moon Base',
     image: 'https://picsum.photos/id/222/100?grayscale',
     description: 'Increases max team size by 10,000.',
-    cost: 300000000,
+    cost: 10000000000000,
     increment: 10000
   },
   {
@@ -268,7 +250,7 @@ export const catalog: Candidate[] = [
     title: 'Dyson Sphere',
     image: 'https://picsum.photos/id/241/100?grayscale',
     description: 'Increases max team size by 25,000.',
-    cost: 750000000,
+    cost: 1500000000000000,
     increment: 25000
   }
 ];
