@@ -9,8 +9,10 @@ import { useAchievements } from './useAchievements';
 // then costs AGENCY_COST to buy. Once bought it auto-hires one LinkedIn Bro every
 // AGENCY_INTERVAL_MS (each consuming a people slot).
 export const AGENCY_UNLOCK_SOLD = 1_000_000;
-export const AGENCY_COST = 5_000_000;
-const AGENCY_INTERVAL_MS = 8000;
+export const AGENCY_COST = 1_000_000;
+export const AGENCY_UPGRADE_COST = 10_000_000_000_000; // 10T
+const AGENCY_INTERVAL_MS = 3000;
+const AGENCY_UPGRADED_INTERVAL_MS = 1000;
 const linkedInBro = catalog.find((c) => c.id === 'linkedin-bro')!;
 
 export function useGameLogic() {
@@ -23,6 +25,7 @@ export function useGameLogic() {
   const [maxPeople, setMaxPeople] = useState(10);
   const [quality, setQuality] = useState(20);
   const [agencyPurchased, setAgencyPurchased] = useState(false);
+  const [agencyUpgraded, setAgencyUpgraded] = useState(false);
 
   // Achievements
   const [totalClicks, setTotalClicks] = useState(0);
@@ -43,7 +46,8 @@ export function useGameLogic() {
     websitesCreated,
     websitesSold,
     staff,
-    agencyPurchased
+    agencyPurchased,
+    agencyUpgraded
   };
 
   const achievements = useAchievements(gameState); // Object with unlocked and recent
@@ -107,6 +111,13 @@ export function useGameLogic() {
     }
   }
 
+  function buyAgencyUpgrade(): void {
+    if (money >= AGENCY_UPGRADE_COST && agencyPurchased && !agencyUpgraded) {
+      setMoney(money - AGENCY_UPGRADE_COST);
+      setAgencyUpgraded(true);
+    }
+  }
+
   const buyBuilding: HireFunction = (id, cost, increment) => {
     if (money >= cost) {
       setMoney(money - cost);
@@ -132,6 +143,7 @@ export function useGameLogic() {
     setWebsitesSold(0);
     setStaff({});
     setAgencyPurchased(false);
+    setAgencyUpgraded(false);
     achievements.removeAchievements();
   }
 
@@ -154,6 +166,7 @@ export function useGameLogic() {
         setWebsitesSold(savedData.websitesSold);
         setStaff(savedData.staff ?? {});
         setAgencyPurchased(savedData.agencyPurchased ?? false);
+        setAgencyUpgraded(savedData.agencyUpgraded ?? false);
       }
     };
     init();
@@ -203,10 +216,10 @@ export function useGameLogic() {
         ...prev,
         [linkedInBro.id]: (prev[linkedInBro.id] ?? 0) + 1
       }));
-    }, AGENCY_INTERVAL_MS);
+    }, agencyUpgraded ? AGENCY_UPGRADED_INTERVAL_MS : AGENCY_INTERVAL_MS);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [agencyUpgraded]);
 
   const agencyUnlocked = websitesSold >= AGENCY_UNLOCK_SOLD;
   const linkedInBros = staff[linkedInBro.id] ?? 0;
@@ -223,6 +236,7 @@ export function useGameLogic() {
 
     agencyUnlocked,
     agencyPurchased,
+    agencyUpgraded,
     linkedInBros,
 
     createWebsite,
@@ -231,6 +245,7 @@ export function useGameLogic() {
     hireSeller,
     buyBuilding,
     buyAgency,
+    buyAgencyUpgrade,
     removeState,
     removeStorage,
 

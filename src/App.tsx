@@ -19,8 +19,10 @@ function App() {
     maxPeople,
     agencyUnlocked,
     agencyPurchased,
+    agencyUpgraded,
     linkedInBros,
     buyAgency,
+    buyAgencyUpgrade,
     createWebsite,
     sellWebsite,
     hireDev,
@@ -60,8 +62,10 @@ function App() {
           achievements={achievements}
           agencyUnlocked={agencyUnlocked}
           agencyPurchased={agencyPurchased}
+          agencyUpgraded={agencyUpgraded}
           linkedInBros={linkedInBros}
           buyAgency={buyAgency}
+          buyAgencyUpgrade={buyAgencyUpgrade}
         />
       </section>
       <Footer removeState={removeState} removeStorage={removeStorage} />

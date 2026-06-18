@@ -1,7 +1,8 @@
 import SingleCandidate from './SingleCandidate';
 import type { HireFunction } from '../types';
 import { byCategory } from '../data/catalog';
-import { AGENCY_COST } from '../hooks/useGameLogic';
+import { AGENCY_COST, AGENCY_UPGRADE_COST } from '../hooks/useGameLogic';
+import { formatMoney } from '../utils/format';
 
 const devs = byCategory('dev');
 // Hidden sellers (e.g. the agency-only LinkedIn Bro) never get a manual hire button
@@ -16,8 +17,10 @@ interface HireProps {
   hireSeller: HireFunction;
   agencyUnlocked: boolean;
   agencyPurchased: boolean;
+  agencyUpgraded: boolean;
   linkedInBros: number;
   buyAgency: () => void;
+  buyAgencyUpgrade: () => void;
 }
 
 const DISPLAY_COST_DIFFERENCE = 500;
@@ -31,8 +34,10 @@ export default function HirePanel({
   hireSeller,
   agencyUnlocked,
   agencyPurchased,
+  agencyUpgraded,
   linkedInBros,
-  buyAgency
+  buyAgency,
+  buyAgencyUpgrade
 }: HireProps) {
   const teamFull = people >= maxPeople;
   const listDevs = devs
@@ -74,8 +79,20 @@ export default function HirePanel({
           </h4>
           {agencyPurchased ? (
             <>
-              <p className="text-xs text-ink-muted">Active — auto-hires LinkedIn Bros (+50M/s).</p>
+              <p className="text-xs text-ink-muted">
+                Active — auto-hires LinkedIn Bros (+50M/s) every {agencyUpgraded ? '1s' : '3s'}.
+              </p>
               <p className="text-xs text-ink-faint mt-1">LinkedIn Bros: {linkedInBros}</p>
+              {agencyUpgraded ? (
+                <p className="text-xs text-ink-faint mt-1">Upgraded — hires every 1s.</p>
+              ) : (
+                <button
+                  onClick={buyAgencyUpgrade}
+                  disabled={money < AGENCY_UPGRADE_COST}
+                  className="ghost disabled:opacity-40 disabled:cursor-not-allowed mt-2">
+                  Upgrade Agency — {formatMoney(AGENCY_UPGRADE_COST)}
+                </button>
+              )}
             </>
           ) : (
             <>

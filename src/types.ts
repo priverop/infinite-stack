@@ -15,6 +15,8 @@ export interface GameStats {
   staff: Record<string, number>;
   // Whether the Marketing Agency has been purchased
   agencyPurchased: boolean;
+  // Whether the Agency upgrade (1s auto-hire instead of 3s) has been bought
+  agencyUpgraded: boolean;
 }
 
 export interface Achievement {

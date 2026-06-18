@@ -20,8 +20,10 @@ interface PanelProps {
   };
   agencyUnlocked: boolean;
   agencyPurchased: boolean;
+  agencyUpgraded: boolean;
   linkedInBros: number;
   buyAgency: () => void;
+  buyAgencyUpgrade: () => void;
 }
 
 export default function Panel({
@@ -35,8 +37,10 @@ export default function Panel({
   achievements,
   agencyUnlocked,
   agencyPurchased,
+  agencyUpgraded,
   linkedInBros,
-  buyAgency
+  buyAgency,
+  buyAgencyUpgrade
 }: PanelProps) {
   return (
     <Tabs>
@@ -65,8 +69,10 @@ export default function Panel({
           hireSeller={hireSeller}
           agencyUnlocked={agencyUnlocked}
           agencyPurchased={agencyPurchased}
+          agencyUpgraded={agencyUpgraded}
           linkedInBros={linkedInBros}
           buyAgency={buyAgency}
+          buyAgencyUpgrade={buyAgencyUpgrade}
         />
       </TabPanel>
       <TabPanel>
