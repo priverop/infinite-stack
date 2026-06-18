@@ -156,9 +156,9 @@ export const catalog: Candidate[] = [
     category: 'seller',
     title: 'LinkedIn Bro',
     image: 'https://picsum.photos/id/64/100?grayscale',
-    description: 'Auto-hired by the Marketing Agency. Sells 250/sec.',
-    cost: 50000,
-    increment: 250,
+    description: 'Auto-hired by the Marketing Agency. Sells 50M/s.',
+    cost: 5000000,
+    increment: 50000000,
     hidden: true
   },
 
