@@ -152,12 +152,21 @@ export const catalog: Candidate[] = [
     increment: 200
   },
   {
+    id: 'cult-leader',
+    category: 'seller',
+    title: 'Cult Leader',
+    image: 'https://picsum.photos/id/379/100?grayscale',
+    description: 'Increases website selling by 1B/s.',
+    cost: 1e14,
+    increment: 1e9
+  },
+  {
     id: 'elon-musk',
     category: 'seller',
     title: 'Elon Musk',
     image: 'https://picsum.photos/id/379/100?grayscale',
-    description: 'Increases website selling by 1B/s.',
-    cost: 1e14,
+    description: 'Increases website selling by 1T/s.',
+    cost: 5e15,
     increment: 1e9
   },
   {
@@ -214,7 +223,7 @@ export const catalog: Candidate[] = [
     title: 'Remote-First Org',
     image: 'https://picsum.photos/id/169/100?grayscale',
     description: 'Increases max team size by 600.',
-    cost: 1e9,
+    cost: 1e6,
     increment: 600
   },
   {
