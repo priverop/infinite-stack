@@ -53,7 +53,7 @@ export default function Footer({ removeState, removeStorage, onToggleStats }: Fo
           onClick={() => setConfirmOpen(true)}
           style={{ width: 'auto' }}
           className="p-0 font-normal underline not-italic whitespace-nowrap hover:text-ink-muted transition-colors">
-          Remove savefile
+          Reset game
         </button>
       </div>
 
@@ -73,7 +73,7 @@ export default function Footer({ removeState, removeStorage, onToggleStats }: Fo
                 Cancel
               </button>
               <button type="button" onClick={handleRemove} className="ghost text-loss">
-                Remove savefile
+                Reset game
               </button>
             </div>
           </div>
