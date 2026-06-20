@@ -25,6 +25,9 @@ interface PanelProps {
   linkedInBros: number;
   buyAgency: () => void;
   buyAgencyUpgrade: () => void;
+  pyramidUnlocked: boolean;
+  pyramidPurchased: boolean;
+  buyPyramidScheme: () => void;
 }
 
 export default function Panel({
@@ -42,7 +45,10 @@ export default function Panel({
   agencyUpgraded,
   linkedInBros,
   buyAgency,
-  buyAgencyUpgrade
+  buyAgencyUpgrade,
+  pyramidUnlocked,
+  pyramidPurchased,
+  buyPyramidScheme
 }: PanelProps) {
   return (
     <Tabs>
@@ -75,6 +81,9 @@ export default function Panel({
           linkedInBros={linkedInBros}
           buyAgency={buyAgency}
           buyAgencyUpgrade={buyAgencyUpgrade}
+          pyramidUnlocked={pyramidUnlocked}
+          pyramidPurchased={pyramidPurchased}
+          buyPyramidScheme={buyPyramidScheme}
         />
       </TabPanel>
       <TabPanel>

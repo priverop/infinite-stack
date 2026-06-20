@@ -1,7 +1,7 @@
 import SingleCandidate from './SingleCandidate';
 import type { HireFunction } from '../types';
 import { byCategory } from '../data/catalog';
-import { AGENCY_COST, AGENCY_UPGRADE_COST } from '../hooks/useGameLogic';
+import { AGENCY_COST, AGENCY_UPGRADE_COST, PYRAMID_COST } from '../hooks/useGameLogic';
 import { formatMoney } from '../utils/format';
 
 const devs = byCategory('dev');
@@ -21,6 +21,9 @@ interface HireProps {
   linkedInBros: number;
   buyAgency: () => void;
   buyAgencyUpgrade: () => void;
+  pyramidUnlocked: boolean;
+  pyramidPurchased: boolean;
+  buyPyramidScheme: () => void;
 }
 
 const DISPLAY_COST_DIFFERENCE = 500;
@@ -37,11 +40,14 @@ export default function HirePanel({
   agencyUpgraded,
   linkedInBros,
   buyAgency,
-  buyAgencyUpgrade
+  buyAgencyUpgrade,
+  pyramidUnlocked,
+  pyramidPurchased,
+  buyPyramidScheme
 }: HireProps) {
   const teamFull = people >= maxPeople;
   const listDevs = devs
-    .filter((dev) => dev.cost - DISPLAY_COST_DIFFERENCE <= maxMoney)
+    .filter((dev) => dev.cost / 2 <= maxMoney) // TODO - esto igual renta irlo ajustando o tener alguna regla especial
     .map((dev, index) => (
       <SingleCandidate
         key={index}
@@ -105,6 +111,30 @@ export default function HirePanel({
                 disabled={money < AGENCY_COST}
                 className="ghost disabled:opacity-40 disabled:cursor-not-allowed">
                 Buy Agency — ${AGENCY_COST.toLocaleString()}
+              </button>
+            </>
+          )}
+        </div>
+      )}
+      {pyramidUnlocked && (
+        <div className="mt-4 rounded border border-ink-faint/30 p-3">
+          <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-1">
+            Ponzi Scheme
+          </h4>
+          {pyramidPurchased ? (
+            <p className="text-xs text-ink-muted">
+              Already unlocked. Remember: you didn't know it was a scam!
+            </p>
+          ) : (
+            <>
+              <p className="text-xs text-ink-muted mb-2">
+                5% chance to double your quality. One shot.
+              </p>
+              <button
+                onClick={buyPyramidScheme}
+                disabled={money < PYRAMID_COST}
+                className="ghost disabled:opacity-40 disabled:cursor-not-allowed">
+                Buy Pyramid Scheme — ${PYRAMID_COST.toLocaleString()}
               </button>
             </>
           )}

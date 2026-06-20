@@ -17,6 +17,7 @@ export interface GameStats {
   agencyPurchased: boolean;
   // Whether the Agency upgrade (1s auto-hire instead of 3s) has been bought
   agencyUpgraded: boolean;
+  pyramidPurchased: boolean;
 }
 
 export interface Achievement {

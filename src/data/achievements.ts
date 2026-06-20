@@ -271,7 +271,7 @@ export const achievements: Achievement[] = [
   {
     id: 'hire_agi',
     title: 'Singularity',
-    description: 'Achieve AGI.',
+    description: 'Achieve AGI: no more coding.',
     icon: '🤖',
     type: 'staffCount',
     staffIds: ['agi'],

@@ -1,10 +1,12 @@
 export function formatNumber(n: number): string {
   if (n < 1000) return n.toString();
   const units = [
+    { value: 1e18, symbol: 'S' },
+    { value: 1e15, symbol: 'Q' },
     { value: 1e12, symbol: 'T' },
     { value: 1e9, symbol: 'B' },
     { value: 1e6, symbol: 'M' },
-    { value: 1e3, symbol: 'K' },
+    { value: 1e3, symbol: 'K' }
   ];
   const unit = units.find((u) => n >= u.value)!;
   const scaled = n / unit.value;

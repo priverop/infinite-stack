@@ -24,9 +24,12 @@ function App() {
     agencyUnlocked,
     agencyPurchased,
     agencyUpgraded,
+    pyramidUnlocked,
+    pyramidPurchased,
     linkedInBros,
     buyAgency,
     buyAgencyUpgrade,
+    buyPyramidScheme,
     createWebsite,
     sellWebsite,
     hireDev,
@@ -75,6 +78,9 @@ function App() {
           linkedInBros={linkedInBros}
           buyAgency={buyAgency}
           buyAgencyUpgrade={buyAgencyUpgrade}
+          pyramidUnlocked={pyramidUnlocked}
+          pyramidPurchased={pyramidPurchased}
+          buyPyramidScheme={buyPyramidScheme}
         />
       </section>
       <Footer

@@ -1,18 +1,20 @@
 // src/hooks/useGameLogic.ts
 import { useState, useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
 import type { HireFunction, GameStats } from '../types';
 import { catalog, buildingCost } from '../data/catalog';
 import useGameStorage from './useGameStorage';
 import { useAchievements } from './useAchievements';
 
-// Marketing Agency: unlocks for purchase once this many websites have been sold,
-// then costs AGENCY_COST to buy. Once bought it auto-hires one LinkedIn Bro every
-// AGENCY_INTERVAL_MS (each consuming a people slot).
 export const AGENCY_UNLOCK_SOLD = 1_000_000;
 export const AGENCY_COST = 1_000_000;
 export const AGENCY_UPGRADE_COST = 10_000_000_000_000; // 10T
 const AGENCY_INTERVAL_MS = 3000;
 const AGENCY_UPGRADED_INTERVAL_MS = 1000;
+
+export const PYRAMID_UNLOCK_CLICKS = 500;
+export const PYRAMID_COST = 100;
+const PYRAMID_DOUBLE_CHANCE = 0.05;
 const linkedInBro = catalog.find((c) => c.id === 'linkedin-bro')!;
 
 export function useGameLogic() {
@@ -26,6 +28,7 @@ export function useGameLogic() {
   const [quality, setQuality] = useState(20);
   const [agencyPurchased, setAgencyPurchased] = useState(false);
   const [agencyUpgraded, setAgencyUpgraded] = useState(false);
+  const [pyramidPurchased, setPyramidPurchased] = useState(false);
 
   // Achievements
   const [totalClicks, setTotalClicks] = useState(0);
@@ -47,7 +50,8 @@ export function useGameLogic() {
     websitesSold,
     staff,
     agencyPurchased,
-    agencyUpgraded
+    agencyUpgraded,
+    pyramidPurchased
   };
 
   const achievements = useAchievements(gameState); // Object with unlocked and recent
@@ -111,6 +115,19 @@ export function useGameLogic() {
     }
   }
 
+  function buyPyramidScheme(): void {
+    if (money >= PYRAMID_COST && !pyramidPurchased && totalClicks >= PYRAMID_UNLOCK_CLICKS) {
+      setMoney((prev) => prev - PYRAMID_COST);
+      if (Math.random() < PYRAMID_DOUBLE_CHANCE) {
+        setPyramidPurchased(true);
+        setQuality((prev) => prev * 2);
+        toast.success('You were the first to get out!! quality doubled!');
+      } else {
+        toast('Pyramid Scheme collapsed — no payout.');
+      }
+    }
+  }
+
   function buyAgencyUpgrade(): void {
     if (money >= AGENCY_UPGRADE_COST && agencyPurchased && !agencyUpgraded) {
       setMoney((prev) => prev - AGENCY_UPGRADE_COST);
@@ -151,6 +168,7 @@ export function useGameLogic() {
     setStaff({});
     setAgencyPurchased(false);
     setAgencyUpgraded(false);
+    setPyramidPurchased(false);
     achievements.removeAchievements();
   }
 
@@ -174,6 +192,7 @@ export function useGameLogic() {
         setStaff(savedData.staff ?? {});
         setAgencyPurchased(savedData.agencyPurchased ?? false);
         setAgencyUpgraded(savedData.agencyUpgraded ?? false);
+        setPyramidPurchased(savedData.pyramidPurchased ?? false);
       }
     };
     init();
@@ -244,6 +263,7 @@ export function useGameLogic() {
   }, [agencyUpgraded]);
 
   const agencyUnlocked = websitesSold >= AGENCY_UNLOCK_SOLD;
+  const pyramidUnlocked = totalClicks >= PYRAMID_UNLOCK_CLICKS;
   const linkedInBros = staff[linkedInBro.id] ?? 0;
 
   return {
@@ -260,6 +280,8 @@ export function useGameLogic() {
     agencyUnlocked,
     agencyPurchased,
     agencyUpgraded,
+    pyramidUnlocked,
+    pyramidPurchased,
     linkedInBros,
 
     createWebsite,
@@ -269,6 +291,7 @@ export function useGameLogic() {
     buyBuilding,
     buyAgency,
     buyAgencyUpgrade,
+    buyPyramidScheme,
     removeState,
     removeStorage,
 
