@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const MAX_VISIBLE_SLOTS = 8;
 
 interface PeopleProps {
@@ -7,6 +9,7 @@ interface PeopleProps {
 }
 
 export default function People({ people, maxPeople, quality }: PeopleProps) {
+  const [tipOpen, setTipOpen] = useState(false);
   const visibleCount = Math.min(maxPeople, MAX_VISIBLE_SLOTS);
   const overflow = people > MAX_VISIBLE_SLOTS ? people - MAX_VISIBLE_SLOTS : 0;
   const full = people >= maxPeople;
@@ -43,10 +46,20 @@ export default function People({ people, maxPeople, quality }: PeopleProps) {
         )}
       </div>
       <div className="flex items-center justify-between mt-4 pt-4 border-t border-line">
-        <span
-          className="text-sm font-semibold uppercase tracking-widest text-ink-muted cursor-help underline decoration-dotted decoration-ink-faint underline-offset-4"
-          title="Selling price of your websites.">
-          Quality
+        <span className="group relative inline-block">
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={() => setTipOpen((o) => !o)}
+            className="text-sm font-semibold uppercase tracking-widest text-ink-muted cursor-help underline decoration-dotted decoration-ink-faint underline-offset-4">
+            Quality
+          </span>
+          <span
+            className={`absolute bottom-full left-0 mb-2 w-max max-w-[200px] rounded-md border border-line bg-card-raised px-2 py-1 text-xs font-normal normal-case tracking-normal text-ink-muted shadow-lg ${
+              tipOpen ? 'block' : 'hidden'
+            } group-hover:block`}>
+            Selling price of your websites.
+          </span>
         </span>
         <span className="font-mono text-sm text-ink font-semibold">{quality}%</span>
       </div>
