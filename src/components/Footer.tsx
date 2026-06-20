@@ -18,8 +18,8 @@ export default function Footer({ removeState, removeStorage, onToggleStats }: Fo
 
   return (
     <footer className="mt-4 pt-4 border-t border-line text-ink-faint text-sm italic">
-      <div className="flex items-center justify-between gap-2">
-        <p className="flex items-center gap-2">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <a
             href="https://github.com/priverop/infinite-stack"
             rel="nofollow"
@@ -41,20 +41,22 @@ export default function Footer({ removeState, removeStorage, onToggleStats }: Fo
           </span>
           <span className="not-italic whitespace-nowrap">- Auto-saves every 10 seconds.</span>
         </p>
-        <button
-          type="button"
-          onClick={onToggleStats}
-          style={{ width: 'auto' }}
-          className="ml-auto p-0 font-normal underline not-italic whitespace-nowrap hover:text-ink-muted transition-colors">
-          Stats
-        </button>
-        <button
-          type="button"
-          onClick={() => setConfirmOpen(true)}
-          style={{ width: 'auto' }}
-          className="p-0 font-normal underline not-italic whitespace-nowrap hover:text-ink-muted transition-colors">
-          Reset game
-        </button>
+        <div className="flex items-center gap-4 sm:gap-2">
+          <button
+            type="button"
+            onClick={onToggleStats}
+            style={{ width: 'auto' }}
+            className="p-0 font-normal underline not-italic whitespace-nowrap hover:text-ink-muted transition-colors">
+            Stats
+          </button>
+          <button
+            type="button"
+            onClick={() => setConfirmOpen(true)}
+            style={{ width: 'auto' }}
+            className="p-0 font-normal underline not-italic whitespace-nowrap hover:text-ink-muted transition-colors">
+            Reset game
+          </button>
+        </div>
       </div>
 
       {confirmOpen && (
