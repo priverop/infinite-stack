@@ -3,32 +3,31 @@ import type { Achievement } from '../types';
 export const achievements: Achievement[] = [
   // Click
   {
-    id: 'clicks_1k',
-    title: 'Click Rookie',
-    description: 'Click 1,000 times.',
+    id: 'clicks_100',
+    title: 'Click',
+    description: 'Click 100 times.',
     icon: '👆',
     type: 'threshold',
     stat: 'totalClicks',
-    target: 1000
+    target: 10
   },
   {
-    id: 'clicks_10k',
+    id: 'clicks_500',
+    title: 'Click Rookie',
+    description: 'Click 500 times.',
+    icon: '👆',
+    type: 'threshold',
+    stat: 'totalClicks',
+    target: 500
+  },
+  {
+    id: 'clicks_1k',
     title: 'Click Master',
-    description: 'Click 10,000 times.',
+    description: 'Click 1,000 times.',
     icon: '💪',
     type: 'threshold',
     stat: 'totalClicks',
-    target: 10000
-  },
-
-  {
-    id: 'clicks_100k',
-    title: 'Click God',
-    description: 'Click 100,000 times.',
-    icon: '⚡',
-    type: 'threshold',
-    stat: 'totalClicks',
-    target: 100000
+    target: 1000
   },
 
   // Money
