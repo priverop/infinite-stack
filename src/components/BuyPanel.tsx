@@ -1,4 +1,4 @@
-import { byCategory } from '../data/catalog';
+import { byCategory, buildingCost } from '../data/catalog';
 import type { HireFunction } from '../types';
 import SingleCandidate from './SingleCandidate';
 
@@ -17,14 +17,17 @@ export default function BuyPanel({ money, maxMoney, staff, buyBuilding }: BuyPro
   const listBuildings = buildings
     .filter((building, index) => index === 0 || building.cost - DISPLAY_COST_DIFFERENCE <= maxMoney)
     .map((building, index) => {
-      const isOwned = !building.repeatable && (staff[building.id] ?? 0) >= 1;
+      const owned = staff[building.id] ?? 0;
+      const isOwned = !building.repeatable && owned >= 1;
+      const price = buildingCost(building, owned);
       return (
         <SingleCandidate
           key={index}
           onClick={buyBuilding}
           candidate={building}
+          cost={price}
           owned={isOwned}
-          disabled={isOwned || building.cost > money}
+          disabled={isOwned || price > money}
         />
       );
     });

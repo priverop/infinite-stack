@@ -7,20 +7,23 @@ interface SingleCandidateProps {
   onClick: HireFunction;
   disabled?: boolean;
   owned?: boolean;
+  // Live price override (e.g. ramped repeatable buildings); defaults to candidate.cost
+  cost?: number;
 }
 
 export default function SingleCandidate({
   candidate,
   onClick,
   disabled,
-  owned
+  owned,
+  cost = candidate.cost
 }: SingleCandidateProps) {
   const [animation, setAnimation] = useState(false);
 
   const handleClick = () => {
     if (disabled) return;
     setAnimation(true);
-    onClick(candidate.id, candidate.cost, candidate.increment);
+    onClick(candidate.id, cost, candidate.increment);
   };
 
   return (
@@ -41,7 +44,7 @@ export default function SingleCandidate({
         {owned ? (
           <span className="font-mono text-sm text-emerald-500">✓ Owned</span>
         ) : (
-          <span className="font-mono text-sm text-ink">{formatMoney(candidate.cost)}</span>
+          <span className="font-mono text-sm text-ink">{formatMoney(cost)}</span>
         )}
       </div>
     </div>

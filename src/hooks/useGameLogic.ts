@@ -1,7 +1,7 @@
 // src/hooks/useGameLogic.ts
 import { useState, useEffect, useRef } from 'react';
 import type { HireFunction, GameStats } from '../types';
-import { catalog } from '../data/catalog';
+import { catalog, buildingCost } from '../data/catalog';
 import useGameStorage from './useGameStorage';
 import { useAchievements } from './useAchievements';
 
@@ -23,7 +23,7 @@ export function useGameLogic() {
   const [sellsPerSecond, setSellsPerSecond] = useState(0);
   const [people, setPeople] = useState(0);
   const [maxPeople, setMaxPeople] = useState(10);
-  const [quality, setQuality] = useState(10);
+  const [quality, setQuality] = useState(20);
   const [agencyPurchased, setAgencyPurchased] = useState(false);
   const [agencyUpgraded, setAgencyUpgraded] = useState(false);
 
@@ -118,11 +118,16 @@ export function useGameLogic() {
     }
   }
 
-  const buyBuilding: HireFunction = (id, cost, increment) => {
+  const buyBuilding: HireFunction = (id, _cost, increment) => {
     const candidate = catalog.find((c) => c.id === id);
-    if (!candidate?.repeatable && (staff[id] ?? 0) >= 1) return; // one-time, already owned
-    if (money >= cost) {
-      setMoney((prev) => prev - cost);
+    if (!candidate) return;
+    const owned = staff[id] ?? 0;
+    if (!candidate.repeatable && owned >= 1) return; // one-time, already owned
+    // Repeatable buildings ramp in price per copy owned; price recomputed here, not
+    // from the passed-in cost (which is the base catalog value).
+    const price = buildingCost(candidate, owned);
+    if (money >= price) {
+      setMoney((prev) => prev - price);
       setMaxPeople((prev) => prev + increment);
       setStaff((prev) => ({
         ...prev,
@@ -137,7 +142,7 @@ export function useGameLogic() {
     setMaxMoney(0);
     setSellsPerSecond(0);
     setWebsitesPerSecond(0);
-    setQuality(10);
+    setQuality(20);
     setPeople(0);
     setMaxPeople(10);
     setTotalClicks(0);
@@ -159,7 +164,7 @@ export function useGameLogic() {
         setMoney(savedData.money);
         setMaxMoney(savedData.maxMoney ?? savedData.money ?? 0);
         setSellsPerSecond(savedData.sellsPerSecond ?? 0);
-        setQuality(savedData.quality ?? 10);
+        setQuality(savedData.quality ?? 20);
         setWebsitesPerSecond(savedData.websitesPerSecond);
         setPeople(savedData.people);
         setMaxPeople(savedData.maxPeople);
