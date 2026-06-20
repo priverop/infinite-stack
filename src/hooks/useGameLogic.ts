@@ -23,7 +23,7 @@ export function useGameLogic() {
   const [sellsPerSecond, setSellsPerSecond] = useState(0);
   const [people, setPeople] = useState(0);
   const [maxPeople, setMaxPeople] = useState(10);
-  const [quality, setQuality] = useState(20);
+  const [quality, setQuality] = useState(10);
   const [agencyPurchased, setAgencyPurchased] = useState(false);
   const [agencyUpgraded, setAgencyUpgraded] = useState(false);
 
@@ -119,6 +119,8 @@ export function useGameLogic() {
   }
 
   const buyBuilding: HireFunction = (id, cost, increment) => {
+    const candidate = catalog.find((c) => c.id === id);
+    if (!candidate?.repeatable && (staff[id] ?? 0) >= 1) return; // one-time, already owned
     if (money >= cost) {
       setMoney((prev) => prev - cost);
       setMaxPeople((prev) => prev + increment);
@@ -135,7 +137,7 @@ export function useGameLogic() {
     setMaxMoney(0);
     setSellsPerSecond(0);
     setWebsitesPerSecond(0);
-    setQuality(20);
+    setQuality(10);
     setPeople(0);
     setMaxPeople(10);
     setTotalClicks(0);
@@ -157,7 +159,7 @@ export function useGameLogic() {
         setMoney(savedData.money);
         setMaxMoney(savedData.maxMoney ?? savedData.money ?? 0);
         setSellsPerSecond(savedData.sellsPerSecond ?? 0);
-        setQuality(savedData.quality ?? 20);
+        setQuality(savedData.quality ?? 10);
         setWebsitesPerSecond(savedData.websitesPerSecond);
         setPeople(savedData.people);
         setMaxPeople(savedData.maxPeople);
@@ -172,13 +174,22 @@ export function useGameLogic() {
     init();
   }, [load]);
 
+  // Game tick. We read production values from a ref instead of listing them in the
+  // effect deps so the interval is created once and never torn down/recreated. If
+  // they were deps, the Agency's setSellsPerSecond (every 1s after the upgrade) would
+  // reset this 1000ms interval every ~1000ms — a resonance that can starve the tick
+  // so it never fires, freezing the UI on slower/throttled mobile timers.
+  const tickRef = useRef({ websitesPerSecond, sellsPerSecond, quality });
+  tickRef.current = { websitesPerSecond, sellsPerSecond, quality };
+
   // ToDo: Alert if sellsPerSecond is not viable
   useEffect(() => {
     const intervalo = setInterval(() => {
+      const { websitesPerSecond: wps, sellsPerSecond: sps, quality: q } = tickRef.current;
       setWebsites((prevWebsites) => {
-        const newWebsites = prevWebsites + websitesPerSecond;
-        if (websitesPerSecond > 0) {
-          setWebsitesCreated((prev) => prev + websitesPerSecond);
+        const newWebsites = prevWebsites + wps;
+        if (wps > 0) {
+          setWebsitesCreated((prev) => prev + wps);
         }
 
         // We need to update the money here to get the actual updated newWebsites value
@@ -186,9 +197,9 @@ export function useGameLogic() {
         // Partial sell: never sell more websites than we have in stock, so an
         // over-provisioned sales team (e.g. the Agency) keeps trickling money
         // instead of stalling completely.
-        const sold = Math.min(sellsPerSecond, newWebsites);
+        const sold = Math.min(sps, newWebsites);
         if (sold > 0) {
-          setMoney((prevMoney) => prevMoney + sold * quality);
+          setMoney((prevMoney) => prevMoney + sold * q);
           // Passive sales must count toward websitesSold so the Agency can unlock
           setWebsitesSold((prevSold) => prevSold + sold);
           return newWebsites - sold;
@@ -199,7 +210,7 @@ export function useGameLogic() {
     }, 1000);
 
     return () => clearInterval(intervalo);
-  }, [websitesPerSecond, sellsPerSecond, quality]);
+  }, []); // created once; live values read from tickRef
 
   // Marketing Agency auto-hiring. We read the latest state from a ref instead of
   // listing it in the effect deps: money/people change every 1s tick, which would
@@ -239,6 +250,7 @@ export function useGameLogic() {
     quality,
     people,
     maxPeople,
+    staff,
 
     agencyUnlocked,
     agencyPurchased,

@@ -187,80 +187,82 @@ export const catalog: Candidate[] = [
     title: 'Co-working single subscription',
     image: 'https://picsum.photos/id/42/100?grayscale',
     description: 'Increases max team size by 1.',
-    cost: 5e4,
-    increment: 1
+    cost: 1e3,
+    increment: 1,
+    repeatable: true
   },
   {
     id: 'coworking-private',
     category: 'building',
     title: 'Co-working private space',
     image: 'https://picsum.photos/id/163/100?grayscale',
-    description: 'Increases max team size by 3.',
-    cost: 1.25e5,
-    increment: 3
+    description: 'Increases max team size by 5.',
+    cost: 1e4,
+    increment: 5,
+    repeatable: true
   },
   {
     id: 'small-office',
     category: 'building',
     title: 'Small Office',
     image: 'https://picsum.photos/id/192/100?grayscale',
-    description: 'Increases max team size by 6.',
-    cost: 2e5,
-    increment: 6
+    description: 'Increases max team size by 15.',
+    cost: 1e5,
+    increment: 15
   },
   {
     id: 'open-plan-office',
     category: 'building',
     title: 'Open-plan Office',
     image: 'https://picsum.photos/id/119/100?grayscale',
-    description: 'Increases max team size by 15.',
-    cost: 1.5e6,
-    increment: 15
+    description: 'Increases max team size by 40.',
+    cost: 2e6,
+    increment: 40
   },
   {
     id: 'remote-first-org',
     category: 'building',
     title: 'Remote-First Org',
     image: 'https://picsum.photos/id/169/100?grayscale',
-    description: 'Increases max team size by 600.',
-    cost: 1e6,
-    increment: 600
+    description: 'Increases max team size by 90.',
+    cost: 5e7,
+    increment: 90
   },
   {
     id: 'tech-unicorn-hq',
     category: 'building',
     title: 'Tech Unicorn HQ',
     image: 'https://picsum.photos/id/188/100?grayscale',
-    description: 'Increases max team size by 1,500.',
-    cost: 2e10,
-    increment: 1.5e3
+    description: 'Increases max team size by 180.',
+    cost: 5e9,
+    increment: 180
   },
   {
     id: 'orbital-data-center',
     category: 'building',
     title: 'Orbital Data Center',
     image: 'https://picsum.photos/id/203/100?grayscale',
-    description: 'Increases max team size by 4,000.',
-    cost: 1e12,
-    increment: 4e3
+    description: 'Increases max team size by 350.',
+    cost: 5e11,
+    increment: 350
   },
   {
     id: 'moon-base',
     category: 'building',
     title: 'Moon Base',
     image: 'https://picsum.photos/id/222/100?grayscale',
-    description: 'Increases max team size by 10,000.',
+    description: 'Increases max team size by 700.',
     cost: 1e14,
-    increment: 1e4
+    increment: 700
   },
   {
     id: 'dyson-sphere',
     category: 'building',
     title: 'Dyson Sphere',
     image: 'https://picsum.photos/id/241/100?grayscale',
-    description: 'Increases max team size by 25,000.',
-    cost: 1.5e16,
-    increment: 2.5e4
+    description: 'Increases max team size by 1,500.',
+    cost: 1e16,
+    increment: 1.5e3
   }
 ];
 

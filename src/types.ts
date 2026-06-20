@@ -49,6 +49,8 @@ export interface Candidate {
   quality?: number;
   // Hidden from the manual hire list (e.g. agency-only sellers like the LinkedIn Bro)
   hidden?: boolean;
+  // Buildings default to one-time; repeatable ones (e.g. co-working) can be bought infinitely
+  repeatable?: boolean;
 }
 
 // Functions to hire candidates (devs or sellers)

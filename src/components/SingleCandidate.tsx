@@ -6,9 +6,15 @@ interface SingleCandidateProps {
   candidate: Candidate;
   onClick: HireFunction;
   disabled?: boolean;
+  owned?: boolean;
 }
 
-export default function SingleCandidate({ candidate, onClick, disabled }: SingleCandidateProps) {
+export default function SingleCandidate({
+  candidate,
+  onClick,
+  disabled,
+  owned
+}: SingleCandidateProps) {
   const [animation, setAnimation] = useState(false);
 
   const handleClick = () => {
@@ -32,7 +38,11 @@ export default function SingleCandidate({ candidate, onClick, disabled }: Single
         </div>
       </div>
       <div className="bg-card-raised border border-line px-4 py-1.5 rounded-full shrink-0 ml-4">
-        <span className="font-mono text-sm text-ink">{formatMoney(candidate.cost)}</span>
+        {owned ? (
+          <span className="font-mono text-sm text-emerald-500">✓ Owned</span>
+        ) : (
+          <span className="font-mono text-sm text-ink">{formatMoney(candidate.cost)}</span>
+        )}
       </div>
     </div>
   );

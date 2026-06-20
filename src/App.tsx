@@ -17,6 +17,7 @@ function App() {
     quality,
     people,
     maxPeople,
+    staff,
     agencyUnlocked,
     agencyPurchased,
     agencyUpgraded,
@@ -56,6 +57,7 @@ function App() {
           maxMoney={maxMoney}
           people={people}
           maxPeople={maxPeople}
+          staff={staff}
           hireDev={hireDev}
           hireSeller={hireSeller}
           buyBuilding={buyBuilding}

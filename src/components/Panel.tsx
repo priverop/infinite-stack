@@ -11,6 +11,7 @@ interface PanelProps {
   maxMoney: number;
   people: number;
   maxPeople: number;
+  staff: Record<string, number>;
   hireDev: HireFunction;
   hireSeller: HireFunction;
   buyBuilding: HireFunction;
@@ -31,6 +32,7 @@ export default function Panel({
   maxMoney,
   people,
   maxPeople,
+  staff,
   hireSeller,
   hireDev,
   buyBuilding,
@@ -76,7 +78,7 @@ export default function Panel({
         />
       </TabPanel>
       <TabPanel>
-        <BuyPanel money={money} maxMoney={maxMoney} buyBuilding={buyBuilding} />
+        <BuyPanel money={money} maxMoney={maxMoney} staff={staff} buyBuilding={buyBuilding} />
       </TabPanel>
       <TabPanel>
         <AchievementsPanel unlockedAchievements={achievements.unlockedAchievements} />
