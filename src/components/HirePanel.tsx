@@ -80,7 +80,8 @@ export default function HirePanel({
           {agencyPurchased ? (
             <>
               <p className="text-xs text-ink-muted">
-                Active — auto-hires LinkedIn Bros (+50M/s) every {agencyUpgraded ? '1s' : '3s'}.
+                Active — auto-hires LinkedIn Bros ($10M each, sells +50M/s) every{' '}
+                {agencyUpgraded ? '1s' : '3s'}.
               </p>
               <p className="text-xs text-ink-faint mt-1">LinkedIn Bros: {linkedInBros}</p>
               {agencyUpgraded ? (
