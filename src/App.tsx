@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import Actions from './components/Actions';
 import Stats from './components/Stats';
 import Panel from './components/Panel';
 import People from './components/People';
 import Footer from './components/Footer';
+import StatsPage from './components/StatsPage';
 import { useGameLogic } from './hooks/useGameLogic';
 import './styles/App.css';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
+  const [view, setView] = useState<'game' | 'stats'>('game');
   const {
     websites,
     money,
@@ -33,6 +36,10 @@ function App() {
     removeStorage,
     achievements
   } = useGameLogic();
+
+  if (view === 'stats') {
+    return <StatsPage onBack={() => setView('game')} />;
+  }
 
   return (
     <div className="layout">
@@ -70,7 +77,11 @@ function App() {
           buyAgencyUpgrade={buyAgencyUpgrade}
         />
       </section>
-      <Footer removeState={removeState} removeStorage={removeStorage} />
+      <Footer
+        removeState={removeState}
+        removeStorage={removeStorage}
+        onToggleStats={() => setView('stats')}
+      />
       <div>
         <Toaster position="bottom-right" />
       </div>

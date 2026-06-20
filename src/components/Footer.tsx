@@ -4,9 +4,10 @@ import { GithubIcon } from './icons';
 interface FooterProps {
   removeState: () => void;
   removeStorage: () => void;
+  onToggleStats: () => void;
 }
 
-export default function Footer({ removeState, removeStorage }: FooterProps) {
+export default function Footer({ removeState, removeStorage, onToggleStats }: FooterProps) {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const handleRemove = () => {
@@ -42,9 +43,16 @@ export default function Footer({ removeState, removeStorage }: FooterProps) {
         </p>
         <button
           type="button"
-          onClick={() => setConfirmOpen(true)}
+          onClick={onToggleStats}
           style={{ width: 'auto' }}
           className="ml-auto p-0 font-normal underline not-italic whitespace-nowrap hover:text-ink-muted transition-colors">
+          Stats
+        </button>
+        <button
+          type="button"
+          onClick={() => setConfirmOpen(true)}
+          style={{ width: 'auto' }}
+          className="p-0 font-normal underline not-italic whitespace-nowrap hover:text-ink-muted transition-colors">
           Remove savefile
         </button>
       </div>
