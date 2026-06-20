@@ -37,7 +37,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Tech Lead',
     image: 'https://picsum.photos/id/91/100?grayscale',
-    description: 'Increases website production by 3,500/s.',
+    description: 'Increases website production by 3.5K/s.',
     cost: 5e5,
     increment: 3.5e3,
     quality: 30
@@ -47,7 +47,7 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Solutions Architect',
     image: 'https://picsum.photos/id/110/100?grayscale',
-    description: 'Increases website production by 30,000/s.',
+    description: 'Increases website production by 30K/s.',
     cost: 1e7,
     increment: 3e4,
     quality: 34
@@ -55,9 +55,9 @@ export const catalog: Candidate[] = [
   {
     id: 'ten-x-engineer',
     category: 'dev',
-    title: '10x Engineer',
+    title: '100x Engineer (Vibe Coder)',
     image: 'https://picsum.photos/id/177/100?grayscale',
-    description: 'Increases website production by 250,000/s.',
+    description: 'Increases website production by 250K/s.',
     cost: 1e9,
     increment: 2.5e5,
     quality: 38
@@ -67,9 +67,9 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Jedi Coder',
     image: 'https://picsum.photos/id/201/100?grayscale',
-    description: 'Increases website production by 2,000,000/s.',
-    cost: 5e12,
-    increment: 2e6,
+    description: 'Increases website production by 8M/s.',
+    cost: 5e10,
+    increment: 8e6,
     quality: 44
   },
   {
@@ -77,50 +77,40 @@ export const catalog: Candidate[] = [
     category: 'dev',
     title: 'Gandalf The White',
     image: 'https://picsum.photos/id/219/100?grayscale',
-    description: 'Increases website production by 17,000,000/s.',
-    cost: 5e13,
-    increment: 1.7e7,
-    quality: 50
+    description: 'Increases website production by 1.5B/s.',
+    cost: 5e12,
+    increment: 1.5e9,
+    quality: 60
   },
   {
     id: 'neo',
     category: 'dev',
     title: 'Neo',
     image: 'https://picsum.photos/id/237/100?grayscale',
-    description: 'Increases website production by 145,000,000/s.',
+    description: 'Increases website production by 500B/s.',
     cost: 5e15,
-    increment: 1.45e8,
-    quality: 58
-  },
-  {
-    id: 'skynet-core',
-    category: 'dev',
-    title: 'Skynet Core',
-    image: 'https://picsum.photos/id/250/100?grayscale',
-    description: 'Increases website production by 1,200,000,000/s.',
-    cost: 5e18,
-    increment: 1.2e9,
-    quality: 68
-  },
-  {
-    id: 'terminator-t1000',
-    category: 'dev',
-    title: 'Terminator T-1000',
-    image: 'https://picsum.photos/id/268/100?grayscale',
-    description: 'Increases website production by 10,000,000,000/s.',
-    cost: 5e20,
-    increment: 1e10,
+    increment: 5e11,
     quality: 80
+  },
+  {
+    id: 'skynet',
+    category: 'dev',
+    title: 'Skynet',
+    image: 'https://picsum.photos/id/250/100?grayscale',
+    description: 'Increases website production by 50T/s.',
+    cost: 5e18,
+    increment: 5e13,
+    quality: 100
   },
   {
     id: 'agi',
     category: 'dev',
     title: 'AGI achieved',
     image: 'https://picsum.photos/id/284/100?grayscale',
-    description: 'Increases website production by 85,000,000,000/s.',
-    cost: 5e23,
-    increment: 8.5e10,
-    quality: 100
+    description: 'Increases website production by 500Q/s.',
+    cost: 5e20,
+    increment: 5e17,
+    quality: 300
   },
 
   // Sellers
@@ -157,7 +147,7 @@ export const catalog: Candidate[] = [
     title: 'Cult Leader',
     image: 'https://picsum.photos/id/379/100?grayscale',
     description: 'Increases website selling by 1B/s.',
-    cost: 1e14,
+    cost: 1e13,
     increment: 1e9
   },
   {
@@ -167,14 +157,14 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/379/100?grayscale',
     description: 'Increases website selling by 1T/s.',
     cost: 5e15,
-    increment: 1e9
+    increment: 1e12
   },
   {
     id: 'linkedin-bro',
     category: 'seller',
     title: 'LinkedIn Bro',
     image: 'https://picsum.photos/id/64/100?grayscale',
-    description: 'Auto-hired by the Marketing Agency. Sells 50M/s.',
+    description: 'Auto-hired by the Marketing Agency for $10M each. Sells 50M/s.',
     cost: 1e7,
     increment: 5e7,
     hidden: true
@@ -184,21 +174,11 @@ export const catalog: Candidate[] = [
   {
     id: 'coworking-single',
     category: 'building',
-    title: 'Co-working single subscription',
+    title: 'Co-working subscription',
     image: 'https://picsum.photos/id/42/100?grayscale',
-    description: 'Increases max team size by 1.',
-    cost: 1e3,
+    description: 'Increases max team size by 1. Each one costs more.',
+    cost: 50e3,
     increment: 1,
-    repeatable: true
-  },
-  {
-    id: 'coworking-private',
-    category: 'building',
-    title: 'Co-working private space',
-    image: 'https://picsum.photos/id/163/100?grayscale',
-    description: 'Increases max team size by 5.',
-    cost: 1e4,
-    increment: 5,
     repeatable: true
   },
   {
@@ -207,15 +187,6 @@ export const catalog: Candidate[] = [
     title: 'Small Office',
     image: 'https://picsum.photos/id/192/100?grayscale',
     description: 'Increases max team size by 15.',
-    cost: 1e5,
-    increment: 15
-  },
-  {
-    id: 'open-plan-office',
-    category: 'building',
-    title: 'Open-plan Office',
-    image: 'https://picsum.photos/id/119/100?grayscale',
-    description: 'Increases max team size by 40.',
     cost: 2e6,
     increment: 40
   },
@@ -260,11 +231,19 @@ export const catalog: Candidate[] = [
     category: 'building',
     title: 'Dyson Sphere',
     image: 'https://picsum.photos/id/241/100?grayscale',
-    description: 'Increases max team size by 1,500.',
+    description: 'Increases max team size by 1.5K.',
     cost: 1e16,
     increment: 1.5e3
   }
 ];
+
+// Each owned copy of a repeatable building raises its next price by this factor.
+export const BUILDING_COST_GROWTH = 1.15;
+
+// Live price of a building given how many are already owned. Repeatable buildings
+// (co-working) ramp by BUILDING_COST_GROWTH^owned; one-time buildings stay at base.
+export const buildingCost = (candidate: Candidate, owned: number): number =>
+  candidate.repeatable ? Math.ceil(candidate.cost * BUILDING_COST_GROWTH ** owned) : candidate.cost;
 
 export const byCategory = (category: CandidateCategory) =>
   catalog.filter((c) => c.category === category);
