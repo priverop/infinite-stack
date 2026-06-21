@@ -231,11 +231,11 @@ export const achievements: Achievement[] = [
   {
     id: 'team_10k',
     title: 'Mega Corp',
-    description: 'Grow your team to 10,000.',
+    description: 'Grow your team to 3,000.',
     icon: '🌍',
     type: 'threshold',
     stat: 'people',
-    target: 10000
+    target: 3000
   },
 
   // Staff count
