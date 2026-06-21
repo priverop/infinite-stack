@@ -26,10 +26,15 @@ function App() {
     agencyUpgraded,
     pyramidUnlocked,
     pyramidPurchased,
+    flipUnlocked,
+    flipPurchased,
     linkedInBros,
+    agiAchieved,
+    agiElapsedMs,
     buyAgency,
     buyAgencyUpgrade,
     buyPyramidScheme,
+    buyFlip,
     createWebsite,
     sellWebsite,
     hireDev,
@@ -58,6 +63,8 @@ function App() {
           sellWebsite={sellWebsite}
           createWebsite={createWebsite}
           isDisabled={websites < 1}
+          agiAchieved={agiAchieved}
+          flipPurchased={flipPurchased}
         />
       </section>
       <section className="main flex flex-col gap-5">
@@ -81,6 +88,11 @@ function App() {
           pyramidUnlocked={pyramidUnlocked}
           pyramidPurchased={pyramidPurchased}
           buyPyramidScheme={buyPyramidScheme}
+          flipUnlocked={flipUnlocked}
+          flipPurchased={flipPurchased}
+          buyFlip={buyFlip}
+          agiAchieved={agiAchieved}
+          agiElapsedMs={agiElapsedMs}
         />
       </section>
       <Footer

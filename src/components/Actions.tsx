@@ -4,9 +4,17 @@ interface ActionsProps {
   sellWebsite: () => void;
   createWebsite: () => void;
   isDisabled: boolean;
+  agiAchieved: boolean;
+  flipPurchased: boolean;
 }
 
-export default function Actions({ sellWebsite, createWebsite, isDisabled }: ActionsProps) {
+export default function Actions({
+  sellWebsite,
+  createWebsite,
+  isDisabled,
+  agiAchieved,
+  flipPurchased
+}: ActionsProps) {
   const [animationBuy, setAnimationBuy] = useState(false);
   const [animationSell, setAnimationSell] = useState(false);
 
@@ -19,6 +27,8 @@ export default function Actions({ sellWebsite, createWebsite, isDisabled }: Acti
     setAnimationSell(true);
     sellWebsite();
   };
+
+  if (agiAchieved) return null;
 
   return (
     <div className="flex flex-col gap-2 mt-4">
@@ -33,7 +43,7 @@ export default function Actions({ sellWebsite, createWebsite, isDisabled }: Acti
         onClick={handleSell}
         disabled={isDisabled}
         onAnimationEnd={() => setAnimationSell(false)}>
-        Sell Website
+        {flipPurchased ? 'Sell Website (+1%)' : 'Sell Website'}
       </button>
     </div>
   );

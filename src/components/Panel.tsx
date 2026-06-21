@@ -28,6 +28,11 @@ interface PanelProps {
   pyramidUnlocked: boolean;
   pyramidPurchased: boolean;
   buyPyramidScheme: () => void;
+  flipUnlocked: boolean;
+  flipPurchased: boolean;
+  buyFlip: () => void;
+  agiAchieved: boolean;
+  agiElapsedMs: number;
 }
 
 export default function Panel({
@@ -48,7 +53,12 @@ export default function Panel({
   buyAgencyUpgrade,
   pyramidUnlocked,
   pyramidPurchased,
-  buyPyramidScheme
+  buyPyramidScheme,
+  flipUnlocked,
+  flipPurchased,
+  buyFlip,
+  agiAchieved,
+  agiElapsedMs
 }: PanelProps) {
   return (
     <Tabs>
@@ -84,13 +94,28 @@ export default function Panel({
           pyramidUnlocked={pyramidUnlocked}
           pyramidPurchased={pyramidPurchased}
           buyPyramidScheme={buyPyramidScheme}
+          flipUnlocked={flipUnlocked}
+          flipPurchased={flipPurchased}
+          buyFlip={buyFlip}
+          agiAchieved={agiAchieved}
+          agiElapsedMs={agiElapsedMs}
         />
       </TabPanel>
       <TabPanel>
-        <BuyPanel money={money} maxMoney={maxMoney} staff={staff} buyBuilding={buyBuilding} />
+        <BuyPanel
+          money={money}
+          maxMoney={maxMoney}
+          staff={staff}
+          buyBuilding={buyBuilding}
+          agiAchieved={agiAchieved}
+          agiElapsedMs={agiElapsedMs}
+        />
       </TabPanel>
       <TabPanel>
-        <AchievementsPanel unlockedAchievements={achievements.unlockedAchievements} />
+        <AchievementsPanel
+          unlockedAchievements={achievements.unlockedAchievements}
+          agiAchieved={agiAchieved}
+        />
       </TabPanel>
     </Tabs>
   );

@@ -19,6 +19,18 @@ export function formatMoney(n: number): string {
   return `$${formatNumber(n)}`;
 }
 
+export function formatDuration(ms: number): string {
+  if (!isFinite(ms) || ms < 0) ms = 0;
+  const totalSeconds = Math.floor(ms / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  const pad = (n: number) => n.toString().padStart(2, '0');
+  if (hours > 0) return `${hours}h ${pad(minutes)}m ${pad(seconds)}s`;
+  if (minutes > 0) return `${minutes}m ${pad(seconds)}s`;
+  return `${seconds}s`;
+}
+
 export function formatTime(seconds: number): string {
   if (!isFinite(seconds) || seconds < 0) return '∞';
   if (seconds < 60) return `${seconds.toFixed(1)}s`;

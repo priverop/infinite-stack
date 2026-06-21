@@ -8,16 +8,17 @@ export interface GameStats {
   quality: number;
   people: number;
   maxPeople: number;
+  staff: Record<string, number>;
+  agencyPurchased: boolean;
+  agencyUpgraded: boolean;
+  pyramidPurchased: boolean;
+  flipPurchased: boolean;
+  gameStartTime?: number;
+  agiAchievedAt?: number;
   // Achievements: these are hidden for the user
   totalClicks: number;
   websitesCreated: number;
   websitesSold: number;
-  staff: Record<string, number>;
-  // Whether the Marketing Agency has been purchased
-  agencyPurchased: boolean;
-  // Whether the Agency upgrade (1s auto-hire instead of 3s) has been bought
-  agencyUpgraded: boolean;
-  pyramidPurchased: boolean;
 }
 
 export interface Achievement {
@@ -48,9 +49,7 @@ export interface Candidate {
   cost: number;
   increment: number;
   quality?: number;
-  // Hidden from the manual hire list (e.g. agency-only sellers like the LinkedIn Bro)
   hidden?: boolean;
-  // Buildings default to one-time; repeatable ones (e.g. co-working) can be bought infinitely
   repeatable?: boolean;
 }
 

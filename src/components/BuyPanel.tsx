@@ -1,5 +1,6 @@
 import { byCategory, buildingCost } from '../data/catalog';
 import type { HireFunction } from '../types';
+import { formatDuration } from '../utils/format';
 import SingleCandidate from './SingleCandidate';
 
 const buildings = byCategory('building');
@@ -9,13 +10,33 @@ interface BuyProps {
   maxMoney: number;
   staff: Record<string, number>;
   buyBuilding: HireFunction;
+  agiAchieved: boolean;
+  agiElapsedMs: number;
 }
 
-const DISPLAY_COST_DIFFERENCE = 5000;
-
-export default function BuyPanel({ money, maxMoney, staff, buyBuilding }: BuyProps) {
+export default function BuyPanel({
+  money,
+  maxMoney,
+  staff,
+  buyBuilding,
+  agiAchieved,
+  agiElapsedMs
+}: BuyProps) {
+  if (agiAchieved) {
+    return (
+      <div className="rounded border border-ink-faint/30 p-6 text-center">
+        <h4 className="text-ink font-semibold uppercase tracking-widest mb-2">
+          AGI Achieved — no more working
+        </h4>
+        <p className="text-sm text-ink-muted">
+          Time to AGI:{' '}
+          <span className="text-ink font-semibold">{formatDuration(agiElapsedMs)}</span>
+        </p>
+      </div>
+    );
+  }
   const listBuildings = buildings
-    .filter((building, index) => index === 0 || building.cost - DISPLAY_COST_DIFFERENCE <= maxMoney)
+    .filter((building, index) => index === 0 || building.cost / 2 <= maxMoney)
     .map((building, index) => {
       const owned = staff[building.id] ?? 0;
       const isOwned = !building.repeatable && owned >= 1;

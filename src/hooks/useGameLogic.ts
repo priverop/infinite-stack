@@ -6,15 +6,19 @@ import { catalog, buildingCost } from '../data/catalog';
 import useGameStorage from './useGameStorage';
 import { useAchievements } from './useAchievements';
 
-export const AGENCY_UNLOCK_SOLD = 1_000_000;
+export const AGENCY_UNLOCK_SOLD = 5_000_000;
 export const AGENCY_COST = 1_000_000;
 export const AGENCY_UPGRADE_COST = 10_000_000_000_000; // 10T
 const AGENCY_INTERVAL_MS = 3000;
 const AGENCY_UPGRADED_INTERVAL_MS = 1000;
 
 export const PYRAMID_UNLOCK_CLICKS = 500;
-export const PYRAMID_COST = 100;
+export const PYRAMID_COST = 500_000_000_000_000; // 500T
 const PYRAMID_DOUBLE_CHANCE = 0.05;
+
+export const FLIP_UNLOCK_MONEY = 1_000_000_000_000; // 1T
+export const FLIP_COST = 1_000_000_000_000; // 1T
+const FLIP_PCT = 1; // each manual sell nets 1% of current money
 const linkedInBro = catalog.find((c) => c.id === 'linkedin-bro')!;
 
 export function useGameLogic() {
@@ -29,6 +33,9 @@ export function useGameLogic() {
   const [agencyPurchased, setAgencyPurchased] = useState(false);
   const [agencyUpgraded, setAgencyUpgraded] = useState(false);
   const [pyramidPurchased, setPyramidPurchased] = useState(false);
+  const [flipPurchased, setFlipPurchased] = useState(false);
+  const [gameStartTime, setGameStartTime] = useState<number>(() => Date.now());
+  const [agiAchievedAt, setAgiAchievedAt] = useState<number | undefined>(undefined);
 
   // Achievements
   const [totalClicks, setTotalClicks] = useState(0);
@@ -51,7 +58,10 @@ export function useGameLogic() {
     staff,
     agencyPurchased,
     agencyUpgraded,
-    pyramidPurchased
+    pyramidPurchased,
+    flipPurchased,
+    gameStartTime,
+    agiAchievedAt
   };
 
   const achievements = useAchievements(gameState); // Object with unlocked and recent
@@ -72,7 +82,7 @@ export function useGameLogic() {
   function sellWebsite(): void {
     if (websites > 0) {
       setWebsites((prev) => prev - 1);
-      setMoney((prev) => prev + quality);
+      setMoney((prev) => prev + (flipPurchased ? prev * FLIP_PCT : quality));
       // Achivements
       setTotalClicks((prev) => prev + 1);
       setWebsitesSold((prev) => prev + 1);
@@ -92,6 +102,10 @@ export function useGameLogic() {
       const tierQuality = catalog.find((c) => c.id === id)?.quality;
       if (tierQuality !== undefined && tierQuality > quality) {
         setQuality(tierQuality);
+      }
+      // Hiring AGI ends the game; freeze the finish time once
+      if (id === 'agi' && agiAchievedAt === undefined) {
+        setAgiAchievedAt(Date.now());
       }
     }
   };
@@ -125,6 +139,13 @@ export function useGameLogic() {
       } else {
         toast('Pyramid Scheme collapsed — no payout.');
       }
+    }
+  }
+
+  function buyFlip(): void {
+    if (money >= FLIP_COST && !flipPurchased && maxMoney >= FLIP_UNLOCK_MONEY) {
+      setMoney((prev) => prev - FLIP_COST);
+      setFlipPurchased(true);
     }
   }
 
@@ -169,6 +190,9 @@ export function useGameLogic() {
     setAgencyPurchased(false);
     setAgencyUpgraded(false);
     setPyramidPurchased(false);
+    setFlipPurchased(false);
+    setGameStartTime(Date.now());
+    setAgiAchievedAt(undefined);
     achievements.removeAchievements();
   }
 
@@ -193,6 +217,9 @@ export function useGameLogic() {
         setAgencyPurchased(savedData.agencyPurchased ?? false);
         setAgencyUpgraded(savedData.agencyUpgraded ?? false);
         setPyramidPurchased(savedData.pyramidPurchased ?? false);
+        setFlipPurchased(savedData.flipPurchased ?? false);
+        setGameStartTime(savedData.gameStartTime ?? Date.now());
+        setAgiAchievedAt(savedData.agiAchievedAt);
       }
     };
     init();
@@ -203,13 +230,21 @@ export function useGameLogic() {
   // they were deps, the Agency's setSellsPerSecond (every 1s after the upgrade) would
   // reset this 1000ms interval every ~1000ms — a resonance that can starve the tick
   // so it never fires, freezing the UI on slower/throttled mobile timers.
-  const tickRef = useRef({ websitesPerSecond, sellsPerSecond, quality });
-  tickRef.current = { websitesPerSecond, sellsPerSecond, quality };
+  const agiAchieved = (staff['agi'] ?? 0) >= 1;
+  const tickRef = useRef({ websitesPerSecond, sellsPerSecond, quality, agiAchieved });
+  tickRef.current = { websitesPerSecond, sellsPerSecond, quality, agiAchieved };
 
   // ToDo: Alert if sellsPerSecond is not viable
   useEffect(() => {
     const intervalo = setInterval(() => {
-      const { websitesPerSecond: wps, sellsPerSecond: sps, quality: q } = tickRef.current;
+      const {
+        websitesPerSecond: wps,
+        sellsPerSecond: sps,
+        quality: q,
+        agiAchieved: agi
+      } = tickRef.current;
+      // AGI ends the game: stop passive production and sales
+      if (agi) return;
       setWebsites((prevWebsites) => {
         const newWebsites = prevWebsites + wps;
         if (wps > 0) {
@@ -239,13 +274,20 @@ export function useGameLogic() {
   // Marketing Agency auto-hiring. We read the latest state from a ref instead of
   // listing it in the effect deps: money/people change every 1s tick, which would
   // otherwise reset the interval before it ever reaches AGENCY_INTERVAL_MS.
-  const agencyRef = useRef({ money, people, maxPeople, agencyPurchased });
-  agencyRef.current = { money, people, maxPeople, agencyPurchased };
+  const agencyRef = useRef({ money, people, maxPeople, agencyPurchased, agiAchieved });
+  agencyRef.current = { money, people, maxPeople, agencyPurchased, agiAchieved };
 
   useEffect(() => {
     const interval = setInterval(
       () => {
-        const { money: m, people: p, maxPeople: mp, agencyPurchased: bought } = agencyRef.current;
+        const {
+          money: m,
+          people: p,
+          maxPeople: mp,
+          agencyPurchased: bought,
+          agiAchieved: agi
+        } = agencyRef.current;
+        if (agi) return; // AGI ends the game: stop auto-hiring
         if (!bought) return;
         if (m < linkedInBro.cost || p >= mp) return;
         setMoney((prev) => prev - linkedInBro.cost);
@@ -264,7 +306,9 @@ export function useGameLogic() {
 
   const agencyUnlocked = websitesSold >= AGENCY_UNLOCK_SOLD;
   const pyramidUnlocked = totalClicks >= PYRAMID_UNLOCK_CLICKS;
+  const flipUnlocked = maxMoney >= FLIP_UNLOCK_MONEY;
   const linkedInBros = staff[linkedInBro.id] ?? 0;
+  const agiElapsedMs = agiAchievedAt ? agiAchievedAt - gameStartTime : 0;
 
   return {
     websites,
@@ -282,7 +326,11 @@ export function useGameLogic() {
     agencyUpgraded,
     pyramidUnlocked,
     pyramidPurchased,
+    flipUnlocked,
+    flipPurchased,
     linkedInBros,
+    agiAchieved,
+    agiElapsedMs,
 
     createWebsite,
     sellWebsite,
@@ -292,6 +340,7 @@ export function useGameLogic() {
     buyAgency,
     buyAgencyUpgrade,
     buyPyramidScheme,
+    buyFlip,
     removeState,
     removeStorage,
 
