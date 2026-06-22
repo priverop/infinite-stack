@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const MAX_VISIBLE_SLOTS = 8;
+const MAX_VISIBLE_SLOTS_MOBILE = 3;
 
 interface PeopleProps {
   people: number;
@@ -12,6 +13,7 @@ export default function People({ people, maxPeople, quality }: PeopleProps) {
   const [tipOpen, setTipOpen] = useState(false);
   const visibleCount = Math.min(maxPeople, MAX_VISIBLE_SLOTS);
   const overflow = people > MAX_VISIBLE_SLOTS ? people - MAX_VISIBLE_SLOTS : 0;
+  const mobileOverflow = people > MAX_VISIBLE_SLOTS_MOBILE ? people - MAX_VISIBLE_SLOTS_MOBILE : 0;
   const full = people >= maxPeople;
 
   return (
@@ -26,9 +28,12 @@ export default function People({ people, maxPeople, quality }: PeopleProps) {
         </span>
       </div>
       <div className="flex flex-wrap gap-2">
-        {Array.from({ length: visibleCount }).map((_, i) =>
-          i < people ? (
-            <div key={i} className="w-20 h-20 rounded-[14px] overflow-hidden">
+        {Array.from({ length: visibleCount }).map((_, i) => {
+          const mobileHidden = i >= MAX_VISIBLE_SLOTS_MOBILE ? 'hidden sm:block' : '';
+          return i < people ? (
+            <div
+              key={i}
+              className={`w-16 h-16 sm:w-20 sm:h-20 rounded-[10px] sm:rounded-[14px] overflow-hidden ${mobileHidden}`}>
               <img
                 src={`${import.meta.env.BASE_URL}team/member.gif`}
                 className="w-full h-full object-contain scale-[1.4] [image-rendering:pixelated]"
@@ -36,11 +41,19 @@ export default function People({ people, maxPeople, quality }: PeopleProps) {
               />
             </div>
           ) : (
-            <div key={i} className="w-20 h-20 rounded-[14px] border border-dashed border-line" />
-          )
+            <div
+              key={i}
+              className={`w-16 h-16 sm:w-20 sm:h-20 rounded-[10px] sm:rounded-[14px] border border-dashed border-line ${mobileHidden}`}
+            />
+          );
+        })}
+        {mobileOverflow > 0 && (
+          <div className="w-16 h-16 rounded-[10px] bg-card-raised border border-line flex sm:hidden items-center justify-center">
+            <span className="text-xs text-ink-faint font-mono">+{mobileOverflow}</span>
+          </div>
         )}
         {overflow > 0 && (
-          <div className="w-20 h-20 rounded-[14px] bg-card-raised border border-line flex items-center justify-center">
+          <div className="w-20 h-20 rounded-[14px] bg-card-raised border border-line hidden sm:flex items-center justify-center">
             <span className="text-xs text-ink-faint font-mono">+{overflow}</span>
           </div>
         )}
