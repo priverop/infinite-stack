@@ -1,4 +1,4 @@
-import { byCategory, buildingCost } from '../data/catalog';
+import { byCategory, buildingCost, visibleTier } from '../data/catalog';
 import type { HireFunction } from '../types';
 import { formatDuration } from '../utils/format';
 import SingleCandidate from './SingleCandidate';
@@ -7,7 +7,6 @@ const buildings = byCategory('building');
 
 interface BuyProps {
   money: number;
-  maxMoney: number;
   staff: Record<string, number>;
   buyBuilding: HireFunction;
   agiAchieved: boolean;
@@ -16,7 +15,6 @@ interface BuyProps {
 
 export default function BuyPanel({
   money,
-  maxMoney,
   staff,
   buyBuilding,
   agiAchieved,
@@ -35,9 +33,7 @@ export default function BuyPanel({
       </div>
     );
   }
-  const listBuildings = buildings
-    .filter((building, index) => index === 0 || building.cost / 2 <= maxMoney)
-    .map((building, index) => {
+  const listBuildings = visibleTier(buildings, staff).map((building, index) => {
       const owned = staff[building.id] ?? 0;
       const isOwned = !building.repeatable && owned >= 1;
       const price = buildingCost(building, owned);

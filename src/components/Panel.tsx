@@ -8,7 +8,6 @@ import type { Achievement, HireFunction } from '../types';
 
 interface PanelProps {
   money: number;
-  maxMoney: number;
   people: number;
   maxPeople: number;
   staff: Record<string, number>;
@@ -37,7 +36,6 @@ interface PanelProps {
 
 export default function Panel({
   money,
-  maxMoney,
   people,
   maxPeople,
   staff,
@@ -80,9 +78,9 @@ export default function Panel({
       <TabPanel>
         <HirePanel
           money={money}
-          maxMoney={maxMoney}
           people={people}
           maxPeople={maxPeople}
+          staff={staff}
           hireDev={hireDev}
           hireSeller={hireSeller}
           agencyUnlocked={agencyUnlocked}
@@ -104,7 +102,6 @@ export default function Panel({
       <TabPanel>
         <BuyPanel
           money={money}
-          maxMoney={maxMoney}
           staff={staff}
           buyBuilding={buyBuilding}
           agiAchieved={agiAchieved}

@@ -1,6 +1,6 @@
 import SingleCandidate from './SingleCandidate';
 import type { HireFunction } from '../types';
-import { byCategory } from '../data/catalog';
+import { byCategory, visibleTier } from '../data/catalog';
 import { AGENCY_COST, AGENCY_UPGRADE_COST, PYRAMID_COST, FLIP_COST } from '../hooks/useGameLogic';
 import { formatMoney, formatDuration } from '../utils/format';
 
@@ -10,9 +10,9 @@ const sales = byCategory('seller').filter((seller) => !seller.hidden);
 
 interface HireProps {
   money: number;
-  maxMoney: number;
   people: number;
   maxPeople: number;
+  staff: Record<string, number>;
   hireDev: HireFunction;
   hireSeller: HireFunction;
   agencyUnlocked: boolean;
@@ -31,13 +31,11 @@ interface HireProps {
   agiElapsedMs: number;
 }
 
-const DISPLAY_COST_DIFFERENCE = 500;
-
 export default function HirePanel({
   money,
-  maxMoney,
   people,
   maxPeople,
+  staff,
   hireDev,
   hireSeller,
   agencyUnlocked,
@@ -69,19 +67,15 @@ export default function HirePanel({
     );
   }
   const teamFull = people >= maxPeople;
-  const listDevs = devs
-    .filter((dev, index) => index === 0 || dev.cost / 2 <= maxMoney) // TODO - esto igual renta irlo ajustando o tener alguna regla especial
-    .map((dev, index) => (
-      <SingleCandidate
-        key={index}
-        onClick={hireDev}
-        candidate={dev}
-        disabled={teamFull || dev.cost > money}
-      />
-    ));
-  const listSales = sales
-    .filter((seller) => seller.cost - DISPLAY_COST_DIFFERENCE <= maxMoney)
-    .map((salesperson, index) => (
+  const listDevs = visibleTier(devs, staff).map((dev, index) => (
+    <SingleCandidate
+      key={index}
+      onClick={hireDev}
+      candidate={dev}
+      disabled={teamFull || dev.cost > money}
+    />
+  ));
+  const listSales = visibleTier(sales, staff).map((salesperson, index) => (
       <SingleCandidate
         key={index}
         onClick={hireSeller}
