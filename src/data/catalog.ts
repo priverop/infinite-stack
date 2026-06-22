@@ -186,7 +186,7 @@ export const catalog: Candidate[] = [
     category: 'building',
     title: 'Small Office',
     image: 'https://picsum.photos/id/192/100?grayscale',
-    description: 'Increases max team size by 15.',
+    description: 'Increases max team size by 40.',
     cost: 2e6,
     increment: 40
   },
@@ -259,3 +259,15 @@ export const byCategory = (category: CandidateCategory) =>
 
 export const sumCategory = (staff: Record<string, number>, category: CandidateCategory) =>
   byCategory(category).reduce((accum, current) => accum + (staff[current.id] ?? 0), 0);
+
+// Show every item up to the highest owned tier, plus the next one
+export const visibleTier = <T extends Candidate>(
+  items: T[],
+  staff: Record<string, number>
+): T[] => {
+  let lastOwned = -1;
+  items.forEach((item, index) => {
+    if ((staff[item.id] ?? 0) >= 1) lastOwned = index;
+  });
+  return items.filter((_, index) => index <= lastOwned + 1);
+};
