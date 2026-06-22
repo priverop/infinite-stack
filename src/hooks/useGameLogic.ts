@@ -12,13 +12,13 @@ export const AGENCY_UPGRADE_COST = 10_000_000_000_000; // 10T
 const AGENCY_INTERVAL_MS = 3000;
 const AGENCY_UPGRADED_INTERVAL_MS = 1000;
 
-export const PYRAMID_UNLOCK_CLICKS = 500;
+export const PYRAMID_UNLOCK_CLICKS = 3000;
 export const PYRAMID_COST = 500_000_000_000_000; // 500T
 const PYRAMID_DOUBLE_CHANCE = 0.05;
 
 export const FLIP_UNLOCK_MONEY = 1_000_000_000_000; // 1T
 export const FLIP_COST = 1_000_000_000_000; // 1T
-const FLIP_PCT = 1; // each manual sell nets 1% of current money
+const FLIP_PCT = 0.01; // each manual sell nets 1% of current money
 const linkedInBro = catalog.find((c) => c.id === 'linkedin-bro')!;
 
 export function useGameLogic() {
