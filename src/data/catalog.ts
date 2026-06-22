@@ -177,7 +177,7 @@ export const catalog: Candidate[] = [
     title: 'Co-working subscription',
     image: 'https://picsum.photos/id/42/100?grayscale',
     description: 'Increases max team size by 1. Each one costs more.',
-    cost: 50e3,
+    cost: 10e3,
     increment: 1,
     repeatable: true
   },
