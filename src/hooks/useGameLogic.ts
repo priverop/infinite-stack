@@ -196,31 +196,39 @@ export function useGameLogic() {
     achievements.removeAchievements();
   }
 
-  const { load, removeStorage } = useGameStorage(gameState);
+  const { load, removeStorage, saveCheckpoint, listCheckpoints, loadCheckpoint, deleteCheckpoint } =
+    useGameStorage(gameState);
+
+  function applyState(savedData: GameStats): void {
+    setWebsites(savedData.websites);
+    setMoney(savedData.money);
+    setMaxMoney(savedData.maxMoney ?? savedData.money ?? 0);
+    setSellsPerSecond(savedData.sellsPerSecond ?? 0);
+    setQuality(savedData.quality ?? 20);
+    setWebsitesPerSecond(savedData.websitesPerSecond);
+    setPeople(savedData.people);
+    setMaxPeople(savedData.maxPeople);
+    setTotalClicks(savedData.totalClicks);
+    setWebsitesCreated(savedData.websitesCreated);
+    setWebsitesSold(savedData.websitesSold);
+    setStaff(savedData.staff ?? {});
+    setAgencyPurchased(savedData.agencyPurchased ?? false);
+    setAgencyUpgraded(savedData.agencyUpgraded ?? false);
+    setPyramidPurchased(savedData.pyramidPurchased ?? false);
+    setFlipPurchased(savedData.flipPurchased ?? false);
+    setGameStartTime(savedData.gameStartTime ?? Date.now());
+    setAgiAchievedAt(savedData.agiAchievedAt);
+  }
+
+  function loadCheckpointState(name: string): void {
+    const savedData = loadCheckpoint(name);
+    if (savedData) applyState(savedData);
+  }
 
   useEffect(() => {
     const init = async () => {
       const savedData = await load();
-      if (savedData) {
-        setWebsites(savedData.websites);
-        setMoney(savedData.money);
-        setMaxMoney(savedData.maxMoney ?? savedData.money ?? 0);
-        setSellsPerSecond(savedData.sellsPerSecond ?? 0);
-        setQuality(savedData.quality ?? 20);
-        setWebsitesPerSecond(savedData.websitesPerSecond);
-        setPeople(savedData.people);
-        setMaxPeople(savedData.maxPeople);
-        setTotalClicks(savedData.totalClicks);
-        setWebsitesCreated(savedData.websitesCreated);
-        setWebsitesSold(savedData.websitesSold);
-        setStaff(savedData.staff ?? {});
-        setAgencyPurchased(savedData.agencyPurchased ?? false);
-        setAgencyUpgraded(savedData.agencyUpgraded ?? false);
-        setPyramidPurchased(savedData.pyramidPurchased ?? false);
-        setFlipPurchased(savedData.flipPurchased ?? false);
-        setGameStartTime(savedData.gameStartTime ?? Date.now());
-        setAgiAchievedAt(savedData.agiAchievedAt);
-      }
+      if (savedData) applyState(savedData);
     };
     init();
   }, [load]);
@@ -336,6 +344,11 @@ export function useGameLogic() {
     buyFlip,
     removeState,
     removeStorage,
+
+    saveCheckpoint,
+    listCheckpoints,
+    loadCheckpointState,
+    deleteCheckpoint,
 
     achievements // {unlocked, recent}
   };

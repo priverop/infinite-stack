@@ -14,7 +14,6 @@ function App() {
   const {
     websites,
     money,
-    maxMoney,
     websitesPerSecond,
     sellsPerSecond,
     quality,
@@ -42,6 +41,10 @@ function App() {
     buyBuilding,
     removeState,
     removeStorage,
+    saveCheckpoint,
+    listCheckpoints,
+    loadCheckpointState,
+    deleteCheckpoint,
     achievements
   } = useGameLogic();
 
@@ -71,7 +74,6 @@ function App() {
         <People people={people} maxPeople={maxPeople} quality={quality} />
         <Panel
           money={money}
-          maxMoney={maxMoney}
           people={people}
           maxPeople={maxPeople}
           staff={staff}
@@ -98,6 +100,10 @@ function App() {
       <Footer
         removeState={removeState}
         removeStorage={removeStorage}
+        saveCheckpoint={saveCheckpoint}
+        listCheckpoints={listCheckpoints}
+        loadCheckpointState={loadCheckpointState}
+        deleteCheckpoint={deleteCheckpoint}
         onToggleStats={() => setView('stats')}
       />
       <div>

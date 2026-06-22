@@ -1,13 +1,26 @@
 import { useState } from 'react';
 import { GithubIcon } from './icons';
+import Checkpoints from './Checkpoints';
 
 interface FooterProps {
   removeState: () => void;
   removeStorage: () => void;
+  saveCheckpoint: (name: string) => void;
+  listCheckpoints: () => string[];
+  loadCheckpointState: (name: string) => void;
+  deleteCheckpoint: (name: string) => void;
   onToggleStats: () => void;
 }
 
-export default function Footer({ removeState, removeStorage, onToggleStats }: FooterProps) {
+export default function Footer({
+  removeState,
+  removeStorage,
+  saveCheckpoint,
+  listCheckpoints,
+  loadCheckpointState,
+  deleteCheckpoint,
+  onToggleStats
+}: FooterProps) {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const handleRemove = () => {
@@ -42,13 +55,23 @@ export default function Footer({ removeState, removeStorage, onToggleStats }: Fo
           <span className="not-italic whitespace-nowrap">- Auto-saves every 10 seconds.</span>
         </p>
         <div className="flex items-center gap-4 sm:gap-2">
-          <button
-            type="button"
-            onClick={onToggleStats}
-            style={{ width: 'auto' }}
-            className="p-0 font-normal underline not-italic whitespace-nowrap hover:text-ink-muted transition-colors">
-            Stats
-          </button>
+          {import.meta.env.DEV && (
+            <button
+              type="button"
+              onClick={onToggleStats}
+              style={{ width: 'auto' }}
+              className="p-0 font-normal underline not-italic whitespace-nowrap hover:text-ink-muted transition-colors">
+              Stats
+            </button>
+          )}
+          {import.meta.env.DEV && (
+            <Checkpoints
+              saveCheckpoint={saveCheckpoint}
+              listCheckpoints={listCheckpoints}
+              loadCheckpointState={loadCheckpointState}
+              deleteCheckpoint={deleteCheckpoint}
+            />
+          )}
           <button
             type="button"
             onClick={() => setConfirmOpen(true)}
