@@ -280,19 +280,12 @@ export function useGameLogic() {
   useEffect(() => {
     const interval = setInterval(
       () => {
-        const {
-          money: m,
-          people: p,
-          maxPeople: mp,
-          agencyPurchased: bought,
-          agiAchieved: agi
-        } = agencyRef.current;
+        const { money: m, agencyPurchased: bought, agiAchieved: agi } = agencyRef.current;
         if (agi) return; // AGI ends the game: stop auto-hiring
         if (!bought) return;
-        if (m < linkedInBro.cost || p >= mp) return;
+        if (m < linkedInBro.cost) return;
         setMoney((prev) => prev - linkedInBro.cost);
         setSellsPerSecond((prev) => prev + linkedInBro.increment);
-        setPeople((prev) => prev + 1);
         setStaff((prev) => ({
           ...prev,
           [linkedInBro.id]: (prev[linkedInBro.id] ?? 0) + 1
