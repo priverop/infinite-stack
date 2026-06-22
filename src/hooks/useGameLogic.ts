@@ -6,7 +6,7 @@ import { catalog, buildingCost } from '../data/catalog';
 import useGameStorage from './useGameStorage';
 import { useAchievements } from './useAchievements';
 
-export const AGENCY_UNLOCK_SOLD = 5_000_000;
+export const AGENCY_UNLOCK_SOLD = 1_000_000;
 export const AGENCY_COST = 1_000_000;
 export const AGENCY_UPGRADE_COST = 10_000_000_000_000; // 10T
 const AGENCY_INTERVAL_MS = 3000;
