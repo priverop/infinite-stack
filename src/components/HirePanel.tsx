@@ -1,7 +1,7 @@
 import SingleCandidate from './SingleCandidate';
 import type { HireFunction } from '../types';
 import { byCategory, visibleTier } from '../data/catalog';
-import { AGENCY_COST, AGENCY_UPGRADE_COST, PYRAMID_COST, FLIP_COST } from '../hooks/useGameLogic';
+import { AGENCY_COST, AGENCY_UPGRADE_COST, FLIP_COST } from '../hooks/useGameLogic';
 import { formatMoney, formatDuration } from '../utils/format';
 
 const devs = byCategory('dev');
@@ -21,9 +21,6 @@ interface HireProps {
   linkedInBros: number;
   buyAgency: () => void;
   buyAgencyUpgrade: () => void;
-  pyramidUnlocked: boolean;
-  pyramidPurchased: boolean;
-  buyPyramidScheme: () => void;
   flipUnlocked: boolean;
   flipPurchased: boolean;
   buyFlip: () => void;
@@ -44,9 +41,6 @@ export default function HirePanel({
   linkedInBros,
   buyAgency,
   buyAgencyUpgrade,
-  pyramidUnlocked,
-  pyramidPurchased,
-  buyPyramidScheme,
   flipUnlocked,
   flipPurchased,
   buyFlip,
@@ -76,13 +70,13 @@ export default function HirePanel({
     />
   ));
   const listSales = visibleTier(sales, staff).map((salesperson, index) => (
-      <SingleCandidate
-        key={index}
-        onClick={hireSeller}
-        candidate={salesperson}
-        disabled={teamFull || salesperson.cost > money}
-      />
-    ));
+    <SingleCandidate
+      key={index}
+      onClick={hireSeller}
+      candidate={salesperson}
+      disabled={teamFull || salesperson.cost > money}
+    />
+  ));
   return (
     <div>
       <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-3">
@@ -104,11 +98,11 @@ export default function HirePanel({
             <>
               <p className="text-xs text-ink-muted">
                 Active: auto-hires LinkedIn Bros ($10M each, sells +5M/s) every{' '}
-                {agencyUpgraded ? '1s' : '3s'}.
+                {agencyUpgraded ? '0.5s' : '3s'}.
               </p>
               <p className="text-xs text-ink-faint mt-1">LinkedIn Bros: {linkedInBros}</p>
               {agencyUpgraded ? (
-                <p className="text-xs text-ink-faint mt-1">Upgraded: hires every 1s.</p>
+                <p className="text-xs text-ink-faint mt-1">Upgraded: hires every 0.5s.</p>
               ) : (
                 <button
                   onClick={buyAgencyUpgrade}
@@ -128,30 +122,6 @@ export default function HirePanel({
                 disabled={money < AGENCY_COST}
                 className="ghost disabled:opacity-40 disabled:cursor-not-allowed">
                 Buy Agency: ${AGENCY_COST.toLocaleString()}
-              </button>
-            </>
-          )}
-        </div>
-      )}
-      {pyramidUnlocked && (
-        <div className="mt-4 rounded border border-ink-faint/30 p-3">
-          <h4 className="text-ink-muted text-xs font-semibold uppercase tracking-widest mb-1">
-            Ponzi Scheme
-          </h4>
-          {pyramidPurchased ? (
-            <p className="text-xs text-ink-muted">
-              Already unlocked. Remember: you didn't know it was a scam!
-            </p>
-          ) : (
-            <>
-              <p className="text-xs text-ink-muted mb-2">
-                5% chance to double your quality. One shot.
-              </p>
-              <button
-                onClick={buyPyramidScheme}
-                disabled={money < PYRAMID_COST}
-                className="ghost disabled:opacity-40 disabled:cursor-not-allowed">
-                Try Ponzi Scheme: {formatMoney(PYRAMID_COST)}
               </button>
             </>
           )}

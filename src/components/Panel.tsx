@@ -24,9 +24,6 @@ interface PanelProps {
   linkedInBros: number;
   buyAgency: () => void;
   buyAgencyUpgrade: () => void;
-  pyramidUnlocked: boolean;
-  pyramidPurchased: boolean;
-  buyPyramidScheme: () => void;
   flipUnlocked: boolean;
   flipPurchased: boolean;
   buyFlip: () => void;
@@ -49,9 +46,6 @@ export default function Panel({
   linkedInBros,
   buyAgency,
   buyAgencyUpgrade,
-  pyramidUnlocked,
-  pyramidPurchased,
-  buyPyramidScheme,
   flipUnlocked,
   flipPurchased,
   buyFlip,
@@ -89,9 +83,6 @@ export default function Panel({
           linkedInBros={linkedInBros}
           buyAgency={buyAgency}
           buyAgencyUpgrade={buyAgencyUpgrade}
-          pyramidUnlocked={pyramidUnlocked}
-          pyramidPurchased={pyramidPurchased}
-          buyPyramidScheme={buyPyramidScheme}
           flipUnlocked={flipUnlocked}
           flipPurchased={flipPurchased}
           buyFlip={buyFlip}

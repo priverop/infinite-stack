@@ -12,7 +12,10 @@ export interface GameStats {
   agencyPurchased: boolean;
   agencyUpgraded: boolean;
   pyramidPurchased: boolean;
+  pyramidTries: number;
+  pyramidLastTryClicks: number;
   flipPurchased: boolean;
+  emailHintDismissed: boolean;
   gameStartTime?: number;
   agiAchievedAt?: number;
   // Achievements: these are hidden for the user

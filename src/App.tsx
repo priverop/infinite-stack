@@ -5,6 +5,8 @@ import Panel from './components/Panel';
 import People from './components/People';
 import Footer from './components/Footer';
 import StatsPage from './components/StatsPage';
+import EmailHint from './components/EmailHint';
+import PyramidEmail from './components/PyramidEmail';
 import { useGameLogic } from './hooks/useGameLogic';
 import './styles/App.css';
 import { Toaster } from 'react-hot-toast';
@@ -23,10 +25,13 @@ function App() {
     agencyUnlocked,
     agencyPurchased,
     agencyUpgraded,
-    pyramidUnlocked,
-    pyramidPurchased,
+    pyramidEmailVisible,
+    pyramidRetry,
+    pyramidCanTry,
+    pyramidCooldownLeft,
     flipUnlocked,
     flipPurchased,
+    emailHintAvailable,
     linkedInBros,
     agiAchieved,
     agiElapsedMs,
@@ -34,6 +39,7 @@ function App() {
     buyAgencyUpgrade,
     buyPyramidScheme,
     buyFlip,
+    dismissEmailHint,
     createWebsite,
     sellWebsite,
     hireDev,
@@ -87,9 +93,6 @@ function App() {
           linkedInBros={linkedInBros}
           buyAgency={buyAgency}
           buyAgencyUpgrade={buyAgencyUpgrade}
-          pyramidUnlocked={pyramidUnlocked}
-          pyramidPurchased={pyramidPurchased}
-          buyPyramidScheme={buyPyramidScheme}
           flipUnlocked={flipUnlocked}
           flipPurchased={flipPurchased}
           buyFlip={buyFlip}
@@ -109,6 +112,18 @@ function App() {
       <div>
         <Toaster position="bottom-right" />
       </div>
+      <EmailHint
+        visible={emailHintAvailable}
+        raised={pyramidEmailVisible}
+        onDismiss={dismissEmailHint}
+      />
+      <PyramidEmail
+        visible={pyramidEmailVisible}
+        retry={pyramidRetry}
+        canTry={pyramidCanTry}
+        cooldownLeft={pyramidCooldownLeft}
+        onJoin={buyPyramidScheme}
+      />
     </div>
   );
 }

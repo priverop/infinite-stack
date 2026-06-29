@@ -10,14 +10,17 @@ export const AGENCY_UNLOCK_SOLD = 1_000_000;
 export const AGENCY_COST = 1_000_000;
 export const AGENCY_UPGRADE_COST = 10_000_000_000_000; // 10T
 const AGENCY_INTERVAL_MS = 3000;
-const AGENCY_UPGRADED_INTERVAL_MS = 1000;
+const AGENCY_UPGRADED_INTERVAL_MS = 500;
 
-export const PYRAMID_UNLOCK_CLICKS = 3000;
+export const EMAIL_HINT_CLICKS = 500;
+
+export const PYRAMID_UNLOCK_CLICKS = 1000;
 export const PYRAMID_COST = 500_000_000_000_000; // 500T
+export const PYRAMID_RETRY_CLICKS = 100; // clicks required between failed attempts
 const PYRAMID_DOUBLE_CHANCE = 0.05;
 
-export const FLIP_UNLOCK_MONEY = 1_000_000_000_000; // 1T
-export const FLIP_COST = 1_000_000_000_000; // 1T
+export const FLIP_UNLOCK_MONEY = 100_000_000_000_000; // 100T
+export const FLIP_COST = 100_000_000_000_000; // 100T
 const FLIP_PCT = 0.01; // each manual sell nets 1% of current money
 const linkedInBro = catalog.find((c) => c.id === 'linkedin-bro')!;
 
@@ -33,7 +36,10 @@ export function useGameLogic() {
   const [agencyPurchased, setAgencyPurchased] = useState(false);
   const [agencyUpgraded, setAgencyUpgraded] = useState(false);
   const [pyramidPurchased, setPyramidPurchased] = useState(false);
+  const [pyramidTries, setPyramidTries] = useState(0);
+  const [pyramidLastTryClicks, setPyramidLastTryClicks] = useState(0);
   const [flipPurchased, setFlipPurchased] = useState(false);
+  const [emailHintDismissed, setEmailHintDismissed] = useState(false);
   const [gameStartTime, setGameStartTime] = useState<number>(() => Date.now());
   const [agiAchievedAt, setAgiAchievedAt] = useState<number | undefined>(undefined);
 
@@ -59,7 +65,10 @@ export function useGameLogic() {
     agencyPurchased,
     agencyUpgraded,
     pyramidPurchased,
+    pyramidTries,
+    pyramidLastTryClicks,
     flipPurchased,
+    emailHintDismissed,
     gameStartTime,
     agiAchievedAt
   };
@@ -92,6 +101,7 @@ export function useGameLogic() {
   const hireDev: HireFunction = (id, cost, increment) => {
     if (money >= cost && people < maxPeople) {
       setMoney((prev) => prev - cost);
+      setTotalClicks((prev) => prev + 1);
       setWebsitesPerSecond((prev) => prev + increment);
       setPeople((prev) => prev + 1);
       setStaff((prev) => ({
@@ -113,6 +123,7 @@ export function useGameLogic() {
   const hireSeller: HireFunction = (id, cost, increment) => {
     if (money >= cost && people < maxPeople) {
       setMoney((prev) => prev - cost);
+      setTotalClicks((prev) => prev + 1);
       setSellsPerSecond((prev) => prev + increment);
       setPeople((prev) => prev + 1);
       setStaff((prev) => ({
@@ -130,16 +141,23 @@ export function useGameLogic() {
   }
 
   function buyPyramidScheme(): void {
-    if (money >= PYRAMID_COST && !pyramidPurchased && totalClicks >= PYRAMID_UNLOCK_CLICKS) {
-      setMoney((prev) => prev - PYRAMID_COST);
-      if (Math.random() < PYRAMID_DOUBLE_CHANCE) {
-        setPyramidPurchased(true);
-        setQuality((prev) => prev * 2);
-        toast.success('You were the first to get out!! quality doubled!');
-      } else {
-        toast('Pyramid Scheme collapsed — no payout.');
-      }
+    if (pyramidPurchased || totalClicks < PYRAMID_UNLOCK_CLICKS || money < PYRAMID_COST) return;
+    // Each failed attempt locks the next try behind PYRAMID_RETRY_CLICKS more clicks
+    if (pyramidTries > 0 && totalClicks < pyramidLastTryClicks + PYRAMID_RETRY_CLICKS) return;
+    setMoney((prev) => prev - PYRAMID_COST);
+    setPyramidTries((prev) => prev + 1);
+    setPyramidLastTryClicks(totalClicks);
+    if (Math.random() < PYRAMID_DOUBLE_CHANCE) {
+      setPyramidPurchased(true);
+      setQuality((prev) => prev * 4);
+      toast.success('You were the first to get out!! quality increased!');
+    } else {
+      toast('Pyramid Scheme collapsed... no payout.');
     }
+  }
+
+  function dismissEmailHint(): void {
+    setEmailHintDismissed(true);
   }
 
   function buyFlip(): void {
@@ -165,6 +183,7 @@ export function useGameLogic() {
     // from the passed-in cost (which is the base catalog value).
     const price = buildingCost(candidate, owned);
     if (money >= price) {
+      setTotalClicks((prev) => prev + 1);
       setMoney((prev) => prev - price);
       setMaxPeople((prev) => prev + increment);
       setStaff((prev) => ({
@@ -190,7 +209,10 @@ export function useGameLogic() {
     setAgencyPurchased(false);
     setAgencyUpgraded(false);
     setPyramidPurchased(false);
+    setPyramidTries(0);
+    setPyramidLastTryClicks(0);
     setFlipPurchased(false);
+    setEmailHintDismissed(false);
     setGameStartTime(Date.now());
     setAgiAchievedAt(undefined);
     achievements.removeAchievements();
@@ -215,7 +237,10 @@ export function useGameLogic() {
     setAgencyPurchased(savedData.agencyPurchased ?? false);
     setAgencyUpgraded(savedData.agencyUpgraded ?? false);
     setPyramidPurchased(savedData.pyramidPurchased ?? false);
+    setPyramidTries(savedData.pyramidTries ?? 0);
+    setPyramidLastTryClicks(savedData.pyramidLastTryClicks ?? 0);
     setFlipPurchased(savedData.flipPurchased ?? false);
+    setEmailHintDismissed(savedData.emailHintDismissed ?? false);
     setGameStartTime(savedData.gameStartTime ?? Date.now());
     setAgiAchievedAt(savedData.agiAchievedAt);
   }
@@ -308,6 +333,15 @@ export function useGameLogic() {
   const agencyUnlocked = websitesSold >= AGENCY_UNLOCK_SOLD;
   const pyramidUnlocked = totalClicks >= PYRAMID_UNLOCK_CLICKS;
   const flipUnlocked = maxMoney >= FLIP_UNLOCK_MONEY;
+  const emailHintAvailable = totalClicks >= EMAIL_HINT_CLICKS && !emailHintDismissed;
+
+  // Tamayo's pyramid invite: a second email that stays until you actually join
+  const pyramidEmailVisible = pyramidUnlocked && !pyramidPurchased;
+  const pyramidRetry = pyramidTries > 0;
+  const pyramidCooldownLeft = pyramidRetry
+    ? Math.max(0, pyramidLastTryClicks + PYRAMID_RETRY_CLICKS - totalClicks)
+    : 0;
+  const pyramidCanTry = money >= PYRAMID_COST && pyramidCooldownLeft === 0;
   const linkedInBros = staff[linkedInBro.id] ?? 0;
   const agiElapsedMs = agiAchievedAt ? agiAchievedAt - gameStartTime : 0;
 
@@ -327,8 +361,13 @@ export function useGameLogic() {
     agencyUpgraded,
     pyramidUnlocked,
     pyramidPurchased,
+    pyramidEmailVisible,
+    pyramidRetry,
+    pyramidCanTry,
+    pyramidCooldownLeft,
     flipUnlocked,
     flipPurchased,
+    emailHintAvailable,
     linkedInBros,
     agiAchieved,
     agiElapsedMs,
@@ -342,6 +381,7 @@ export function useGameLogic() {
     buyAgencyUpgrade,
     buyPyramidScheme,
     buyFlip,
+    dismissEmailHint,
     removeState,
     removeStorage,
 

@@ -187,3 +187,120 @@ button:disabled {
   box-shadow: var(--shadow-glow);
   min-width: 240px;
 }
+
+/* Email hint — floating animated badge (bottom-left, clears the bottom-right Toaster) */
+.email-hint-badge {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 50;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-card-raised);
+  border: 1px solid var(--color-teal);
+  border-radius: 50%;
+  box-shadow: var(--shadow-glow);
+  animation: email-hint-bob 1.8s ease-in-out infinite;
+}
+
+.email-hint-badge:hover {
+  transform: translateY(-2px);
+}
+
+/* When both emails are present, lift the dismissable teaser above the pyramid invite */
+.email-hint-badge--raised {
+  bottom: 6rem;
+}
+
+.email-hint-badge--pyramid {
+  border-color: var(--color-win);
+}
+
+.email-hint-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.email-hint-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-loss);
+  border: 2px solid var(--color-card-raised);
+  animation: email-hint-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes email-hint-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes email-hint-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.7;
+  }
+}
+
+/* Email hint — message modal */
+.email-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(12, 17, 24, 0.7);
+  backdrop-filter: blur(2px);
+}
+
+.email-modal-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 1.5rem;
+  background: var(--color-card-raised);
+  border: 1px solid var(--color-teal);
+  border-radius: 12px;
+  box-shadow: var(--shadow-glow);
+}
+
+.email-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.email-modal-close {
+  width: auto;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.875rem;
+  background: transparent;
+  color: var(--color-ink-faint);
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+}
+
+.email-modal-close:hover {
+  color: var(--color-ink);
+  border-color: var(--color-line-hover);
+}
