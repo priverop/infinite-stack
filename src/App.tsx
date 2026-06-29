@@ -110,7 +110,10 @@ function App() {
         onToggleStats={() => setView('stats')}
       />
       <div>
-        <Toaster position="bottom-right" />
+        <Toaster
+          position="bottom-right"
+          containerStyle={{ bottom: 'calc(1rem + env(safe-area-inset-bottom))' }}
+        />
       </div>
       <EmailHint
         visible={emailHintAvailable}
