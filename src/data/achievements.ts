@@ -9,25 +9,25 @@ export const achievements: Achievement[] = [
     icon: '👆',
     type: 'threshold',
     stat: 'totalClicks',
-    target: 10
+    target: 50
   },
   {
-    id: 'clicks_500',
+    id: 'clicks_1000',
     title: 'Click Rookie',
-    description: 'Click 500 times.',
+    description: 'Click 1000 times.',
     icon: '👆',
     type: 'threshold',
     stat: 'totalClicks',
-    target: 500
+    target: 1000
   },
   {
-    id: 'clicks_1k',
+    id: 'clicks_5k',
     title: 'Click Master',
-    description: 'Click 1,000 times.',
+    description: 'Click 5,000 times.',
     icon: '💪',
     type: 'threshold',
     stat: 'totalClicks',
-    target: 1000
+    target: 5000
   },
 
   // Money
