@@ -147,7 +147,7 @@ export const catalog: Candidate[] = [
     title: 'Cult Leader',
     image: 'https://picsum.photos/id/379/100?grayscale',
     description: 'Increases website selling by 1B/s.',
-    cost: 1e14,
+    cost: 5e13,
     increment: 1e9
   },
   {
@@ -156,7 +156,7 @@ export const catalog: Candidate[] = [
     title: 'Elon Musk',
     image: 'https://picsum.photos/id/379/100?grayscale',
     description: 'Increases website selling by 1T/s.',
-    cost: 5e15,
+    cost: 4e15,
     increment: 1e12
   },
   {
@@ -215,7 +215,7 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/146/100?grayscale',
     description: 'Increases max team size by 100.',
     cost: 5e11,
-    increment: 350
+    increment: 100
   },
   {
     id: 'remote-island',
@@ -224,7 +224,7 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/203/100?grayscale',
     description: 'Increases max team size by 350.',
     cost: 1e14,
-    increment: 700
+    increment: 350
   },
   {
     id: 'moon-base',
@@ -233,7 +233,7 @@ export const catalog: Candidate[] = [
     image: 'https://picsum.photos/id/222/100?grayscale',
     description: 'Increases max team size by 700.',
     cost: 1e16,
-    increment: 1.5e3
+    increment: 700
   },
   {
     id: 'dyson-sphere',
@@ -241,8 +241,8 @@ export const catalog: Candidate[] = [
     title: 'Dyson Sphere',
     image: 'https://picsum.photos/id/241/100?grayscale',
     description: 'Increases max team size by 1.5K.',
-    cost: 1e18,
-    increment: 2e4
+    cost: 1e20,
+    increment: 1500
   }
 ];
 
